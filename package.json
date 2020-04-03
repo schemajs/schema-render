@@ -35,14 +35,17 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
+    "@tarojs/components": "3.0.0-beta.2",
+    "@tarojs/react": "3.0.0-beta.2",
     "@tarojs/runtime": "3.0.0-beta.2",
     "@tarojs/taro": "3.0.0-beta.2",
-    "@tarojs/components": "3.0.0-beta.2",
+    "dayjs": "^1.8.23",
+    "lodash": "^4.17.15",
     "mobx": "^4.8.0",
     "mobx-react": "^6.1.4",
+    "react": "^16.10.0",
     "react-dom": "^16.10.0",
-    "@tarojs/react": "3.0.0-beta.2",
-    "react": "^16.10.0"
+    "taro-ui": "^3.0.0-alpha.0"
   },
   "devDependencies": {
     "@types/webpack-env": "^1.13.6",

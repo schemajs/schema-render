@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Button, Text } from "@tarojs/components";
 import { observer, inject } from "mobx-react";
 import Taro from "@tarojs/taro";
+import { AtButton } from "taro-ui";
 
 import "./index.scss";
 
@@ -63,7 +64,13 @@ class Index extends Component {
         <Button onClick={this.increment}>+</Button>
         <Button onClick={this.decrement}>-</Button>
         <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Button onClick={this.goToDetail}>Go To Detail</Button>
+        <AtButton
+          type="primary"
+          className="detail-btn"
+          onClick={this.goToDetail}
+        >
+          Go To Detail
+        </AtButton>
         <Text>{counter}</Text>
       </View>
     );

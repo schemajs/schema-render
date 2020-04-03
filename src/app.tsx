@@ -4,6 +4,7 @@ import { Provider } from "mobx-react";
 import counterStore from "./demo/common/stores/counter";
 
 import "./app.scss";
+import "taro-ui/dist/style/index.scss";
 
 const store = {
   counterStore

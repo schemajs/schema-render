@@ -1,3 +1,5 @@
+const path = require("path");
+
 const config = {
   projectName: "uni-form-mobile",
   date: "2020-4-3",
@@ -12,7 +14,8 @@ const config = {
   plugins: [],
   defineConstants: {},
   alias: {
-    "@/": "./src/"
+    "@/": "./src/",
+    nervjs: path.resolve(__dirname, "../node_modules/react")
   },
   copy: {
     patterns: [],
