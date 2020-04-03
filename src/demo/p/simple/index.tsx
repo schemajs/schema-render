@@ -1,8 +1,15 @@
 import React, { Component } from "react";
-import { View, Button, Text } from "@tarojs/components";
+import { View } from "@tarojs/components";
 import { observer, inject } from "mobx-react";
 import Taro from "@tarojs/taro";
-import { AtButton } from "taro-ui";
+import {
+  AtForm,
+  AtInput,
+  AtButton,
+  AtInputNumber,
+  AtRadio,
+  AtSwitch,
+} from "taro-ui";
 
 import "./index.scss";
 
@@ -24,46 +31,36 @@ interface Index {
 @inject("store")
 @observer
 class Index extends Component {
-  componentWillMount() {}
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: "",
+      switchValue: false,
+    };
+  }
 
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
-  componentDidShow() {}
-
-  componentDidHide() {}
-
-  increment = () => {
-    const { counterStore } = this.props.store;
-    counterStore.increment();
-  };
-
-  decrement = () => {
-    const { counterStore } = this.props.store;
-    counterStore.decrement();
-  };
-
-  incrementAsync = () => {
-    const { counterStore } = this.props.store;
-    counterStore.incrementAsync();
-  };
-
+  handleChange(value) {
+    this.setState({
+      value,
+    });
+  }
+  onSubmit(event) {
+    console.log(event);
+  }
+  onReset(event) {
+    console.log(event);
+  }
   goToDetail = () => {
     Taro.navigateTo({
-      url: "/uniform/p/detail/index"
+      url: "/uniform/p/detail/index",
     });
   };
-
+  handleChangeSwitch = (value) => {
+    this.setState({ switchValue: value });
+  };
   render() {
-    const {
-      counterStore: { counter }
-    } = this.props.store;
     return (
       <View className="index">
-        <Button onClick={this.increment}>+</Button>
-        <Button onClick={this.decrement}>-</Button>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
         <AtButton
           type="primary"
           className="detail-btn"
@@ -71,7 +68,49 @@ class Index extends Component {
         >
           Go To Detail
         </AtButton>
-        <Text>{counter}</Text>
+        <AtForm
+          onSubmit={this.onSubmit.bind(this)}
+          onReset={this.onReset.bind(this)}
+        >
+          <AtInput
+            name="value"
+            title="文本"
+            type="text"
+            placeholder="单行文本"
+            value={this.state.value}
+            onChange={this.handleChange.bind(this)}
+          />
+          <AtInputNumber min={0} max={10} step={1} value={3} />
+          <AtSwitch
+            title="开启中"
+            checked={this.state.switchValue}
+            onChange={this.handleChangeSwitch}
+          />
+          <AtSwitch
+            title="已禁止"
+            disabled
+            onChange={this.handleChangeSwitch}
+          />
+          <AtSwitch border={false} title="已关闭" />
+          <AtRadio
+            options={[
+              { label: "单选项一", value: "option1", desc: "单选项描述" },
+              { label: "单选项二", value: "option2" },
+              {
+                label: "单选项三禁用",
+                value: "option3",
+                desc: "单选项描述",
+                disabled: true,
+              },
+            ]}
+            value={this.state.value}
+            onClick={this.handleChange.bind(this)}
+          />
+          <AtButton type="primary" formType="submit">
+            提交
+          </AtButton>
+          <AtButton formType="reset">重置</AtButton>
+        </AtForm>
       </View>
     );
   }
