@@ -22,11 +22,16 @@
     "typeRoots": [
       "node_modules/@types",
       "global.d.ts"
-    ]
+    ],
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "exclude": [
-    "node_modules",
-    "dist"
+  "include": [
+    "test/**/*",
+    "src/**/*",
+    "global.d.ts",
   ],
+  "exclude": ["node_modules","dist_mp","dist_h5", "**/*.spec.ts"],
   "compileOnSave": false
 }

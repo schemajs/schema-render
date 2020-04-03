@@ -1,6 +1,6 @@
 export default {
   pages: [
-    'pages/index/index'
+    'main/portal/form/detail/index'
   ],
   window: {
     backgroundTextStyle: 'light',
