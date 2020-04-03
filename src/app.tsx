@@ -1,31 +1,27 @@
-import React, { Component } from 'react'
-import { Provider } from 'mobx-react'
+import React, { Component } from "react";
+import { Provider } from "mobx-react";
 
-import counterStore from './main/common/stores/counter'
+import counterStore from "./demo/common/stores/counter";
 
-import './app.scss'
+import "./app.scss";
 
 const store = {
   counterStore
-}
+};
 
 class App extends Component {
-  componentDidMount () {}
+  componentDidMount() {}
 
-  componentDidShow () {}
+  componentDidShow() {}
 
-  componentDidHide () {}
+  componentDidHide() {}
 
-  componentDidCatchError () {}
+  componentDidCatchError() {}
 
   // this.props.children 就是要渲染的页面
-  render () {
-    return (
-      <Provider store={store}>
-        {this.props.children}
-      </Provider>
-    )
+  render() {
+    return <Provider store={store}>{this.props.children}</Provider>;
   }
 }
 
-export default App
+export default App;

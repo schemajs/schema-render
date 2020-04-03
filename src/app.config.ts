@@ -1,11 +1,9 @@
 export default {
-  pages: [
-    'main/portal/form/detail/index'
-  ],
+  pages: ["demo/p/simple/index", "uniform/p/detail/index"],
   window: {
-    backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: 'WeChat',
-    navigationBarTextStyle: 'black'
+    backgroundTextStyle: "light",
+    navigationBarBackgroundColor: "#fff",
+    navigationBarTitleText: "WeChat",
+    navigationBarTextStyle: "black"
   }
-}
+};
