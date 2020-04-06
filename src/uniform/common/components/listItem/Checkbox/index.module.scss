@@ -1,0 +1,12 @@
+.checkbox-container{
+  padding-left: 24px;
+}
+
+.at-custom-checkbox{
+  &:before{
+    border: none;
+  }
+  &:after{
+    border: none;
+  }
+}
