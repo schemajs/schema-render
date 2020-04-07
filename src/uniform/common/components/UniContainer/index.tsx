@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro";
-import { AtComponent } from "../";
+import { AtComponent } from "../type";
 import classNames from "classnames";
 import { View } from "@tarojs/components";
 
@@ -10,7 +10,7 @@ import { FormStore } from "../../stores/UniFormStore";
 import BaseComponent from "../BaseComponent";
 import UniElement from "../UniElement";
 // var
-import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "..";
+import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "../type";
 
 interface IUniContainerProps extends AtComponent {
   schema?: ISchema;

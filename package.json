@@ -36,6 +36,8 @@
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "3.0.0-beta.2",
+    "@tarojs/mobx": "^2.1.0",
+    "@tarojs/mobx-h5": "^2.1.0",
     "@tarojs/react": "3.0.0-beta.2",
     "@tarojs/runtime": "3.0.0-beta.2",
     "@tarojs/taro": "3.0.0-beta.2",

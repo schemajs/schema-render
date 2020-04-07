@@ -17,7 +17,7 @@ import {
   SchemaValidator,
   setDataOptions,
   IUniElementStoreGetMergeProps,
-} from "@/uniform/common/components/index.d";
+} from "@/uniform/common/components/type";
 
 const debug = createDebug("mapp:stores/ui/form/FormItem");
 

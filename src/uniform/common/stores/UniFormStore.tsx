@@ -1,6 +1,6 @@
 import { action } from "mobx";
 // type
-import { IValidMessage } from "@/uniform/common/components";
+import { IValidMessage } from "@/uniform/common/components/type";
 // comp
 import { FormItemStore } from "./UniElementStore";
 

@@ -1,9 +1,9 @@
 import Taro from "@tarojs/taro";
 import { View } from "@tarojs/components";
-import { AtListItem, AtInput, AtTextarea, AtComponentProps } from "../UniContainer/node_modules/taro-ui";
+import { AtListItem, AtInput, AtTextarea, AtComponentProps } from "taro-ui";
 // util
 import { observer } from "@tarojs/mobx";
-import classNames from "../UniContainer/node_modules/classnames";
+import classNames from "classnames";
 import _isEqual from "lodash/isEqual";
 
 import BaseComponent from "../BaseComponent";
@@ -23,7 +23,7 @@ import ListItemTextarea from "@/uniform/common/components/CustomFormComponent/li
 
 // store
 import { FormItemStore } from "../../stores/UniElementStore";
-import { ICustomStyles, EnumCompType } from "..";
+import { ICustomStyles, EnumCompType } from "../type";
 
 interface IFormItemProps extends AtComponentProps {
   store: FormItemStore;
