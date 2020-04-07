@@ -22,12 +22,12 @@ import ListItemFile from "@/uniform/common/components/CustomFormComponent/listIt
 import ListItemTextarea from "@/uniform/common/components/CustomFormComponent/listItem/Textarea";
 
 // store
-import { FormItemStore } from "../../stores/UniElementStore";
+import { UniElementStore } from "../../stores/UniElementStore";
 import { ICustomStyles, EnumCompType } from "../type";
 
 interface IFormItemProps extends AtComponentProps {
-  store: FormItemStore;
-  onChange?: (store: FormItemStore) => {};
+  store: UniElementStore;
+  onChange?: (store: UniElementStore) => {};
   readerHeader?: JSX.Element;
   readerFooter?: JSX.Element;
 }

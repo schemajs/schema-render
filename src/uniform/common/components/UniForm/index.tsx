@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { View } from "@tarojs/components";
 
 // util
-import { FormItemStore } from "../../stores/UniElementStore";
+import { UniElementStore } from "../../stores/UniElementStore";
 import { FormStore } from "../../stores/UniFormStore";
 // comp
 import BaseComponent from "../BaseComponent";
@@ -42,7 +42,7 @@ export default class Form extends BaseComponent<IFormProps, IFormState> {
       <View style={style.root} className={classNames(className)}>
         {schema &&
           Object.entries(schema.properties).map(([name, item]) => {
-            let store: FormItemStore = new FormItemStore(
+            let store: UniElementStore = new UniElementStore(
               Object.assign(
                 {
                   name,

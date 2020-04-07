@@ -2,19 +2,19 @@ import { action } from "mobx";
 // type
 import { IValidMessage } from "@/uniform/common/components/type";
 // comp
-import { FormItemStore } from "./UniElementStore";
+import { UniElementStore } from "./UniElementStore";
 
 export class FormStore {
-  formItemStores: Array<FormItemStore> = [];
+  elementStores: Array<UniElementStore> = [];
 
   @action.bound
-  addStore(store: FormItemStore) {
-    this.formItemStores.push(store);
+  addElementStore(store: UniElementStore) {
+    this.elementStores.push(store);
   }
 
   @action.bound
-  deleteStore(store: FormItemStore) {
-    this.formItemStores = this.formItemStores.filter((storeItem) => {
+  deleteElementStore(store: UniElementStore) {
+    this.elementStores = this.elementStores.filter((storeItem) => {
       return store !== storeItem;
     });
   }
@@ -27,7 +27,7 @@ export class FormStore {
       errMessage: "",
       name: "",
     };
-    this.formItemStores.forEach((store) => {
+    this.elementStores.forEach((store) => {
       let { isValid, showError, errMessage, name } = store;
       if (!err.showError) {
         err.name = name;

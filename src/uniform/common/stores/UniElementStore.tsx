@@ -8,7 +8,7 @@ import {
   checkIsStringLength,
   checkIsNumberMax,
   checkIsNumberMin,
-  checkIsPatternAllow,
+  checkIsPatternAllow
 } from "@/uniform/common/utils/validators/index";
 
 // type
@@ -16,21 +16,15 @@ import {
   ISchemaBase,
   SchemaValidator,
   setDataOptions,
-  IUniElementStoreGetMergeProps,
+  IUniElementStoreGetMergeProps
 } from "@/uniform/common/components/type";
 
 const debug = createDebug("mapp:stores/ui/form/FormItem");
 
-export class FormItemStore {
+export class UniElementStore  {
+  // new 
   @observable
-  defaultProps: object = {};
-
   name: string;
-
-  @observable
-  type: string;
-
-  required: boolean;
 
   @observable
   value: any;
@@ -77,7 +71,7 @@ export class FormItemStore {
       validators,
       name,
       type,
-      formItemProp: props,
+      formItemProp: props
     } = schema;
     // 默认props
     this.defaultProps = props || {};
@@ -142,7 +136,7 @@ export class FormItemStore {
 
   validateValue(value): void {
     // 校验参数
-    this.validators.map((validator) =>
+    this.validators.map(validator =>
       validator({ messagePrefix: this.errMsgPrefix, value })
     );
   }
@@ -189,7 +183,7 @@ export class FormItemStore {
       console.log("setData skip", {
         doNotSetWhenValidateError,
         isValid,
-        data: this.value,
+        data: this.value
       });
       // 跳过
       return;
@@ -231,14 +225,14 @@ export class FormItemStore {
   }
 
   customEvent = {
-    change: (args) => {
+    change: args => {
       let value = args[0];
       this.setValue(value);
     },
-    assistantValueChange: (args) => {
+    assistantValueChange: args => {
       let value = args[0];
       this.setValue(value, {}, "assistant");
-    },
+    }
   };
 
   @computed
@@ -250,7 +244,7 @@ export class FormItemStore {
       assistantValue: this.assistantValue,
       isValid: this.isValid,
       error: this.showError,
-      errMessage: this.errMessage,
+      errMessage: this.errMessage
     };
     return newProps;
   }
