@@ -4,19 +4,22 @@ import { IValidMessage } from "@/uniform/common/components/type";
 // comp
 import { UniElementStore } from "./UniElementStore";
 
+type ElementStoreInfo = {
+  [key:string]:UniElementStore
+}
+
 export class UniContainerStore {
-  elementStores: Array<UniElementStore> = [];
+  elementStores: ElementStoreInfo = {
+  };
 
   @action.bound
-  addElementStore(store: UniElementStore) {
-    this.elementStores.push(store);
+  putElementStore(path:string,store: UniElementStore) {
+    this.elementStores[path] = store;
   }
 
   @action.bound
-  deleteElementStore(store: UniElementStore) {
-    this.elementStores = this.elementStores.filter((storeItem) => {
-      return store !== storeItem;
-    });
+  deleteElementStore(path:string) {
+    delete this.elementStores[path];
   }
 
   @action.bound
@@ -27,13 +30,14 @@ export class UniContainerStore {
       errMessage: "",
       name: "",
     };
-    this.elementStores.forEach((store) => {
+    Object.values(this.elementStores).map((store) => {
       let { isValid, showError, errMessage, name } = store;
-      if (!err.showError) {
+      if (showError) {
         err.name = name;
         err.isValid = isValid;
         err.showError = showError;
         err.errMessage = errMessage;
+        return err;
       }
     });
     return err;
