@@ -1,9 +1,9 @@
 import Taro from "@tarojs/taro";
 import { View } from "@tarojs/components";
-import { AtListItem, AtInput, AtTextarea, AtComponentProps } from "taro-ui";
+import { AtListItem, AtInput, AtTextarea, AtComponentProps } from "../UniContainer/node_modules/taro-ui";
 // util
 import { observer } from "@tarojs/mobx";
-import classNames from "classnames";
+import classNames from "../UniContainer/node_modules/classnames";
 import _isEqual from "lodash/isEqual";
 
 import BaseComponent from "../BaseComponent";

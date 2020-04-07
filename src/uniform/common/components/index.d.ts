@@ -1,4 +1,12 @@
 import { Validator } from "@/uniform/common/utils/validators/type.d.ts";
+import { CSSProperties } from "react";
+
+export interface AtComponent {
+  className?: string | string[] | { [key: string]: boolean };
+
+  customStyle?: string | CSSProperties;
+  customStyles?: any;
+}
 
 export enum EnumCompType {
   ListItemText = "ListItemText",
