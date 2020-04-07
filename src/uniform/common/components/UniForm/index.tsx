@@ -4,11 +4,11 @@ import classNames from "classnames";
 import { View } from "@tarojs/components";
 
 // util
-import { FormItemStore } from "../../stores/UniFormItemStore";
+import { FormItemStore } from "../../stores/UniElementStore";
 import { FormStore } from "../../stores/UniFormStore";
 // comp
 import BaseComponent from "../BaseComponent";
-import UniFormItem from "../UniFormItem";
+import UniElement from "../UniElement";
 // var
 import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "..";
 
@@ -50,7 +50,7 @@ export default class Form extends BaseComponent<IFormProps, IFormState> {
                 item
               )
             );
-            return <UniFormItem store={store} key={`${name}`}></UniFormItem>;
+            return <UniElement store={store} key={`${name}`}></UniElement>;
           })}
         {this.props.children}
         {

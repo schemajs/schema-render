@@ -2,7 +2,7 @@ import { action } from "mobx";
 // type
 import { IValidMessage } from "@/uniform/common/components";
 // comp
-import { FormItemStore } from "./UniFormItemStore";
+import { FormItemStore } from "./UniElementStore";
 
 export class FormStore {
   formItemStores: Array<FormItemStore> = [];

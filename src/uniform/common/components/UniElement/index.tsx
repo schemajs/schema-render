@@ -22,7 +22,7 @@ import ListItemFile from "@/uniform/common/components/CustomFormComponent/listIt
 import ListItemTextarea from "@/uniform/common/components/CustomFormComponent/listItem/Textarea";
 
 // store
-import { FormItemStore } from "../../stores/UniFormItemStore";
+import { FormItemStore } from "../../stores/UniElementStore";
 import { ICustomStyles, EnumCompType } from "..";
 
 interface IFormItemProps extends AtComponentProps {

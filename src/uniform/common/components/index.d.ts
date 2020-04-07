@@ -55,14 +55,14 @@ export interface ISchema {
   properties: IProperties;
 }
 
-export interface IUniFormItemStoreGetMergePropsEvent {
+export interface IUniElementStoreGetMergePropsEvent {
   change: (param: any) => void;
   assistantValueChange: (param: any) => void;
 }
 
-export interface IUniFormItemStoreGetMergeProps {
+export interface IUniElementStoreGetMergeProps {
   defaultProps: object;
-  customEvent: IUniFormItemStoreGetMergePropsEvent;
+  customEvent: IUniElementStoreGetMergePropsEvent;
   value: any;
   assistantValue: any;
   error: boolean | undefined;

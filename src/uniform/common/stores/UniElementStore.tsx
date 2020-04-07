@@ -16,7 +16,7 @@ import {
   ISchemaBase,
   SchemaValidator,
   setDataOptions,
-  IUniFormItemStoreGetMergeProps,
+  IUniElementStoreGetMergeProps,
 } from "@/uniform/common/components/index.d";
 
 const debug = createDebug("mapp:stores/ui/form/FormItem");
@@ -242,7 +242,7 @@ export class FormItemStore {
   };
 
   @computed
-  get getFormItemStoreProps(): IUniFormItemStoreGetMergeProps {
+  get getFormItemStoreProps(): IUniElementStoreGetMergeProps {
     let newProps = {
       defaultProps: this.defaultProps,
       customEvent: this.customEvent,
