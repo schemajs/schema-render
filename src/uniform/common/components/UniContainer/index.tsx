@@ -1,64 +1,37 @@
-import Taro from "@tarojs/taro";
-import { AtComponent } from "../type";
-import classNames from "classnames";
-import { View } from "@tarojs/components";
+import React, { Component } from 'react'
+import { View, Button, Text } from '@tarojs/components'
+import { observer, inject } from 'mobx-react'
 
-// util
-import { FormItemStore } from "../../stores/UniElementStore";
-import { FormStore } from "../../stores/UniFormStore";
-// comp
-import BaseComponent from "../BaseComponent";
-import UniElement from "../UniElement";
-// var
-import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "../type";
-
-interface IUniContainerProps extends AtComponent {
-  schema?: ISchema;
-  store?: FormStore;
-  onSubmit?: IFormSubmit;
-  renderFooter?: JSX.Element;
-  footerClassName?: string | string[] | { [key: string]: boolean };
+type PageStateProps = {
+  path?:string
+  schema?: any;
 }
 
-interface IFormState {}
+interface UniContainer {
+  props: PageStateProps;
+}
 
-export default class UniContainer extends BaseComponent<IUniContainerProps, IFormState> {
-  // form提交事件
-  onSubmit = () => {
-    let { store, onSubmit } = this.props;
-    if (store) {
-      let err: IValidMessage = store.valid();
-      onSubmit && onSubmit(err);
-      return;
-    }
-    onSubmit && onSubmit();
-  };
-
-  render() {
-    let { className, footerClassName, schema } = this.props;
-
-    let style: ICustomStyles = this.getMergedStyles();
+@observer
+class UniContainer extends Component {
+  render () {
+    const {path="top",schema} = this.props
     return (
-      <View style={style.root} className={classNames(className)}>
-        {schema &&
-          Object.entries(schema.properties).map(([name, item]) => {
-            let store: FormItemStore = new FormItemStore(
-              Object.assign(
-                {
-                  name,
-                },
-                item
-              )
-            );
-            return <UniElement store={store} key={`${name}`}></UniElement>;
+      <View className='UniContainer'>
+        <View>
+          <Text>{`> ${path}`}</Text>
+        </View>
+        {schema.properties && 
+          Object.entries(schema.properties).map(([subName,value]) => {
+            console.log(`subName:${subName}, schema:${JSON.stringify(value)}`)
+            const comPath = `${path}.${subName}`
+            return <UniContainer path={comPath} key={comPath} schema={value}></UniContainer>;
           })}
-        {this.props.children}
-        {
-          <View onClick={this.onSubmit} className={classNames(footerClassName)}>
-            {this.props.renderFooter}
-          </View>
-        }
+          <View>
+          <Text>{`< ${path}`}</Text>
+        </View>
       </View>
-    );
+    )
   }
 }
+
+export default UniContainer

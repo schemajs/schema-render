@@ -10,6 +10,7 @@ import {
   AtRadio,
   AtSwitch,
 } from "taro-ui";
+import UniContainer from '../../../uniform/common/components/UniContainer'
 
 import "./index.scss";
 
@@ -59,58 +60,37 @@ class Index extends Component {
     this.setState({ switchValue: value });
   };
   render() {
+    const schema ={
+      "type": "object",
+      "properties": {
+        "ke11": {
+          "type": "string"
+        },
+        "key12": {
+          "type": "object",
+          "properties": {
+            "key21": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key31": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     return (
       <View className="index">
-        <AtButton
-          type="primary"
-          className="detail-btn"
-          onClick={this.goToDetail}
-        >
-          Go To Detail
-        </AtButton>
-        <AtForm
-          onSubmit={this.onSubmit.bind(this)}
-          onReset={this.onReset.bind(this)}
-        >
-          <AtInput
-            name="value"
-            title="文本"
-            type="text"
-            placeholder="单行文本"
-            value={this.state.value}
-            onChange={this.handleChange.bind(this)}
-          />
-          <AtInputNumber min={0} max={10} step={1} value={3} />
-          <AtSwitch
-            title="开启中"
-            checked={this.state.switchValue}
-            onChange={this.handleChangeSwitch}
-          />
-          <AtSwitch
-            title="已禁止"
-            disabled
-            onChange={this.handleChangeSwitch}
-          />
-          <AtSwitch border={false} title="已关闭" />
-          <AtRadio
-            options={[
-              { label: "单选项一", value: "option1", desc: "单选项描述" },
-              { label: "单选项二", value: "option2" },
-              {
-                label: "单选项三禁用",
-                value: "option3",
-                desc: "单选项描述",
-                disabled: true,
-              },
-            ]}
-            value={this.state.value}
-            onClick={this.handleChange.bind(this)}
-          />
+          <UniContainer schema={schema}></UniContainer>
           <AtButton type="primary" formType="submit">
             提交
           </AtButton>
           <AtButton formType="reset">重置</AtButton>
-        </AtForm>
       </View>
     );
   }

@@ -1,4 +1,4 @@
-import Taro, { Component } from "@tarojs/taro";
+import Taro,{ Component } from "@tarojs/taro";
 import lmerge from "lodash/merge";
 
 export interface BaseComponentPropsType {
@@ -12,7 +12,12 @@ export interface CustomStyles {
 export default class BaseComponent<
   P extends BaseComponentPropsType,
   S
-> extends Taro.PureComponent<P, S> {
+> extends Component<P, S> {
+
+  constructor(props){
+    super(props)
+  }
+
   public static defaultProps: Partial<BaseComponentPropsType> = {
     customStyles: {},
   };
