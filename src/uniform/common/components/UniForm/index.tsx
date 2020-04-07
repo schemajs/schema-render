@@ -5,7 +5,7 @@ import { View } from "@tarojs/components";
 
 // util
 import { UniElementStore } from "../../stores/UniElementStore";
-import { FormStore } from "../../stores/UniFormStore";
+import { FormStore } from "../../stores/UniContainerStore";
 // comp
 import BaseComponent from "../BaseComponent";
 import UniElement from "../UniElement";

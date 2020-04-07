@@ -4,7 +4,7 @@ import { IValidMessage } from "@/uniform/common/components/type";
 // comp
 import { UniElementStore } from "./UniElementStore";
 
-export class FormStore {
+export class UniContainerStore {
   elementStores: Array<UniElementStore> = [];
 
   @action.bound
