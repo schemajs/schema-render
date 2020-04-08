@@ -3,6 +3,7 @@ import { action, computed, observable } from "mobx";
 import { IValidMessage, ISchema } from "@/uniform/types";
 // comp
 import { UniElementStore } from "./UniElementStore";
+import { pathPrefix } from "../const";
 
 type ElementStoreInfo = {
   [key:string]:UniElementStore
@@ -24,7 +25,7 @@ export class UniContainerStore {
   @action.bound
   reset(){
     this.elementStores ={};
-    this.parseBySchemaNode(this.schemaData,"")
+    this.parseBySchemaNode(this.schemaData,pathPrefix)
   }
 
   @action.bound

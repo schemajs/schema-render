@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 
 import UniElement from './UniElement'
 import { UniContainerStore } from "../../stores/UniContainerStore";
+import { pathPrefix } from "../../const";
 
 type PageStateProps = {
   containerStore: UniContainerStore;
@@ -26,7 +27,7 @@ class UniContainer extends Component {
         {/* fields */}
         {properties &&
           Object.keys(properties).map((subKey) => {
-            const elePath = `.${subKey}`;
+            const elePath = `${pathPrefix}.${subKey}`;
             return (
               <UniElement
                 key={elePath}
