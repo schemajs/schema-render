@@ -10,7 +10,7 @@ import { FormStore } from "../../stores/UniContainerStore";
 import BaseComponent from "../BaseComponent";
 import UniElement from "../UniElement";
 // var
-import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "../type";
+import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "../../../types";
 
 interface IFormProps extends AtComponentProps {
   schema?: ISchema;

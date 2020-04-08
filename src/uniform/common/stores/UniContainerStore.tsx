@@ -1,6 +1,6 @@
 import { action } from "mobx";
 // type
-import { IValidMessage } from "@/uniform/common/components/type";
+import { IValidMessage } from "@/uniform/types";
 // comp
 import { UniElementStore } from "./UniElementStore";
 
@@ -9,6 +9,9 @@ type ElementStoreInfo = {
 }
 
 export class UniContainerStore {
+
+  schemaData:any
+
   elementStores: ElementStoreInfo = {
   };
 

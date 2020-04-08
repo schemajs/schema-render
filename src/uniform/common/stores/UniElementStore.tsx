@@ -17,18 +17,25 @@ import {
   SchemaValidator,
   setDataOptions,
   IUniElementStoreGetMergeProps
-} from "@/uniform/common/components/type";
+} from "@/uniform/types";
+
+import {ISchema} from './types'
 
 const debug = createDebug("mapp:stores/ui/form/FormItem");
 
-export class UniElementStore  {
-  // new 
+export class UniElementStore {
+
   @observable
-  name: string;
+  schemaData:ISchema={};
+
+  get path():string{
+    return this.schemaData.path!
+  }
 
   @observable
   value: any;
 
+  // 用于辅助显示的值
   @observable
   assistantValue: any;
 
