@@ -40,6 +40,7 @@ export class UniElementStore {
 
   @observable
   reason: string = "";
+  
   get path(): string {
     return this.schemaData.path!;
   }
@@ -75,6 +76,7 @@ export class UniElementStore {
   reset() {
     this.setValue(this.initialValue);
     this.setIsValueUpdated(false);
+    this.assistantValue = "";
   }
 
   @action.bound
