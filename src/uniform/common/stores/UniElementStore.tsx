@@ -140,9 +140,23 @@ export class UniElementStore {
     this.validators.push(validator)
   }
 
+  /**
+   * 无校验设置
+   * @param value 
+   */
   @action.bound
-  setValue(value:any, options: setDataOptions = {}) {
-    const { doNotSetWhenValidateError = false } = options;
+  setValueWithoutValidate(value:any) {
+    this.value = value;
+    this.setIsValueUpdated(true);
+    return;
+  }
+
+  /**
+   * 带校验设置
+   * @param value 
+   */
+  @action.bound
+  setValue(value:any) {
     let isValid = true,
       reason = "";
     try {
@@ -150,10 +164,6 @@ export class UniElementStore {
     } catch (err) {
       isValid = false;
       reason = err.message;
-    }
-    if (doNotSetWhenValidateError && !isValid) {
-      // 跳过
-      return;
     }
     this.setIsValid(isValid);
     this.setReason(reason);
