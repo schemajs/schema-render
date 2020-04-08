@@ -25,7 +25,7 @@ export class UniElementStore {
 
   // 用于辅助显示的值
   @observable
-  assistantValue: any;
+  tempValue: any;
 
   validators: Validator[] = [];
 
@@ -40,7 +40,7 @@ export class UniElementStore {
 
   @observable
   reason: string = "";
-  
+
   get path(): string {
     return this.schemaData.path!;
   }
@@ -62,6 +62,13 @@ export class UniElementStore {
   }
 
   @action.bound
+  reset() {
+    this.setValue(this.initialValue);
+    this.setIsValueUpdated(false);
+    this.tempValue = this.initialValue;
+  }
+
+  @action.bound
   initBySchema(schema: ISchema) {
     this.schemaData = schema;
 
@@ -72,12 +79,6 @@ export class UniElementStore {
     this.getRules(schema);
   }
 
-  @action.bound
-  reset() {
-    this.setValue(this.initialValue);
-    this.setIsValueUpdated(false);
-    this.assistantValue = "";
-  }
 
   @action.bound
   getRules(schema) {
@@ -140,7 +141,7 @@ export class UniElementStore {
   }
 
   @action.bound
-  setValue(value, options: setDataOptions = {}, type?: string) {
+  setValue(value:any, options: setDataOptions = {}) {
     const { doNotSetWhenValidateError = false } = options;
     let isValid = true,
       reason = "";
@@ -156,13 +157,19 @@ export class UniElementStore {
     }
     this.setIsValid(isValid);
     this.setReason(reason);
-    if (type == "assistant") {
-      this.assistantValue = value;
-    } else {
-      this.value = value;
-    }
+    this.value = value;
     this.setIsValueUpdated(true);
     return;
+  }
+
+  @action.bound
+  setTempValue(value:any){
+    this.tempValue = value;
+  }
+
+  @action.bound
+  syncTempValue() {
+    this.setValue(this.tempValue)
   }
 
   @action.bound
@@ -180,19 +187,4 @@ export class UniElementStore {
     this.isValueUpdated = val;
   }
 
-  @action.bound
-  syncAssistantValueToValue() {
-    this.value = this.assistantValue;
-  }
-
-  customEvent = {
-    change: args => {
-      let value = args[0];
-      this.setValue(value);
-    },
-    assistantValueChange: args => {
-      let value = args[0];
-      this.setValue(value, {}, "assistant");
-    }
-  };
 }
