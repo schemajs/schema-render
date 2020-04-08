@@ -22,13 +22,13 @@ export function createBySchemaNode(
     item.path = path;
     const eleStore: UniElementStore = new UniElementStore(item);
     containerStore.putElementStore(path, eleStore);
-    return createBySchemaNode(containerStore,schema, path);
+    return createBySchemaNode(containerStore,item, path);
   });
 }
 
 export function getContainerStore(schema: any) {
   const schemaData: ISchema = transformSchema(schema);
-  const containerStore = new UniContainerStore();
+  const containerStore = new UniContainerStore(schemaData);
   const path = "";
   createBySchemaNode(containerStore,schemaData,  path);
   return containerStore;

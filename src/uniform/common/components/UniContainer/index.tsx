@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
-import { View, Button, Text } from '@tarojs/components'
-import { observer, inject } from 'mobx-react'
-import { UniContainerStore } from '../../stores/UniContainerStore'
+import React, { Component } from "react";
+import { View, Button, Text } from "@tarojs/components";
+import { observer, inject } from "mobx-react";
+import { UniContainerStore } from "../../containerStores/UniContainerStore";
 
 type PageStateProps = {
-  store: any;
-}
+  path: string;
+  containerStore: any;
+};
 
 interface UniContainer {
   props: PageStateProps;
@@ -13,30 +14,38 @@ interface UniContainer {
 
 @observer
 class UniContainer extends Component {
-  
-  render () {
-    const {store} = this.props
-    debugger
-    const path = store.path
-    const properties = store.properties
+  render() {
+    const { containerStore, path = "" } = this.props;
+    // if(!path){
+    //   return <Text>loading...</Text>
+    // }
+    const compStore =
+      path == "" ? containerStore : containerStore.getElementStore(path);
+    const properties = compStore.properties;
     return (
-      <View className='UniContainer'>
+      <View className="UniContainer">
         <View>
           <Text>{`> ${path}`}</Text>
         </View>
-        {properties && 
-          Object.entries(properties).map(([subName,value]) => {
-            console.log(`subName:${subName}, schema:${JSON.stringify(value)}`)
-            const comPath = `${path}.${subName}`
-            const eleStore = store.getElementStore(path)
-            return <UniContainer  key={comPath} store={eleStore}></UniContainer>;
+        {/* sub */}
+        {properties &&
+          Object.entries(properties).map(([subName, value]) => {
+            console.log(`subName:${subName}, schema:${JSON.stringify(value)}`);
+            const elePath = `${path}.${subName}`;
+            return (
+              <UniContainer
+                key={elePath}
+                path={elePath}
+                containerStore={containerStore}
+              ></UniContainer>
+            );
           })}
-          <View>
+        <View>
           <Text>{`< ${path}`}</Text>
         </View>
       </View>
-    )
+    );
   }
 }
 
-export default UniContainer
+export default UniContainer;

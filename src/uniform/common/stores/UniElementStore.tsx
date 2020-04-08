@@ -18,7 +18,7 @@ const debug = createDebug("mapp:stores/ui/form/FormItem");
 
 export class UniElementStore {
   @observable
-  schemaData: ISchema;
+  schemaData: ISchema={};
 
   get properties(){
     if(!this.schemaData){

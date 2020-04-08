@@ -31,7 +31,31 @@ interface Index {
   props: PageStateProps;
 }
 
-@inject("store")
+const schema ={
+  "type": "object",
+  "properties": {
+    "ke11": {
+      "type": "string"
+    },
+    "key12": {
+      "type": "object",
+      "properties": {
+        "key21": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key31": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @observer
 class Index extends Component {
   containerStore:UniContainerStore
@@ -41,6 +65,7 @@ class Index extends Component {
       value: "",
       switchValue: false,
     };
+    this.containerStore = getContainerStore(schema)
   }
 
   handleChange(value) {
@@ -63,38 +88,12 @@ class Index extends Component {
     this.setState({ switchValue: value });
   };
   componentDidMount(){
-    const schema ={
-      "type": "object",
-      "properties": {
-        "ke11": {
-          "type": "string"
-        },
-        "key12": {
-          "type": "object",
-          "properties": {
-            "key21": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "key31": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
 
-    const store = getContainerStore(schema)
-    this.containerStore = store
   }
   render() {
     return (
       <View className="index">
-          <UniContainer store={this.containerStore}></UniContainer>
+          <UniContainer containerStore={this.containerStore}></UniContainer>
           <AtButton type="primary" formType="submit">
             提交
           </AtButton>

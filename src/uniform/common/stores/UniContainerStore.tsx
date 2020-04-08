@@ -10,7 +10,11 @@ type ElementStoreInfo = {
 
 export class UniContainerStore {
 
-  schemaData:ISchema
+  constructor(schema:ISchema){
+    this.schemaData = schema
+  }
+
+  schemaData:ISchema={}
 
   get path(){
     return ""
