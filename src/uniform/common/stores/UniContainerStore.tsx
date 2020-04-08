@@ -1,9 +1,10 @@
 import { action, computed, observable } from "mobx";
 // type
-import { IValidMessage, ISchema } from "@/uniform/types";
+import { IValidMessage, ISchema, ISchemaProperties } from "@/uniform/types";
 // comp
 import { UniElementStore } from "./UniElementStore";
 import { pathPrefix } from "../const";
+import { isArray } from "../utils/validators";
 
 type ElementStoreInfo = {
   [key:string]:UniElementStore
@@ -29,21 +30,53 @@ export class UniContainerStore {
   }
 
   @action.bound
+  parseBySchemaArray(
+    parentPath: string,
+    schemaArray:ISchema[]
+  ) {
+    schemaArray.map(schema => {
+      const path = `${parentPath}.${schema.key}`;
+      schema.path = path;
+      const eleStore: UniElementStore = new UniElementStore(schema);
+      this.putElementStore(path, eleStore);
+      return this.parseBySchemaNode(schema, path);
+    })
+   
+  }
+
+  getArrayFromProperties(properties:ISchemaProperties){
+    return Object.entries(properties).map((entry) => {
+      const item = entry[1]
+      item.key = entry[0]
+      return item
+    });
+  }
+
+  @action.bound
   parseBySchemaNode(
     schema: ISchema,
     parentPath: string
   ) {
-    const { properties } = schema;
+    const { properties,items } = schema;
     if (!properties) {
       return null;
     }
-    Object.entries(properties).map(([id, item]) => {
-      const path = `${parentPath}.${id}`;
-      item.path = path;
-      const eleStore: UniElementStore = new UniElementStore(item);
-      this.putElementStore(path, eleStore);
-      return this.parseBySchemaNode(item, path);
-    });
+    if(properties){
+      const arr = this.getArrayFromProperties(properties)
+      this.parseBySchemaArray(parentPath,arr)
+    }
+    
+    if(items){
+      if(isArray(items)){
+        this.parseBySchemaArray(parentPath,items)
+      }else{
+        const itemsProperties =items.properties 
+        if(itemsProperties){
+          const arr = this.getArrayFromProperties(itemsProperties)
+          this.parseBySchemaArray(parentPath,arr)
+        }
+      }
+    }
   }
 
   get properties(){

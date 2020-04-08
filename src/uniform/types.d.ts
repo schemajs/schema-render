@@ -36,8 +36,14 @@ export interface IFormSubmit {
   (param?: IValidMessage): void;
 }
 
+
+export interface ISchemaProperties {
+  [key: string]: ISchema
+}
+
 export interface ISchema {
   /** base json schema spec**/
+  key?:string
   title?: string
   description?: string
   default?: any
@@ -67,9 +73,7 @@ export interface ISchema {
   required?: string[] | boolean | string
   format?: string
   /** nested json schema spec **/
-  properties?: {
-    [key: string]: ISchema
-  }
+  properties?: ISchemaProperties
   items?: ISchema | ISchema[]
   additionalItems?: ISchema
   patternProperties?: {

@@ -21,10 +21,11 @@ export class UniElementStore {
   schemaData: ISchema={};
 
   get properties(){
-    if(!this.schemaData){
-      return null
-    }
     return this.schemaData.properties
+  }
+
+  get items(){
+    return this.schemaData.items
   }
 
   @observable
@@ -52,12 +53,12 @@ export class UniElementStore {
     return this.schemaData.path!;
   }
 
-  get initialValue(): string {
+  get defaultValue(): string {
     return this.schemaData.default || "";
   }
 
   get errMsgPrefix(): string {
-    return this.schemaData.displayName || "";
+    return this.schemaData.title || "";
   }
 
   constructor(schema?: ISchema) {
@@ -70,9 +71,9 @@ export class UniElementStore {
 
   @action.bound
   reset() {
-    this.setValue(this.initialValue);
+    this.setValue(this.defaultValue);
     this.setIsValueUpdated(false);
-    this.tempValue = this.initialValue;
+    this.tempValue = this.defaultValue;
   }
 
   @action.bound

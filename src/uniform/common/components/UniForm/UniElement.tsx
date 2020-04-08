@@ -13,30 +13,46 @@ interface UniElement {
 
 @observer
 class UniElement extends Component {
+  renderElement(subKey) {
+    const { containerStore, path } = this.props;
+    const subElementPath = `${path}.${subKey}`;
+    return (
+      <UniElement
+        key={subElementPath}
+        path={subElementPath}
+        containerStore={containerStore}
+      ></UniElement>
+    );
+  }
   render() {
     const { containerStore, path } = this.props;
-    if(!path){
-      return <View><Text>Error: No path!</Text></View>
+    if (!path) {
+      return (
+        <View>
+          <Text>Error: No path!</Text>
+        </View>
+      );
     }
-    const elementStore = containerStore.getElementStore(path)
+    const elementStore = containerStore.getElementStore(path);
+    if(!elementStore){
+      return (
+        <View>
+          <Text>{`>error: ${path}`}</Text>
+        </View>
+      )
+    }
     const properties = elementStore.properties;
+    const items = elementStore.items;
+    console.log(`path:${path}`)
     return (
       <View className="UniElement">
         <View>
           <Text>{`> ${path}`}</Text>
         </View>
-        {/* sub fields */}
+        {/* sub elements */}
         {properties &&
-          Object.keys(properties).map((subKey) => {
-            const subElementPath = `${path}.${subKey}`;
-            return (
-              <UniElement
-                key={subElementPath}
-                path={subElementPath}
-                containerStore={containerStore}
-              ></UniElement>
-            );
-          })}
+          Object.keys(properties).map(subKey => this.renderElement(subKey))}
+        {items && Object.keys(items.properties).map(subKey => this.renderElement(subKey))}
         <View>
           <Text>{`< ${path}`}</Text>
         </View>
