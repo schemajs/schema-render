@@ -4,7 +4,7 @@ import { IValidMessage, ISchema, ISchemaProperties } from "@/uniform/types";
 // comp
 import { UniElementStore } from "./UniElementStore";
 import { pathPrefix } from "../const";
-import { isArray } from "../utils/validators";
+import isArray from 'lodash/isArray'
 
 type ElementStoreInfo = {
   [key:string]:UniElementStore
@@ -37,6 +37,7 @@ export class UniContainerStore {
     schemaArray.map(schema => {
       const path = `${parentPath}.${schema.key}`;
       schema.path = path;
+      console.log(`path: ${path}`)
       const eleStore: UniElementStore = new UniElementStore(schema);
       this.putElementStore(path, eleStore);
       return this.parseBySchemaNode(schema, path);
@@ -58,14 +59,10 @@ export class UniContainerStore {
     parentPath: string
   ) {
     const { properties,items } = schema;
-    if (!properties) {
-      return null;
-    }
     if(properties){
       const arr = this.getArrayFromProperties(properties)
       this.parseBySchemaArray(parentPath,arr)
     }
-    
     if(items){
       if(isArray(items)){
         this.parseBySchemaArray(parentPath,items)
