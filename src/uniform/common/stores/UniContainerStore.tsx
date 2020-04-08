@@ -1,4 +1,4 @@
-import { action } from "mobx";
+import { action, computed, observable } from "mobx";
 // type
 import { IValidMessage, ISchema } from "@/uniform/types";
 // comp
@@ -10,14 +10,39 @@ type ElementStoreInfo = {
 
 export class UniContainerStore {
 
-  constructor(schema:ISchema){
-    this.schemaData = schema
-  }
-
+  @observable
   schemaData:ISchema={}
 
-  get path(){
-    return ""
+  elementStores: ElementStoreInfo = {
+  };
+
+  constructor(schema:ISchema){
+    this.schemaData = schema
+    this.reset();
+  }
+
+  @action.bound
+  reset(){
+    this.elementStores ={};
+    this.parseBySchemaNode(this.schemaData,"")
+  }
+
+  @action.bound
+  parseBySchemaNode(
+    schema: ISchema,
+    parentPath: string
+  ) {
+    const { properties } = schema;
+    if (!properties) {
+      return null;
+    }
+    Object.entries(properties).map(([id, item]) => {
+      const path = `${parentPath}.${id}`;
+      item.path = path;
+      const eleStore: UniElementStore = new UniElementStore(item);
+      this.putElementStore(path, eleStore);
+      return this.parseBySchemaNode(item, path);
+    });
   }
 
   get properties(){
@@ -26,9 +51,6 @@ export class UniContainerStore {
     }
     return this.schemaData.properties
   }
-
-  elementStores: ElementStoreInfo = {
-  };
 
   getElementStore(path:string){
     return this.elementStores[path]
@@ -45,7 +67,7 @@ export class UniContainerStore {
   }
 
   @action.bound
-  valid(): IValidMessage {
+  isValid(): IValidMessage {
     let err = {
       isValid: false,
       showError: false,

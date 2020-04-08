@@ -3,9 +3,10 @@ import { View, Text } from "@tarojs/components";
 import { observer } from "mobx-react";
 
 import UniElement from './UniElement'
+import { UniContainerStore } from "../../stores/UniContainerStore";
 
 type PageStateProps = {
-  containerStore: any;
+  containerStore: UniContainerStore;
 };
 
 interface UniContainer {

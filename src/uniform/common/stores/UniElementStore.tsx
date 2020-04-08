@@ -118,6 +118,11 @@ export class UniElementStore {
     return `${this.errMsgPrefix}校验错误: ${this.reason}`;
   }
 
+  @computed
+  get name() {
+    return this.schemaData.name || ""
+  }
+
   validateValue(value): void {
     // 校验参数
     this.validators.map(validator =>
