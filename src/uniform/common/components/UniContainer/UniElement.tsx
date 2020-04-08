@@ -13,11 +13,10 @@ interface UniElement {
 
 @observer
 class UniElement extends Component {
-
   render() {
     const { containerStore, path } = this.props;
     if(!path){
-      return <Text>Error:no path!</Text>
+      return <View><Text>Error: No path!</Text></View>
     }
     const compStore = containerStore.getElementStore(path)
     const properties = compStore.properties;
@@ -28,8 +27,8 @@ class UniElement extends Component {
         </View>
         {/* sub fields */}
         {properties &&
-          Object.entries(properties).map(([subName, value]) => {
-            const elePath = `${path}.${subName}`;
+          Object.keys(properties).map((subKey) => {
+            const elePath = `${path}.${subKey}`;
             return (
               <UniElement
                 key={elePath}
