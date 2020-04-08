@@ -18,8 +18,8 @@ class UniElement extends Component {
     if(!path){
       return <View><Text>Error: No path!</Text></View>
     }
-    const compStore = containerStore.getElementStore(path)
-    const properties = compStore.properties;
+    const elementStore = containerStore.getElementStore(path)
+    const properties = elementStore.properties;
     return (
       <View className="UniElement">
         <View>
@@ -28,11 +28,11 @@ class UniElement extends Component {
         {/* sub fields */}
         {properties &&
           Object.keys(properties).map((subKey) => {
-            const elePath = `${path}.${subKey}`;
+            const subElementPath = `${path}.${subKey}`;
             return (
               <UniElement
-                key={elePath}
-                path={elePath}
+                key={subElementPath}
+                path={subElementPath}
                 containerStore={containerStore}
               ></UniElement>
             );
