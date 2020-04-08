@@ -1,6 +1,6 @@
 import { action } from "mobx";
 // type
-import { IValidMessage } from "@/uniform/types";
+import { IValidMessage, ISchema } from "@/uniform/types";
 // comp
 import { UniElementStore } from "./UniElementStore";
 
@@ -46,3 +46,4 @@ export class UniContainerStore {
     return err;
   }
 }
+
