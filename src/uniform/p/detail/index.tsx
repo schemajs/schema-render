@@ -10,7 +10,7 @@ import {
   AtRadio,
   AtSwitch,
 } from "taro-ui";
-import UniContainer from '../../../uniform/common/components/UniContainer'
+import UniContainer from '../../common/components/UniContainer/UniContainer'
 
 import "./index.scss";
 import { UniContainerStore } from "@/uniform/common/stores/UniContainerStore";
