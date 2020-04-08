@@ -36,26 +36,8 @@ export interface IFormSubmit {
   (param?: IValidMessage): void;
 }
 
-interface ISchemaBase {
-  initialValue?: any;
-  errMsgPrefix?: string;
-  validators?: Validator[];
-  type?: string;
-  formItemRules?: Array<SchemaValidator>;
-  name?: string;
-  default?: any;
-  formItemProp?: object;
-  required?: boolean;
-  maxLength?: number;
-  minimum?: number;
-  maximum?: number;
-  pattern?: RegExp;
-  visible?: boolean;
-}
-
 export interface ISchema {
   /** base json schema spec**/
-  path?:string
   title?: string
   description?: string
   default?: any
@@ -99,6 +81,9 @@ export interface ISchema {
   visible?: boolean | string
   display?: boolean | string
   triggerType?: 'onBlur' | 'onChange'
+  name?:string;
+  path?:string
+  displayName?:string;
   ['x-props']?: { [name: string]: any }
   ['x-index']?: number
   // ['x-rules']?: ValidatePatternRules

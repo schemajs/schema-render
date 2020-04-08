@@ -12,25 +12,13 @@ import {
 } from "@/uniform/common/utils/validators/index";
 
 // type
-import {
-  ISchemaBase,
-  SchemaValidator,
-  setDataOptions,
-  IUniElementStoreGetMergeProps
-} from "@/uniform/types";
-
-import {ISchema} from './types'
+import { ISchema, SchemaValidator, setDataOptions } from "@/uniform/types";
 
 const debug = createDebug("mapp:stores/ui/form/FormItem");
 
 export class UniElementStore {
-
   @observable
-  schemaData:ISchema={};
-
-  get path():string{
-    return this.schemaData.path!
-  }
+  schemaData: ISchema;
 
   @observable
   value: any;
@@ -39,14 +27,11 @@ export class UniElementStore {
   @observable
   assistantValue: any;
 
-  initialValue: any;
-
   validators: Validator[] = [];
-
-  errMsgPrefix: string = "";
 
   @observable
   isValid: boolean = true;
+
   /**
    * 是否被更新过
    */
@@ -55,54 +40,35 @@ export class UniElementStore {
 
   @observable
   reason: string = "";
+  get path(): string {
+    return this.schemaData.path!;
+  }
 
-  constructor(schema?: ISchemaBase) {
+  get initialValue(): string {
+    return this.schemaData.default || "";
+  }
+
+  get errMsgPrefix(): string {
+    return this.schemaData.displayName || "";
+  }
+
+  constructor(schema?: ISchema) {
+    this.reset();
     // 初始化
     if (schema) {
-      this.initSchema(schema);
+      this.initBySchema(schema);
     }
   }
 
   @action.bound
-  init({ value }: { value: any; validate?: boolean }) {
-    // debug('init', { value })
-    this.setInitialValue(value);
-    this.reset();
-  }
+  initBySchema(schema: ISchema) {
+    this.schemaData = schema;
 
-  @action.bound
-  initSchema(schema: ISchemaBase) {
-    const {
-      initialValue,
-      errMsgPrefix,
-      validators,
-      name,
-      type,
-      formItemProp: props
-    } = schema;
-    // 默认props
-    this.defaultProps = props || {};
     // 默认值
-    this.value = schema.default !== undefined ? schema.default : "";
-    // 名称
-    this.name = name || "";
-    // 类型
-    this.type = type || "";
-    // 错误信息前缀
-    this.errMsgPrefix = errMsgPrefix || "";
+    this.value = schema.default || "";
+
     // 校验
-    // 兼容老的formItem
-    if (validators) {
-      this.validators = validators || [];
-    } else {
-      this.getRules(schema);
-    }
-    // 设置默认值
-    if ("initialValue" in schema) {
-      this.init({ value: initialValue });
-    } else {
-      this.init({ value: this.value });
-    }
+    this.getRules(schema);
   }
 
   @action.bound
@@ -136,6 +102,7 @@ export class UniElementStore {
     // 已经被更新过, 且值不合法.
     return this.isValueUpdated && !this.isValid;
   }
+
   @computed
   get errMessage() {
     return `${this.errMsgPrefix}校验错误: ${this.reason}`;
@@ -154,10 +121,10 @@ export class UniElementStore {
       this.validateValue(this.value);
     } catch (err) {
       debug("validateValueAndSetResult", { err });
-      // if (err instanceof ValidateError) {
-      this.setIsValid(false);
-      this.setReason(err.message);
-      // }
+      if (err.name == "ValidateError") {
+        this.setIsValid(false);
+        this.setReason(err.message);
+      }
     }
   }
 
@@ -166,13 +133,8 @@ export class UniElementStore {
   }
 
   @action.bound
-  setType(type) {
-    this.type = type;
-  }
-
-  @action.bound
-  setProps(props) {
-    this.defaultProps = Object.assign({}, this.defaultProps, props);
+  pushValidator(validator:Validator){
+    this.validators.push(validator)
   }
 
   @action.bound
@@ -187,11 +149,6 @@ export class UniElementStore {
       reason = err.message;
     }
     if (doNotSetWhenValidateError && !isValid) {
-      console.log("setData skip", {
-        doNotSetWhenValidateError,
-        isValid,
-        data: this.value
-      });
       // 跳过
       return;
     }
@@ -217,17 +174,12 @@ export class UniElementStore {
   }
 
   @action.bound
-  setInitialValue(val: any) {
-    this.initialValue = val;
-  }
-
-  @action.bound
   setIsValueUpdated(val: boolean) {
     this.isValueUpdated = val;
   }
 
   @action.bound
-  setAssistantValueToValue() {
+  syncAssistantValueToValue() {
     this.value = this.assistantValue;
   }
 
@@ -241,18 +193,4 @@ export class UniElementStore {
       this.setValue(value, {}, "assistant");
     }
   };
-
-  @computed
-  get getFormItemStoreProps(): IUniElementStoreGetMergeProps {
-    let newProps = {
-      defaultProps: this.defaultProps,
-      customEvent: this.customEvent,
-      value: this.value,
-      assistantValue: this.assistantValue,
-      isValid: this.isValid,
-      error: this.showError,
-      errMessage: this.errMessage
-    };
-    return newProps;
-  }
 }
