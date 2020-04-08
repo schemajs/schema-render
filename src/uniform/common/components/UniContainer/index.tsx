@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { View, Button, Text } from '@tarojs/components'
 import { observer, inject } from 'mobx-react'
+import { UniContainerStore } from '../../stores/UniContainerStore'
 
 type PageStateProps = {
-  path?:string
-  schema?: any;
+  store: any;
 }
 
 interface UniContainer {
@@ -13,18 +13,23 @@ interface UniContainer {
 
 @observer
 class UniContainer extends Component {
+  
   render () {
-    const {path="top",schema} = this.props
+    const {store} = this.props
+    debugger
+    const path = store.path
+    const properties = store.properties
     return (
       <View className='UniContainer'>
         <View>
           <Text>{`> ${path}`}</Text>
         </View>
-        {schema.properties && 
-          Object.entries(schema.properties).map(([subName,value]) => {
+        {properties && 
+          Object.entries(properties).map(([subName,value]) => {
             console.log(`subName:${subName}, schema:${JSON.stringify(value)}`)
             const comPath = `${path}.${subName}`
-            return <UniContainer path={comPath} key={comPath} schema={value}></UniContainer>;
+            const eleStore = store.getElementStore(path)
+            return <UniContainer  key={comPath} store={eleStore}></UniContainer>;
           })}
           <View>
           <Text>{`< ${path}`}</Text>

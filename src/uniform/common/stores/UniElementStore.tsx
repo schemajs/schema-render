@@ -9,7 +9,7 @@ import {
   checkIsNumberMax,
   checkIsNumberMin,
   checkIsPatternAllow
-} from "@/uniform/common/utils/validators/index";
+} from "../utils/validators/index";
 
 // type
 import { ISchema, SchemaValidator, setDataOptions } from "@/uniform/types";
@@ -19,6 +19,13 @@ const debug = createDebug("mapp:stores/ui/form/FormItem");
 export class UniElementStore {
   @observable
   schemaData: ISchema;
+
+  get properties(){
+    if(!this.schemaData){
+      return null
+    }
+    return this.schemaData.properties
+  }
 
   @observable
   value: any;

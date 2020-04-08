@@ -10,7 +10,6 @@ import {
   AtRadio,
   AtSwitch,
 } from "taro-ui";
-import UniContainer from '../../../uniform/common/components/UniContainer'
 
 import "./index.scss";
 
@@ -86,7 +85,6 @@ class Index extends Component {
     }
     return (
       <View className="index">
-          <UniContainer schema={schema}></UniContainer>
           <AtButton type="primary" formType="submit">
             提交
           </AtButton>

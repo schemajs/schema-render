@@ -10,10 +10,25 @@ type ElementStoreInfo = {
 
 export class UniContainerStore {
 
-  schemaData:any
+  schemaData:ISchema
+
+  get path(){
+    return ""
+  }
+
+  get properties(){
+    if(!this.schemaData){
+      return null
+    }
+    return this.schemaData.properties
+  }
 
   elementStores: ElementStoreInfo = {
   };
+
+  getElementStore(path:string){
+    return this.elementStores[path]
+  }
 
   @action.bound
   putElementStore(path:string,store: UniElementStore) {

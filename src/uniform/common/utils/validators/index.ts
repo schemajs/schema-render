@@ -6,7 +6,16 @@ import _isNumber from "lodash/isNumber";
 import _toNumber from "lodash/toNumber";
 import { ValidateError } from "../errorType";
 import { ValidatorParams } from "./type";
-import { isArray } from "../isArray";
+
+import { isArrayLike } from "mobx";
+
+export function isArray(
+  arg: ReadonlyArray<any> | any
+): arg is ReadonlyArray<any>;
+export default function isArray(value) {
+  return isArrayLike(value);
+}
+
 
 export const validatePhone = (params: ValidatorParams) => {
   return checkIsNotEmpty(params);

@@ -1,63 +1,107 @@
-import React, { Component } from 'react'
-import { View, Button, Text } from '@tarojs/components'
-import { observer, inject } from 'mobx-react'
+import React, { Component } from "react";
+import { View } from "@tarojs/components";
+import { observer, inject } from "mobx-react";
+import Taro from "@tarojs/taro";
+import {
+  AtForm,
+  AtInput,
+  AtButton,
+  AtInputNumber,
+  AtRadio,
+  AtSwitch,
+} from "taro-ui";
+import UniContainer from '../../../uniform/common/components/UniContainer'
 
-import './index.scss'
+import "./index.scss";
+import { UniContainerStore } from "@/uniform/common/stores/UniContainerStore";
+import {getContainerStore} from '../../../uniform/common/stores/factory'
 
 type PageStateProps = {
   store: {
     counterStore: {
-      counter: number,
-      increment: Function,
-      decrement: Function,
-      incrementAsync: Function
-    }
-  }
-}
+      counter: number;
+      increment: Function;
+      decrement: Function;
+      incrementAsync: Function;
+    };
+  };
+};
 
 interface Index {
   props: PageStateProps;
 }
 
-@inject('store')
+@inject("store")
 @observer
 class Index extends Component {
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  increment = () => {
-    const { counterStore } = this.props.store
-    counterStore.increment()
+  containerStore:UniContainerStore
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: "",
+      switchValue: false,
+    };
   }
 
-  decrement = () => {
-    const { counterStore } = this.props.store
-    counterStore.decrement()
+  handleChange(value) {
+    this.setState({
+      value,
+    });
   }
-
-  incrementAsync = () => {
-    const { counterStore } = this.props.store
-    counterStore.incrementAsync()
+  onSubmit(event) {
+    console.log(event);
   }
+  onReset(event) {
+    console.log(event);
+  }
+  goToDetail = () => {
+    Taro.navigateTo({
+      url: "/uniform/p/detail/index",
+    });
+  };
+  handleChangeSwitch = (value) => {
+    this.setState({ switchValue: value });
+  };
+  componentDidMount(){
+    const schema ={
+      "type": "object",
+      "properties": {
+        "ke11": {
+          "type": "string"
+        },
+        "key12": {
+          "type": "object",
+          "properties": {
+            "key21": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key31": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
 
-  render () {
-    const { counterStore: { counter } } = this.props.store
+    const store = getContainerStore(schema)
+    this.containerStore = store
+  }
+  render() {
     return (
-      <View className='index'>
-        <Button onClick={this.increment}>+</Button>
-        <Button onClick={this.decrement}>-</Button>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Text>{counter}</Text>
+      <View className="index">
+          <UniContainer store={this.containerStore}></UniContainer>
+          <AtButton type="primary" formType="submit">
+            提交
+          </AtButton>
+          <AtButton formType="reset">重置</AtButton>
       </View>
-    )
+    );
   }
 }
 
-export default Index
+export default Index;

@@ -1,5 +1,5 @@
 export default {
-  pages: ["demo/p/simple/index", "uniform/p/detail/index"],
+  pages: ["uniform/p/detail/index"],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
