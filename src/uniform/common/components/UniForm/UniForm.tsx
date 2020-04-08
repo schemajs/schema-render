@@ -37,7 +37,8 @@ class UniForm extends Component {
   }
   // form提交事件
   _onSubmit = () => {
-    let { containerStore, onSubmit } = this.props;
+    let {onSubmit } = this.props;
+    const containerStore = this.containerStore
     if (containerStore) {
       let err: IValidMessage = containerStore.isValid();
       onSubmit && onSubmit(err);
@@ -45,8 +46,8 @@ class UniForm extends Component {
     }
     onSubmit && onSubmit();
   };
-  onReset(event) {
-    console.log(event);
+  onReset =(event) => {
+    this.containerStore.reset()
   }
   render() {
     return (
