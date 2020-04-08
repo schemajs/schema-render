@@ -7,12 +7,12 @@ type PageStateProps = {
   containerStore: any;
 };
 
-interface UniField {
+interface UniElement {
   props: PageStateProps;
 }
 
 @observer
-class UniField extends Component {
+class UniElement extends Component {
 
   render() {
     const { containerStore, path } = this.props;
@@ -22,7 +22,7 @@ class UniField extends Component {
     const compStore = containerStore.getElementStore(path)
     const properties = compStore.properties;
     return (
-      <View className="UniField">
+      <View className="UniElement">
         <View>
           <Text>{`> ${path}`}</Text>
         </View>
@@ -31,11 +31,11 @@ class UniField extends Component {
           Object.entries(properties).map(([subName, value]) => {
             const elePath = `${path}.${subName}`;
             return (
-              <UniField
+              <UniElement
                 key={elePath}
                 path={elePath}
                 containerStore={containerStore}
-              ></UniField>
+              ></UniElement>
             );
           })}
         <View>
@@ -46,4 +46,4 @@ class UniField extends Component {
   }
 }
 
-export default UniField;
+export default UniElement;

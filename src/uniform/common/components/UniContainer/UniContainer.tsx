@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text } from "@tarojs/components";
 import { observer } from "mobx-react";
 
-import UniField from './UniField'
+import UniElement from './UniElement'
 
 type PageStateProps = {
   containerStore: any;
@@ -27,11 +27,11 @@ class UniContainer extends Component {
           Object.keys(properties).map((subKey) => {
             const elePath = `.${subKey}`;
             return (
-              <UniField
+              <UniElement
                 key={elePath}
                 path={elePath}
                 containerStore={containerStore}
-              ></UniField>
+              ></UniElement>
             );
           })}
         <View>
