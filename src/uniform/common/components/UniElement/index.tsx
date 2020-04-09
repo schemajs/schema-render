@@ -11,15 +11,15 @@ import BaseComponent from "../BaseComponent";
 // text
 import ListItemCustomTitleAndExtra from "@/uniform/common/components/base/ListItemCustomTitleAndExtra";
 // Input
-import ListItemInput from "@/uniform/common/components/CustomFormComponent/listItem/Input";
+import ListItemInput from "@/uniform/common/components/listItem/Input";
 // Radio
-import ListItemWithPicker from "@/uniform/common/components/base/ListItemWithPicker";
+// import ListItemWithPicker from "@/uniform/common/components/base/ListItemWithPicker";
 // Checkbox
-import ListItemCheckbox from "@/uniform/common/components/CustomFormComponent/listItem/Checkbox";
+import ListItemCheckbox from "@/uniform/common/components/listItem/Checkbox";
 // file
-import ListItemFile from "@/uniform/common/components/CustomFormComponent/listItem/File";
+import ListItemFile from "@/uniform/common/components/listItem/File";
 // Textarea
-import ListItemTextarea from "@/uniform/common/components/CustomFormComponent/listItem/Textarea";
+import ListItemTextarea from "@/uniform/common/components/listItem/Textarea";
 
 // store
 import { UniElementStore } from "../../stores/UniElementStore";
@@ -310,6 +310,8 @@ export default class FormItem extends BaseComponent<IFormItemProps, any> {
     let type = store && store.type;
 
     let allProps: any = this.getProps(type);
+
+  
 
     let node;
     switch (type) {

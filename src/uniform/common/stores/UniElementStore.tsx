@@ -20,6 +20,13 @@ export class UniElementStore {
   @observable
   schemaData: ISchema={};
 
+  @observable
+  state ={}
+
+  get props(){
+    return this.schemaData.props
+  }
+
   get properties(){
     return this.schemaData.properties
   }

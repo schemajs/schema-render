@@ -1,3 +1,4 @@
+import Taro, { Events } from "@tarojs/taro";
 import { action, computed, observable } from "mobx";
 // type
 import { IValidMessage, ISchema, ISchemaProperties } from "@/uniform/types";
@@ -6,11 +7,16 @@ import { UniElementStore } from "./UniElementStore";
 import { pathPrefix } from "../const";
 import isArray from 'lodash/isArray'
 
+import {eventNames,EventNames} from '../utils/events/EventNames'
+
 type ElementStoreInfo = {
   [key:string]:UniElementStore
 }
 
 export class UniContainerStore {
+
+  eventCenter: Events;
+  eventNames :EventNames
 
   @observable
   schemaData:ISchema={}
@@ -20,6 +26,8 @@ export class UniContainerStore {
 
   constructor(schema:ISchema){
     this.schemaData = schema
+    this.eventCenter = new Events();
+    this.eventNames = eventNames
     this.reset();
   }
 
