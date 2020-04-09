@@ -1,18 +1,14 @@
 import React,{Component} from "react";
-import { View, Text } from "@tarojs/components";
 import { observer } from "mobx-react";
-import { UniElementStore } from "./node_modules/@/uniform/common/stores/UniElementStore";
 import ListItem from "../../stateless/ListItem";
-
-interface IProps  {
-  store:UniElementStore
-};
+import { IElementProps } from "../type";
 
 @observer
-class ListItem extends Component<IProps,any> {
+export default class SchemaListItem extends Component<IElementProps,any> {
   onClick(){
-    this.props.store.setValue(true)
-
+    const { store } = this.props;
+    store.setValue(true)
+    
   }
   render() {
     const { store } = this.props;
@@ -25,5 +21,3 @@ class ListItem extends Component<IProps,any> {
     );
   }
 }
-
-export default ListItem;
