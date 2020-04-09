@@ -1,107 +1,104 @@
 import Taro, { Events } from "@tarojs/taro";
 import { action, computed, observable } from "mobx";
 // type
-import { IValidMessage, ISchema, ISchemaProperties } from "@/uniform/common/types";
+import {
+  IValidMessage,
+  ISchema,
+  ISchemaProperties
+} from "@/uniform/common/types";
 // comp
 import { UniElementStore } from "./UniElementStore";
 import { pathPrefix } from "../const";
-import isArray from 'lodash/isArray'
+import isArray from "lodash/isArray";
 
-import {eventNames,EventNames} from '../utils/events/EventNames'
+import { eventNames, EventNames } from "../utils/events/EventNames";
 
 type ElementStoreInfo = {
-  [key:string]:UniElementStore
-}
+  [key: string]: UniElementStore;
+};
+
+type EventListener = (...args: any[]) => void;
 
 export class UniContainerStore {
-
-  // eventCenter: Events;
-  eventNames :EventNames
+  private eventCenter: any;
+  eventNames: EventNames;
 
   @observable
-  schemaData:ISchema={}
+  schemaData: ISchema = {};
 
-  elementStores: ElementStoreInfo = {
-  };
+  elementStores: ElementStoreInfo = {};
 
-  constructor(schema:ISchema){
-    this.schemaData = schema
-    // this.eventCenter = new Events();
-    this.eventNames = eventNames
+  constructor(schema: ISchema) {
+    this.schemaData = schema;
+    this.eventCenter = new Events();
+    this.eventNames = eventNames;
     this.reset();
   }
 
   @action.bound
-  reset(){
-    this.elementStores ={};
-    this.parseBySchemaNode(this.schemaData,pathPrefix)
+  reset() {
+    this.elementStores = {};
+    this.parseBySchemaNode(this.schemaData, pathPrefix);
   }
 
   @action.bound
-  parseBySchemaArray(
-    parentPath: string,
-    schemaArray:ISchema[]
-  ) {
+  parseBySchemaArray(parentPath: string, schemaArray: ISchema[]) {
     schemaArray.map(schema => {
       const path = `${parentPath}.${schema.key}`;
       schema.path = path;
-      console.log(`path: ${path}`)
+      console.log(`path: ${path}`);
       const eleStore: UniElementStore = new UniElementStore(schema);
       this.putElementStore(path, eleStore);
       return this.parseBySchemaNode(schema, path);
-    })
-   
+    });
   }
 
-  getArrayFromProperties(properties:ISchemaProperties){
-    return Object.entries(properties).map((entry) => {
-      const item = entry[1]
-      item.key = entry[0]
-      return item
+  getArrayFromProperties(properties: ISchemaProperties) {
+    return Object.entries(properties).map(entry => {
+      const item = entry[1];
+      item.key = entry[0];
+      return item;
     });
   }
 
   @action.bound
-  parseBySchemaNode(
-    schema: ISchema,
-    parentPath: string
-  ) {
-    const { properties,items } = schema;
-    if(properties){
-      const arr = this.getArrayFromProperties(properties)
-      this.parseBySchemaArray(parentPath,arr)
+  parseBySchemaNode(schema: ISchema, parentPath: string) {
+    const { properties, items } = schema;
+    if (properties) {
+      const arr = this.getArrayFromProperties(properties);
+      this.parseBySchemaArray(parentPath, arr);
     }
-    if(items){
-      if(isArray(items)){
-        this.parseBySchemaArray(parentPath,items)
-      }else{
-        const itemsProperties =items.properties 
-        if(itemsProperties){
-          const arr = this.getArrayFromProperties(itemsProperties)
-          this.parseBySchemaArray(parentPath,arr)
+    if (items) {
+      if (isArray(items)) {
+        this.parseBySchemaArray(parentPath, items);
+      } else {
+        const itemsProperties = items.properties;
+        if (itemsProperties) {
+          const arr = this.getArrayFromProperties(itemsProperties);
+          this.parseBySchemaArray(parentPath, arr);
         }
       }
     }
   }
 
-  get properties(){
-    if(!this.schemaData){
-      return null
+  get properties() {
+    if (!this.schemaData) {
+      return null;
     }
-    return this.schemaData.properties
+    return this.schemaData.properties;
   }
 
-  getElementStore(path:string){
-    return this.elementStores[path]
+  getElementStore(path: string) {
+    return this.elementStores[path];
   }
 
   @action.bound
-  putElementStore(path:string,store: UniElementStore) {
+  putElementStore(path: string, store: UniElementStore) {
     this.elementStores[path] = store;
   }
 
   @action.bound
-  deleteElementStore(path:string) {
+  deleteElementStore(path: string) {
     delete this.elementStores[path];
   }
 
@@ -111,9 +108,9 @@ export class UniContainerStore {
       isValid: false,
       showError: false,
       errMessage: "",
-      name: "",
+      name: ""
     };
-    Object.values(this.elementStores).map((store) => {
+    Object.values(this.elementStores).map(store => {
       let { isValid, showError, errMessage, name } = store;
       if (showError) {
         err.name = name;
@@ -125,5 +122,39 @@ export class UniContainerStore {
     });
     return err;
   }
-}
 
+  /**
+   * 监听一个事件，接受参数
+   */
+  onEvent(eventName: string | symbol, listener: EventListener) {
+    return this.eventCenter.on(eventName, listener);
+  }
+
+  /**
+   * 添加一个事件监听，并在事件触发完成之后移除Callbacks链
+   */
+  onceEvent(eventName: string | symbol, listener: EventListener) {
+    return this.eventCenter.once(eventName, listener);
+  }
+
+  /**
+   * 取消监听一个事件
+   */
+  offEvent(eventName: string | symbol, listener?: EventListener) {
+    return this.eventCenter.off(eventName, listener);
+  }
+
+  /**
+   * 取消监听的所有事件
+   */
+  offAllEvents() {
+    return this.eventCenter.off();
+  }
+
+  /**
+   * 触发一个事件，传参
+   */
+  triggerEvent(eventName: string | symbol, ...args: any[]): boolean {
+    return this.eventCenter.trigger(eventName, ...args);
+  }
+}

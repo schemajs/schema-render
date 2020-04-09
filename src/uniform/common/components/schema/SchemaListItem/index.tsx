@@ -6,9 +6,9 @@ import { IElementProps } from "../type";
 @observer
 export default class SchemaListItem extends Component<IElementProps,any> {
   onClick(){
-    const { store } = this.props;
+    const {containerStore, store } = this.props;
     store.setValue(true)
-    
+    containerStore.triggerEvent("abc",{})
   }
   render() {
     const { store } = this.props;
