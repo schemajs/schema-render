@@ -15,7 +15,7 @@ type ElementStoreInfo = {
 
 export class UniContainerStore {
 
-  eventCenter: Events;
+  // eventCenter: Events;
   eventNames :EventNames
 
   @observable
@@ -26,7 +26,7 @@ export class UniContainerStore {
 
   constructor(schema:ISchema){
     this.schemaData = schema
-    this.eventCenter = new Events();
+    // this.eventCenter = new Events();
     this.eventNames = eventNames
     this.reset();
   }

@@ -1,56 +1,55 @@
-import Taro from "@tarojs/taro";
+import Taro from '@tarojs/taro'
 // comp
-import BaseBusinessComponent from "@/uniform/common/components/BaseComponent";
-import { AtTextarea } from "taro-ui";
-import { View, Text } from "@tarojs/components";
+import BaseBusinessComponent from '@/main/common/components/business/base/BaseBusinessComponent'
+import { AtTextarea } from 'taro-ui'
+import { View, Text } from '@tarojs/components'
 import ListItemWithModal, {
   ListItemWithPopUpPropTypes,
-} from "@/uniform/common/components/base/ListItemWithModal";
+} from '../ListItemWithModal'
 // scss
-import Style from "./style.module.scss";
+import Style from './style.module.scss'
 // util
-import { showErrorToast } from "@/uniform/common/utils/toast";
-interface IListItemInputProps extends ListItemWithPopUpPropTypes {
-  onChange: () => void;
-  error: boolean;
-  isValid: boolean;
-  errMessage: string;
-  disabledOpened: boolean;
-  disabled: boolean;
-  onCancel: () => void;
-  onClick: () => void;
-  onConfirm: () => void;
-  beforeConfirmHideModal: (parma?: any) => Promise<any>;
-  afterConfirmHideModal: (parma?: any) => Promise<any>;
-  beforeCancelHideModal: (parma?: any) => Promise<any>;
-  afterCancelHideModal: (parma?: any) => Promise<any>;
-  textareaMaxLength: string;
-  textareaPlaceholder: string;
-  textareaPlaceholderStyle: string;
-  textareaPlaceholderClass: string;
-  textareaDisabled: boolean;
-  textareaAutoFocus: true;
-  textareaCount: boolean;
-  textareaFixed: boolean;
-  textareaOverflowForbidden: boolean;
-  textareaHeight: number;
-  textareaValue: string;
+import { showErrorToast } from '@/main/common/utils/toast'
+interface IListItemTextareaProps extends ListItemWithPopUpPropTypes {
+  onChange: () => void
+  error: boolean
+  isValid: boolean
+  errMessage: string
+  disabledOpened: boolean
+  disabled: boolean
+  onCancel: () => void
+  onClick: () => void
+  onConfirm: () => void
+  beforeConfirmHideModal: (parma?: any) => Promise<any>
+  afterConfirmHideModal: (parma?: any) => Promise<any>
+  beforeCancelHideModal: (parma?: any) => Promise<any>
+  afterCancelHideModal: (parma?: any) => Promise<any>
+  textareaMaxLength: string
+  textareaPlaceholder: string
+  textareaPlaceholderStyle: string
+  textareaPlaceholderClass: string
+  textareaDisabled: boolean
+  textareaAutoFocus: true
+  textareaCount: boolean
+  textareaFixed: boolean
+  textareaOverflowForbidden: boolean
+  textareaHeight: number
+  textareaValue: string
+  note?: string
 }
 
-export default class ListItemInput extends BaseBusinessComponent<
-  IListItemInputProps,
-  any
-> {
+export default class ListItemTextarea extends BaseBusinessComponent<IListItemTextareaProps, any> {
   static defaultProps = {
-    extraText: "",
+    extraText: '',
     hasBorder: true,
     disabled: false,
     disabledOpened: false,
-    title: "",
-    thumb: "",
-    arrow: "right",
-    className: "",
-    modalTitle: "",
+    title: '',
+    thumb: '',
+    arrow: 'right',
+    note: '',
+    className: '',
+    modalTitle: '',
     closeOnClickOverlay: false,
     keepOriginExtraColor: false,
     onClick: () => {},
@@ -62,46 +61,46 @@ export default class ListItemInput extends BaseBusinessComponent<
     afterConfirmHideModal: async () => {},
     beforeCancelHideModal: async () => {},
     afterCancelHideModal: async () => {},
-    errMessage: "",
+    errMessage: '',
     isValid: true,
-    textareaMaxLength: "200",
-    textareaPlaceholder: "",
-    textareaPlaceholderStyle: "",
-    textareaPlaceholderClass: "",
+    textareaMaxLength: '200',
+    textareaPlaceholder: '',
+    textareaPlaceholderStyle: '',
+    textareaPlaceholderClass: '',
     textareaDisabled: false,
     textareaAutoFocus: false,
     textareaCount: true,
     textareaFixed: false,
     textareaOverflowForbidden: true,
     textareaHeight: 100,
-    textareaValue: "",
-  };
+    textareaValue: '',
+  }
 
   state = {
     isOpened: false,
-  };
+  }
 
   onClick = () => {
-    let { onClick, disabledOpened } = this.props;
+    let { onClick, disabledOpened } = this.props
 
-    onClick && onClick();
+    onClick && onClick()
 
     if (!disabledOpened) {
       this.setState({
         isOpened: true,
-      });
+      })
     }
-  };
+  }
 
   onCancel = async () => {
-    let { onCancel, beforeCancelHideModal, afterCancelHideModal } = this.props;
-    beforeCancelHideModal && (await beforeCancelHideModal());
+    let { onCancel, beforeCancelHideModal, afterCancelHideModal } = this.props
+    beforeCancelHideModal && (await beforeCancelHideModal())
     this.setState({
       isOpened: false,
-    });
-    afterCancelHideModal && (await afterCancelHideModal());
-    onCancel && onCancel();
-  };
+    })
+    afterCancelHideModal && (await afterCancelHideModal())
+    onCancel && onCancel()
+  }
 
   onConfirm = async () => {
     let {
@@ -111,22 +110,22 @@ export default class ListItemInput extends BaseBusinessComponent<
       beforeConfirmHideModal,
       afterConfirmHideModal,
       errMessage,
-    } = this.props;
+    } = this.props
     if (!isValid) {
       showErrorToast({
         title: errMessage,
-      });
-      return;
+      })
+      return
     }
     try {
-      beforeConfirmHideModal && (await beforeConfirmHideModal(textareaValue));
+      beforeConfirmHideModal && (await beforeConfirmHideModal(textareaValue))
       this.setState({
         isOpened: false,
-      });
-      afterConfirmHideModal && (await afterConfirmHideModal(textareaValue));
-      onConfirm && onConfirm();
+      })
+      afterConfirmHideModal && (await afterConfirmHideModal(textareaValue))
+      onConfirm && onConfirm()
     } catch (e) {}
-  };
+  }
 
   render() {
     const {
@@ -156,9 +155,10 @@ export default class ListItemInput extends BaseBusinessComponent<
       textareaOverflowForbidden,
       textareaHeight,
       textareaValue,
-    } = this.props;
+      note,
+    } = this.props
 
-    let { isOpened } = this.state;
+    let { isOpened } = this.state
 
     return (
       <View>
@@ -179,6 +179,7 @@ export default class ListItemInput extends BaseBusinessComponent<
           onConfirm={this.onConfirm}
           onCancel={this.onCancel}
           keepOriginExtraColor={keepOriginExtraColor}
+          note={note}
         >
           <AtTextarea
             onChange={onChange}
@@ -201,6 +202,6 @@ export default class ListItemInput extends BaseBusinessComponent<
           )}
         </ListItemWithModal>
       </View>
-    );
+    )
   }
 }
