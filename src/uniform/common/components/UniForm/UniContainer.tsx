@@ -1,21 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import { View, Text } from "@tarojs/components";
 import { observer } from "mobx-react";
 
 import UniElement from './UniElement'
 import { UniContainerStore } from "../../stores/UniContainerStore";
 import { pathPrefix } from "../../const";
+import Component,{BaseComponentPropsType} from '../BaseComponent'
 
-type PageStateProps = {
+interface PageStateProps extends BaseComponentPropsType {
   containerStore: UniContainerStore;
 };
 
-interface UniContainer {
-  props: PageStateProps;
-}
 
 @observer
-class UniContainer extends Component {
+class UniContainer extends Component<PageStateProps,any> {
   render() {
     const { containerStore} = this.props;
     const properties = containerStore.properties;

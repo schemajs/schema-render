@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { View, Text } from "@tarojs/components";
 import { observer } from "mobx-react";
 import classNames from "classnames";
@@ -16,20 +16,18 @@ import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "../../../typ
 import { UniContainerStore } from "../../stores/UniContainerStore";
 import { getContainerStore } from "../../stores/factory";
 import UniContainer from "./UniContainer";
+import Component,{BaseComponentPropsType} from '../BaseComponent'
 
-type PageStateProps = {
+interface PageStateProps extends BaseComponentPropsType {
   schema:ISchema
   onSubmit?: IFormSubmit;
   renderFooter?: JSX.Element;
   footerClassName?: string | string[] | { [key: string]: boolean };
 };
 
-interface UniForm {
-  props: PageStateProps;
-}
 
 @observer
-class UniForm extends Component {
+class UniForm extends Component<PageStateProps,any> {
   containerStore: UniContainerStore;
   constructor(props) {
     super(props);

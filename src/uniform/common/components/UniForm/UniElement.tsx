@@ -1,18 +1,15 @@
-import React, { Component } from "react";
+import React  from "react";
 import { View, Text } from "@tarojs/components";
 import { observer } from "mobx-react";
+import Component,{BaseComponentPropsType} from '../BaseComponent'
 
-type PageStateProps = {
+interface PageStateProps extends BaseComponentPropsType {
   path: string;
   containerStore: any;
 };
 
-interface UniElement {
-  props: PageStateProps;
-}
-
 @observer
-class UniElement extends Component {
+class UniElement extends Component<PageStateProps,any> {
   renderElement(subKey) {
     const { containerStore, path } = this.props;
     const subElementPath = `${path}.${subKey}`;
