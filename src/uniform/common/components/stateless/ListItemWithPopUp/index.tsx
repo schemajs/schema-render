@@ -3,7 +3,7 @@ import { View } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import ListItemCustomTitleAndExtra, {
   ListItemCustomTitleAndExtraPropTypes,
-} from '../ListItemCustomTitleAndExtra'
+} from '../ListItem'
 import { AtFloatLayout } from 'taro-ui'
 import { AtFloatLayoutProps } from 'taro-ui/@types/float-layout'
 import { CSSProperties } from 'react'

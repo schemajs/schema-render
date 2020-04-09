@@ -4,8 +4,9 @@ import { Omit } from '../../../utils/tpUtils'
 import classNames from 'classnames'
 import { AtListItemProps } from 'taro-ui/types/list'
 import {AtIconProps} from 'taro-ui/types/icon'
+import React, { Component } from "react";
 
-export type ListItemCustomTitleAndExtraPropTypes = Omit<
+export type ListItemPropTypes = Omit<
   AtListItemProps,
   'isSwitch' | 'switchIsCheck' | 'onSwitchChange' | 'arrow'
 > & {
@@ -17,8 +18,8 @@ export type ListItemCustomTitleAndExtraPropTypes = Omit<
   titleColor?: string
   keepOriginExtraColor?: boolean // 是否保留跟 ListItem 一样的 extra 文字颜色
 }
-export default class ListItemCustomTitleAndExtra extends Taro.Component<
-  ListItemCustomTitleAndExtraPropTypes
+export default class ListItem extends Component<
+  ListItemPropTypes
 > {
   static options = {
     addGlobalClass: true,

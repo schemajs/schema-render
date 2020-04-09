@@ -4,7 +4,7 @@ import Taro from '@tarojs/taro'
 import { View, Video } from '@tarojs/components'
 import { AtImagePicker, AtListItem } from 'taro-ui'
 import BaseBusinessComponent from '../../BaseComponent'
-import ListItemCustomTitleAndExtra from '../ListItemCustomTitleAndExtra'
+import ListItemCustomTitleAndExtra from '../ListItem'
 
 // scss
 import Style from './index.module.scss'

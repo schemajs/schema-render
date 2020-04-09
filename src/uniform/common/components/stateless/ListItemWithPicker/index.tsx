@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro'
 import { Block, Picker } from '@tarojs/components'
 import ListItemCustomTitleAndExtra, {
   ListItemCustomTitleAndExtraPropTypes,
-} from '../ListItemCustomTitleAndExtra'
+} from '../ListItem'
 import BaseLeapComponent from '../../business/base/BaseBusinessComponent'
 import { AtInput } from 'taro-ui'
 

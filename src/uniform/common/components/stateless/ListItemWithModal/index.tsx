@@ -3,7 +3,7 @@ import { View } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import ListItemCustomTitleAndExtra, {
   ListItemCustomTitleAndExtraPropTypes,
-} from '../ListItemCustomTitleAndExtra'
+} from '../ListItem'
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction, AtButton } from 'taro-ui'
 import { AtModalProps } from 'taro-ui/@types/modal'
 // import ModalActions from '@/sub/p2/settings/common/components/ModalActions'
