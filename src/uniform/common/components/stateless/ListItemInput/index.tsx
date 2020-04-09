@@ -1,6 +1,6 @@
 import Taro, { getLocation } from '@tarojs/taro'
 // comp
-import BaseBusinessComponent from '@/main/common/components/business/base/BaseBusinessComponent'
+import BaseBusinessComponent,{BaseComponentPropsType} from '../../BaseComponent'
 import { AtInput } from 'taro-ui'
 import { View, Text } from '@tarojs/components'
 import ListItemWithModal, {

@@ -28,9 +28,6 @@ export type ListItemWithPopUpPropTypes = Omit<
   }
 
 export default class ListItemWithPopUp extends Taro.Component<ListItemWithPopUpPropTypes> {
-  static options = {
-    addGlobalClass: true,
-  }
 
   static defaultProps = {
     extraText: '',

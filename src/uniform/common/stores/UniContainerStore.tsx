@@ -1,7 +1,7 @@
 import Taro, { Events } from "@tarojs/taro";
 import { action, computed, observable } from "mobx";
 // type
-import { IValidMessage, ISchema, ISchemaProperties } from "@/uniform/types";
+import { IValidMessage, ISchema, ISchemaProperties } from "@/uniform/common/types";
 // comp
 import { UniElementStore } from "./UniElementStore";
 import { pathPrefix } from "../const";

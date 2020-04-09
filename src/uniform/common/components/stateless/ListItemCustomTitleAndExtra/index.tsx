@@ -1,10 +1,9 @@
 import Taro from '@tarojs/taro'
-import { AtListItem } from '@leapcloud/taro-ui'
-import { AtListItemProps } from '@leapcloud/taro-ui/@types/list'
-import { Omit } from '@/main/common/utils/tpUtils'
+import { AtListItem } from 'taro-ui'
+import { Omit } from '../../../utils/tpUtils'
 import classNames from 'classnames'
-import { AtIconProps } from '@leapcloud/taro-ui/@types/icon'
-import { string } from 'prop-types'
+import { AtListItemProps } from 'taro-ui/types/list'
+import {AtIconProps} from 'taro-ui/types/icon'
 
 export type ListItemCustomTitleAndExtraPropTypes = Omit<
   AtListItemProps,

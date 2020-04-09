@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 
 // comp
-import BaseBusinessComponent from '@/main/common/components/business/base/BaseBusinessComponent'
+import BaseBusinessComponent,{BaseComponentPropsType} from '../../BaseComponent'
 import ListItemWithPopUp from '../ListItemWithPopUp'
 import { AtCheckbox, AtInput } from 'taro-ui'
 import { Block, View } from '@tarojs/components'
@@ -13,7 +13,7 @@ import Style from './index.module.scss'
 import { toJS } from 'mobx'
 import {isArray} from 'lodash'
 
-interface IListItemCheckboxProps {
+interface IListItemCheckboxProps extends BaseComponentPropsType{
   extraText: string
   popTitle: string
   label: string

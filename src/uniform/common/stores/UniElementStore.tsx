@@ -12,7 +12,7 @@ import {
 } from "../utils/validators/index";
 
 // type
-import { ISchema, SchemaValidator, setDataOptions } from "@/uniform/types";
+import { ISchema, SchemaValidator, setDataOptions } from "@/uniform/common/types";
 
 const debug = createDebug("mapp:stores/ui/form/FormItem");
 

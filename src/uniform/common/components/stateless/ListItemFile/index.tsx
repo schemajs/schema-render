@@ -3,7 +3,7 @@ import Taro from '@tarojs/taro'
 // comp
 import { View, Video } from '@tarojs/components'
 import { AtImagePicker, AtListItem } from 'taro-ui'
-import BaseBusinessComponent from '@/main/common/components/business/base/BaseBusinessComponent'
+import BaseBusinessComponent from '../../BaseComponent'
 import ListItemCustomTitleAndExtra from '../ListItemCustomTitleAndExtra'
 
 // scss
