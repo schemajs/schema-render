@@ -16,15 +16,23 @@ import { ISchema, SchemaValidator, setDataOptions } from "@/uniform/common/types
 
 const debug = createDebug("mapp:stores/ui/form/FormItem");
 
-export class UniElementStore {
+export class  UniElementStore<IProps,IState> {
   @observable
-  schemaData: ISchema={};
+  schemaData: ISchema;
 
   @observable
-  state ={}
+  componentState:IState
 
-  get props(){
-    return this.schemaData.props
+  get component(){
+    return this.schemaData['x-component']
+  }
+
+  get componentProps():IProps{
+    return this.schemaData['x-component-props'] as IProps
+  }
+
+  get props():IProps{
+    return this.schemaData['x-props'] as IProps
   }
 
   get properties(){
@@ -74,6 +82,7 @@ export class UniElementStore {
     if (schema) {
       this.initBySchema(schema);
     }
+    this.componentState = {} as IState
   }
 
   @action.bound
@@ -85,7 +94,7 @@ export class UniElementStore {
 
   @action.bound
   initBySchema(schema: ISchema) {
-    this.schemaData = schema;
+    this.schemaData = schema || ({} as ISchema);
 
     // 默认值
     this.value = schema.default || "";
@@ -195,6 +204,16 @@ export class UniElementStore {
   @action.bound
   setTempValue(value:any){
     this.tempValue = value;
+  }
+
+  @action.bound
+  putComponentState(key:string,value:any){
+    this.componentState[key] = value;
+  }
+
+  @action.bound
+  setComponentState(value:IState){
+    this.componentState = value;
   }
 
   @action.bound

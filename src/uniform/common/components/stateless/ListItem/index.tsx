@@ -5,6 +5,8 @@ import classNames from 'classnames'
 import { AtListItemProps } from 'taro-ui/types/list'
 import {AtIconProps} from 'taro-ui/types/icon'
 import React, { Component } from "react";
+import { UniElementStore } from '@/uniform/common/stores/UniElementStore'
+import { UniContainerStore } from '@/uniform/common/stores/UniContainerStore'
 
 export type ListItemPropTypes = Omit<
   AtListItemProps,
@@ -25,8 +27,14 @@ export type ListItemPropTypes = Omit<
   useRenderIcon?:boolean
   extraTextStyle?:any
 }
+
+export interface IListItemProps {
+  store: UniElementStore<ListItemPropTypes,any>
+  containerStore:UniContainerStore
+}
+
 export default class ListItem extends Component<
-  ListItemPropTypes
+  IListItemProps
 > {
   static defaultProps = {
     note: '',
@@ -48,12 +56,13 @@ export default class ListItem extends Component<
   }
 
   render() {
+    const {  store } = this.props
+    const {  componentProps,componentState,schemaData } = store
+    const {title,description:note} = schemaData
     const {
-      note,
       onClick,
       hasBorder,
       disabled,
-      title,
       thumb,
       arrow,
       iconInfo,
@@ -74,7 +83,7 @@ export default class ListItem extends Component<
       useRenderNote,
       titleColor,
       useRenderIcon,
-    } = this.props
+    } = componentProps
 
     const _errorStyle = { color: '#FF4949' }
     let _customStyle = customStyle || {},
