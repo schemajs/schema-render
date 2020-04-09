@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import { View, Text } from "@tarojs/components";
 import { observer } from "mobx-react";
-import { UniElementStore } from "@/uniform/common/stores/UniElementStore";
+import { UniElementStore } from "./node_modules/@/uniform/common/stores/UniElementStore";
 import ListItem from "../../stateless/ListItem";
 
 interface IProps  {
@@ -9,7 +9,11 @@ interface IProps  {
 };
 
 @observer
-class SchemaListItem extends Component<IProps,any> {
+class ListItem extends Component<IProps,any> {
+  onClick(){
+    this.props.store.setValue(true)
+
+  }
   render() {
     const { store } = this.props;
     const {schemaData} = store
@@ -22,4 +26,4 @@ class SchemaListItem extends Component<IProps,any> {
   }
 }
 
-export default SchemaListItem;
+export default ListItem;

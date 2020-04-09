@@ -2,7 +2,7 @@ import React  from "react";
 import { View, Text } from "@tarojs/components";
 import { observer } from "mobx-react";
 import Component,{BaseComponentPropsType} from '../BaseComponent'
-import SchemaListItem from "../schema/SchemaListItem";
+import ListItem from "../statefull/StateFullListItem";
 
 interface PageStateProps extends BaseComponentPropsType {
   path: string;
@@ -44,8 +44,8 @@ class UniElement extends Component<PageStateProps,any> {
     console.log(`path:${path}`)
     return (
       <View className="UniElement">
-        <SchemaListItem store={elementStore}>
-        </SchemaListItem>
+        <ListItem store={elementStore}>
+        </ListItem>
         {/* sub elements */}
         {properties &&
           Object.keys(properties).map(subKey => this.renderElement(subKey))}
