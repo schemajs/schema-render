@@ -6,6 +6,7 @@ import UniElement from './UniElement'
 import { UniContainerStore } from "../../stores/UniContainerStore";
 import { pathPrefix } from "../../const";
 import Component,{BaseComponentPropsType} from '../BaseComponent'
+import { AtList } from "taro-ui";
 
 interface PageStateProps extends BaseComponentPropsType {
   containerStore: UniContainerStore;
@@ -19,11 +20,9 @@ class UniContainer extends Component<PageStateProps,any> {
     const properties = containerStore.properties;
     return (
       <View className="UniContainer">
-        <View>
-          <Text>{`> UniContainer`}</Text>
-        </View>
-        {/* fields */}
-        {properties &&
+        <AtList>
+{/* fields */}
+{properties &&
           Object.keys(properties).map((subKey) => {
             const elePath = `${pathPrefix}.${subKey}`;
             return (
@@ -34,9 +33,7 @@ class UniContainer extends Component<PageStateProps,any> {
               ></UniElement>
             );
           })}
-        <View>
-          <Text>{`< UniContainer`}</Text>
-        </View>
+        </AtList>
       </View>
     );
   }

@@ -17,14 +17,17 @@ export type ListItemPropTypes = Omit<
   customStyles?: any
   titleColor?: string
   keepOriginExtraColor?: boolean // 是否保留跟 ListItem 一样的 extra 文字颜色
+  useRenderTitle?:boolean
+  useRenderArrow?:boolean
+  useRenderExtra?:boolean
+  useRenderExtraText?:boolean
+  useRenderNote?:boolean
+  useRenderIcon?:boolean
+  extraTextStyle?:any
 }
 export default class ListItem extends Component<
   ListItemPropTypes
 > {
-  static options = {
-    addGlobalClass: true,
-  }
-
   static defaultProps = {
     note: '',
     hasBorder: true,
@@ -85,7 +88,7 @@ export default class ListItem extends Component<
 
     _extraTextStyle = {
       ..._extraTextStyle,
-      ...{ paddingRight: Taro.pxTransform(40) },
+      ...{ paddingRight: Taro.pxTransform(40,750) },
     }
 
     if (error) {

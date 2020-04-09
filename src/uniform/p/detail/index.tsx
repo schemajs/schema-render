@@ -18,18 +18,26 @@ const schema = {
   type: "object",
   properties: {
     ke11: {
+      title:"ke11",
+      description:"comp key11",
       type: "string"
     },
     key12: {
       type: "object",
+      title:"key12",
+      description:"comp key12",
       properties: {
         key21: {
           type: "array",
+          title:"key21",
+          description:"comp key21",
           items: {
             type: "object",
             properties: {
               key31: {
-                type: "string"
+                type: "string",
+                title:"key31",
+                description:"comp key31",
               }
             }
           }
