@@ -1,14 +1,11 @@
 import Taro from '@tarojs/taro'
 import { AtListItem } from 'taro-ui'
+import { AtListItemProps } from 'taro-ui/types/list'
 import { Omit } from '../../../utils/tpUtils'
 import classNames from 'classnames'
-import { AtListItemProps } from 'taro-ui/types/list'
-import {AtIconProps} from 'taro-ui/types/icon'
-import React, { Component } from "react";
-import { UniElementStore } from '@/uniform/common/stores/UniElementStore'
-import { UniContainerStore } from '@/uniform/common/stores/UniContainerStore'
+import { AtIconProps } from 'taro-ui/types/icon'
 
-export type ListItemPropTypes = Omit<
+export type ListItemCustomTitleAndExtraPropTypes = Omit<
   AtListItemProps,
   'isSwitch' | 'switchIsCheck' | 'onSwitchChange' | 'arrow'
 > & {
@@ -19,23 +16,14 @@ export type ListItemPropTypes = Omit<
   customStyles?: any
   titleColor?: string
   keepOriginExtraColor?: boolean // 是否保留跟 ListItem 一样的 extra 文字颜色
-  useRenderTitle?:boolean
-  useRenderArrow?:boolean
-  useRenderExtra?:boolean
-  useRenderExtraText?:boolean
-  useRenderNote?:boolean
-  useRenderIcon?:boolean
-  extraTextStyle?:any
 }
-
-export interface IListItemProps {
-  store: UniElementStore<ListItemPropTypes,any>
-  containerStore:UniContainerStore
-}
-
-export default class ListItem extends Component<
-  IListItemProps
+export default class ListItemCustomTitleAndExtra extends Taro.Component<
+  ListItemCustomTitleAndExtraPropTypes
 > {
+  static options = {
+    addGlobalClass: true,
+  }
+
   static defaultProps = {
     note: '',
     hasBorder: true,
@@ -56,13 +44,12 @@ export default class ListItem extends Component<
   }
 
   render() {
-    const {  store } = this.props
-    const {  componentProps,componentState,schemaData } = store
-    const {title,description:note} = schemaData
     const {
+      note,
       onClick,
       hasBorder,
       disabled,
+      title,
       thumb,
       arrow,
       iconInfo,
@@ -83,29 +70,25 @@ export default class ListItem extends Component<
       useRenderNote,
       titleColor,
       useRenderIcon,
-    } = componentProps
+    } = this.props
 
     const _errorStyle = { color: '#FF4949' }
     let _customStyle = customStyle || {},
       _extraTextStyle = extraTextStyle || {},
-      _iconInfo = iconInfo,
-      _arrow = disabled ? '' : arrow
+      _iconInfo = iconInfo
 
     if (_iconInfo) {
       _iconInfo = { ...(_iconInfo as any), ...{ customStyle: { display: 'block' } } }
     }
 
-    _extraTextStyle = {
-      ..._extraTextStyle,
-      ...{ paddingRight: Taro.pxTransform(40,750) },
-    }
+    _extraTextStyle = { ..._extraTextStyle, ...{ paddingRight: Taro.pxTransform(40,750) } }
 
     if (error) {
       _customStyle = { ...(_customStyle as {}), ..._errorStyle }
       _extraTextStyle = { ..._extraTextStyle, ..._errorStyle }
     }
 
-    if (!_arrow) {
+    if (!arrow) {
       _extraTextStyle = { ..._extraTextStyle, ...{ paddingRight: 0 } }
     }
 
@@ -127,13 +110,14 @@ export default class ListItem extends Component<
         renderTitle={this.props.renderTitle}
         iconInfo={_iconInfo as AtIconProps}
         thumb={thumb}
+        disabled={disabled}
         className={cls}
         title={title}
         titleColor={titleColor}
         note={note}
-        arrow={_arrow}
+        arrow={arrow as any}
         hasBorder={hasBorder}
-        onClick={(e) => onClick && !disabled && onClick(e)}
+        onClick={onClick}
         customStyle={_customStyle}
         customStyles={customStyles}
         extraText={extraText}
