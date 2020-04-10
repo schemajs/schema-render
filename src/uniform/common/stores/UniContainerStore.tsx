@@ -157,4 +157,6 @@ export class UniContainerStore {
   triggerEvent(eventName: string | symbol, ...args: any[]): boolean {
     return this.eventCenter.trigger(eventName, ...args);
   }
+
+  
 }

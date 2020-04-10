@@ -2,28 +2,26 @@ import React from "react";
 import { View, Text } from "@tarojs/components";
 import { observer } from "mobx-react";
 
-import UniElement from './UniElement'
+import UniElement from "./UniElement";
 import { UniContainerStore } from "../../stores/UniContainerStore";
 import { pathPrefix } from "../../const";
-import Component,{BaseComponentPropsType} from '../BaseComponent'
+import Component, { BaseComponentPropsType } from "../BaseComponent";
 import { AtList } from "taro-ui";
 
 interface PageStateProps extends BaseComponentPropsType {
   containerStore: UniContainerStore;
-};
-
+}
 
 @observer
-class UniContainer extends Component<PageStateProps,any> {
+class UniContainer extends Component<PageStateProps, any> {
   render() {
-    const { containerStore} = this.props;
+    const { containerStore } = this.props;
     const properties = containerStore.properties;
     return (
       <View className="UniContainer">
-        <AtList>
-{/* fields */}
-{properties &&
-          Object.keys(properties).map((subKey) => {
+        {/* fields */}
+        {properties &&
+          Object.keys(properties).map(subKey => {
             const elePath = `${pathPrefix}.${subKey}`;
             return (
               <UniElement
@@ -33,7 +31,6 @@ class UniContainer extends Component<PageStateProps,any> {
               ></UniElement>
             );
           })}
-        </AtList>
       </View>
     );
   }

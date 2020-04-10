@@ -12,9 +12,13 @@ export default class SchemaList extends Component<IElementProps,any> {
   }
   render() {
     const { store } = this.props;
-    const {schemaData} = store
+    const { schemaData,componentProps } = store;
+    const { title,...rest} = componentProps
+    const _title = title || schemaData.title
     return (
         <AtList
+          title={_title}
+        {...rest}
         ></AtList>
     );
   }

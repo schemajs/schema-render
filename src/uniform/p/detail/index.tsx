@@ -26,20 +26,19 @@ const schema = {
       type: "object",
       title:"key12",
       description:"comp key12",
+      "x-component":"list",
       properties: {
         key21: {
-          type: "array",
+          type: "object",
           title:"key21",
+          "x-component":"listItem",
           description:"comp key21",
-          items: {
-            type: "object",
-            properties: {
-              key31: {
-                type: "string",
-                title:"key31",
-                description:"comp key31",
-              }
-            }
+          "x-component-props":{
+            title:"x-component-props key21",
+            note:"note",
+            extraText:"extraText",
+            isSwitch:true,
+            hasBorder:false
           }
         }
       }

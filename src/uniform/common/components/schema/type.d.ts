@@ -3,5 +3,5 @@ import { UniContainerStore } from "../../stores/UniContainerStore";
 
 export interface IElementProps  {
   containerStore:UniContainerStore
-  store:UniElementStore
+  store:UniElementStore<any,any>
 }

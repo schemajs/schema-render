@@ -18,29 +18,29 @@ const debug = createDebug("mapp:stores/ui/form/FormItem");
 
 export class  UniElementStore<IProps,IState> {
   @observable
-  schemaData: ISchema;
+  schemaData: ISchema={};
 
   @observable
   componentState:IState
 
   get component(){
-    return this.schemaData['x-component']
+    return this.schemaData['x-component'] || ""
   }
 
   get componentProps():IProps{
-    return this.schemaData['x-component-props'] as IProps
+    return (this.schemaData['x-component-props'] || {}) as IProps
   }
 
   get props():IProps{
-    return this.schemaData['x-props'] as IProps
+    return (this.schemaData['x-props'] || {}) as IProps
   }
 
   get properties(){
-    return this.schemaData.properties
+    return this.schemaData.properties || {}
   }
 
   get items(){
-    return this.schemaData.items
+    return this.schemaData.items || []
   }
 
   @observable
