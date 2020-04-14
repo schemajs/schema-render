@@ -107,7 +107,7 @@ const {
 } = EnumComponentName;
 
 @observer
-export default class SchemaButton extends BaseSchemaComponent<
+export default class SchemaTaroUI extends BaseSchemaComponent<
   IElementProps,
   any
 > {
