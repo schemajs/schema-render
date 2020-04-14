@@ -116,103 +116,185 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
     const { component, componentProps } = store;
     switch (component) {
       case ActionSheet:
-        return <AtActionSheet {...componentProps}></AtActionSheet>;
+        return (
+          <AtActionSheet
+            {...componentProps}
+            onClick={this.onClick}
+          ></AtActionSheet>
+        );
       case ActionSheetItem:
-        return <AtActionSheetItem {...componentProps}></AtActionSheetItem>;
+        return (
+          <AtActionSheetItem
+            {...componentProps}
+            onClick={this.onClick}
+          ></AtActionSheetItem>
+        );
       case ActivityIndicator:
-        return <AtActivityIndicator {...componentProps}></AtActivityIndicator>;
+        return (
+          <AtActivityIndicator
+            {...componentProps}
+            onClick={this.onClick}
+          ></AtActivityIndicator>
+        );
       case Avatar:
-        return <AtAvatar {...componentProps}></AtAvatar>;
+        return <AtAvatar {...componentProps} onClick={this.onClick}></AtAvatar>;
       case Badge:
-        return <AtBadge {...componentProps}></AtBadge>;
+        return <AtBadge {...componentProps} onClick={this.onClick}></AtBadge>;
       case Button:
-        return <AtButton {...componentProps}></AtButton>;
+        return <AtButton {...componentProps} onClick={this.onClick}></AtButton>;
       case Card:
-        return <AtCard {...componentProps}></AtCard>;
+        return <AtCard {...componentProps} onClick={this.onClick}></AtCard>;
       case Checkbox:
-        return <AtCheckbox {...componentProps}></AtCheckbox>;
+        return (
+          <AtCheckbox {...componentProps} onClick={this.onClick}></AtCheckbox>
+        );
       case Drawer:
-        return <AtDrawer {...componentProps}></AtDrawer>;
+        return <AtDrawer {...componentProps} onClick={this.onClick}></AtDrawer>;
       case Fab:
-        return <AtFab {...componentProps}></AtFab>;
+        return <AtFab {...componentProps} onClick={this.onClick}></AtFab>;
       case FloatLayout:
-        return <AtFloatLayout {...componentProps}></AtFloatLayout>;
+        return (
+          <AtFloatLayout
+            {...componentProps}
+            onClick={this.onClick}
+          ></AtFloatLayout>
+        );
       case Form:
-        return <AtForm {...componentProps}></AtForm>;
+        return <AtForm {...componentProps} onClick={this.onClick}></AtForm>;
       case Grid:
-        return <AtGrid {...componentProps}></AtGrid>;
+        return <AtGrid {...componentProps} onClick={this.onClick}></AtGrid>;
       case Icon:
-        return <AtIcon {...componentProps}></AtIcon>;
+        return <AtIcon {...componentProps} onClick={this.onClick}></AtIcon>;
       case InputNumber:
-        return <AtInputNumber {...componentProps}></AtInputNumber>;
+        return (
+          <AtInputNumber
+            {...componentProps}
+            onClick={this.onClick}
+          ></AtInputNumber>
+        );
       case Input:
-        return <AtInput {...componentProps}></AtInput>;
+        return <AtInput {...componentProps} onClick={this.onClick}></AtInput>;
       case ListItem:
-        return <AtListItem {...componentProps}></AtListItem>;
+        return (
+          <AtListItem {...componentProps} onClick={this.onClick}></AtListItem>
+        );
       case List:
-        return <AtList {...componentProps}></AtList>;
+        return <AtList {...componentProps} onClick={this.onClick}></AtList>;
       case Modal:
-        return <AtModal {...componentProps}></AtModal>;
+        return <AtModal {...componentProps} onClick={this.onClick}></AtModal>;
       case NavBar:
-        return <AtNavBar {...componentProps}></AtNavBar>;
+        return <AtNavBar {...componentProps} onClick={this.onClick}></AtNavBar>;
       case Noticebar:
-        return <AtNoticebar {...componentProps}></AtNoticebar>;
+        return (
+          <AtNoticebar {...componentProps} onClick={this.onClick}></AtNoticebar>
+        );
       case Pagination:
-        return <AtPagination {...componentProps}></AtPagination>;
+        return (
+          <AtPagination
+            {...componentProps}
+            onClick={this.onClick}
+          ></AtPagination>
+        );
       case Progress:
-        return <AtProgress {...componentProps}></AtProgress>;
+        return (
+          <AtProgress {...componentProps} onClick={this.onClick}></AtProgress>
+        );
       case Radio:
-        return <AtRadio {...componentProps}></AtRadio>;
+        return <AtRadio {...componentProps} onClick={this.onClick}></AtRadio>;
       case Rate:
-        return <AtRate {...componentProps}></AtRate>;
+        return <AtRate {...componentProps} onClick={this.onClick}></AtRate>;
       case SegmentedControl:
-        return <AtSegmentedControl {...componentProps}></AtSegmentedControl>;
+        return (
+          <AtSegmentedControl
+            {...componentProps}
+            onClick={this.onClick}
+          ></AtSegmentedControl>
+        );
       case Switch:
-        return <AtSwitch {...componentProps}></AtSwitch>;
+        return <AtSwitch {...componentProps} onClick={this.onClick}></AtSwitch>;
       case SearchBar:
-        return <AtSearchBar {...componentProps}></AtSearchBar>;
+        return (
+          <AtSearchBar {...componentProps} onClick={this.onClick}></AtSearchBar>
+        );
       case TabBar:
-        return <AtTabBar {...componentProps}></AtTabBar>;
+        return <AtTabBar {...componentProps} onClick={this.onClick}></AtTabBar>;
       case Tabs:
-        return <AtTabs {...componentProps}></AtTabs>;
+        return <AtTabs {...componentProps} onClick={this.onClick}></AtTabs>;
       case Tag:
-        return <AtTag {...componentProps}></AtTag>;
+        return <AtTag {...componentProps} onClick={this.onClick}></AtTag>;
       case Textarea:
-        return <AtTextarea {...componentProps}></AtTextarea>;
+        return (
+          <AtTextarea {...componentProps} onClick={this.onClick}></AtTextarea>
+        );
       case Timeline:
-        return <AtTimeline {...componentProps}></AtTimeline>;
+        return (
+          <AtTimeline {...componentProps} onClick={this.onClick}></AtTimeline>
+        );
       case Toast:
-        return <AtToast {...componentProps}></AtToast>;
+        return <AtToast {...componentProps} onClick={this.onClick}></AtToast>;
       case TabsPane:
-        return <AtTabsPane {...componentProps}></AtTabsPane>;
+        return (
+          <AtTabsPane {...componentProps} onClick={this.onClick}></AtTabsPane>
+        );
       case SwipeAction:
-        return <AtSwipeAction {...componentProps}></AtSwipeAction>;
+        return (
+          <AtSwipeAction
+            {...componentProps}
+            onClick={this.onClick}
+          ></AtSwipeAction>
+        );
       case Accordion:
-        return <AtAccordion {...componentProps}></AtAccordion>;
+        return (
+          <AtAccordion {...componentProps} onClick={this.onClick}></AtAccordion>
+        );
       case LoadMore:
-        return <AtLoadMore {...componentProps}></AtLoadMore>;
+        return (
+          <AtLoadMore {...componentProps} onClick={this.onClick}></AtLoadMore>
+        );
       case Divider:
-        return <AtDivider {...componentProps}></AtDivider>;
+        return (
+          <AtDivider {...componentProps} onClick={this.onClick}></AtDivider>
+        );
       case Countdown:
-        return <AtCountdown {...componentProps}></AtCountdown>;
+        return (
+          <AtCountdown {...componentProps} onClick={this.onClick}></AtCountdown>
+        );
       case Steps:
-        return <AtSteps {...componentProps}></AtSteps>;
+        return <AtSteps {...componentProps} onClick={this.onClick}></AtSteps>;
       case Curtain:
-        return <AtCurtain {...componentProps}></AtCurtain>;
+        return (
+          <AtCurtain {...componentProps} onClick={this.onClick}></AtCurtain>
+        );
       case Slider:
-        return <AtSlider {...componentProps}></AtSlider>;
+        return <AtSlider {...componentProps} onClick={this.onClick}></AtSlider>;
       case Message:
-        return <AtMessage {...componentProps}></AtMessage>;
+        return (
+          <AtMessage {...componentProps} onClick={this.onClick}></AtMessage>
+        );
       case ImagePicker:
-        return <AtImagePicker {...componentProps}></AtImagePicker>;
+        return (
+          <AtImagePicker
+            {...componentProps}
+            onClick={this.onClick}
+          ></AtImagePicker>
+        );
       case Indexes:
-        return <AtIndexes {...componentProps}></AtIndexes>;
+        return (
+          <AtIndexes {...componentProps} onClick={this.onClick}></AtIndexes>
+        );
       case Range:
-        return <AtRange {...componentProps}></AtRange>;
+        return <AtRange {...componentProps} onClick={this.onClick}></AtRange>;
       case FloatButton:
-        return <AtFloatButton {...componentProps}></AtFloatButton>;
+        return (
+          <AtFloatButton
+            {...componentProps}
+            onClick={this.onClick}
+          ></AtFloatButton>
+        );
       case Calendar:
-        return <AtCalendar {...componentProps}></AtCalendar>;
+        return (
+          <AtCalendar {...componentProps} onClick={this.onClick}></AtCalendar>
+        );
     }
   }
 }
