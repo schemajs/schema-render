@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, Block } from "@tarojs/components";
 import { observer } from "mobx-react";
 import Component, { BaseComponentPropsType } from "../BaseComponent";
-import SchemaListItem from "../schema/SchemaListItem";
 import SchemaTaroUI from "../schema/SchemaTaroUI";
 import { UniElementStore } from "../../stores/UniElementStore";
 import { isTaroUI } from '../../const'
