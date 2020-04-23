@@ -39,8 +39,8 @@ export class  UniElementStore<IProps,IState> {
     return this.schemaData.properties || {}
   }
 
-  get items(){
-    return this.schemaData.items || []
+  get items():any{
+    return this.schemaData.items || {}
   }
 
   @observable

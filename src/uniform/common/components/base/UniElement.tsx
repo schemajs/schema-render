@@ -33,12 +33,13 @@ class UniElement extends Component<PageStateProps, any> {
   renderChildren() {
     const properties = this.elementStore.properties;
     const items = this.elementStore.items;
+    const itemProps = items? items.properties: null
     return (
       <View>
-        {!!properties &&
+        {properties &&
           Object.keys(properties).map(subKey => this.renderElement(subKey))}
-        {!!items &&
-          Object.keys((items as any).properties).map(subKey =>
+        {itemProps &&
+          Object.keys(itemProps).map(subKey =>
             this.renderElement(subKey)
           )}
       </View>
