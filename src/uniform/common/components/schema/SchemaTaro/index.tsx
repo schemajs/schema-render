@@ -209,7 +209,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
       case EnumComponentName.Text:
         return (
           <Text {...componentProps} onClick={this.onClick}>
-            {children}
+            {componentProps.text}
           </Text>
         );
       case EnumComponentName.RichText:

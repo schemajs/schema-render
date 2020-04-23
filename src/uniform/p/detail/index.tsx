@@ -17,10 +17,21 @@ interface Index {
 const schema = {
   type: "object",
   properties: {
+    view1: {
+      "x-component":"View",
+      "x-component-props":{
+       
+      },
+      properties: {
+        text1: {
+          "x-component":"Text",
+          "x-component-props":{
+            text:"text demo",
+          }
+        }
+      }
+    },
     ke11: {
-      title:"ke11",
-      description:"comp key11",
-      type: "string",
       "x-component":"AtInput",
       "x-component-props":{
         name:'value',
