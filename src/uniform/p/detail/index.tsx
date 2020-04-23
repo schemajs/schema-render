@@ -21,7 +21,7 @@ const schema = {
       title:"ke11",
       description:"comp key11",
       type: "string",
-      "x-component":"Input",
+      "x-component":"AtInput",
       "x-component-props":{
         name:'value',
         title:'标准五个字',
@@ -30,7 +30,7 @@ const schema = {
       }
     },
     ke12: {
-      "x-component":"InputNumber",
+      "x-component":"AtInputNumber",
       "x-component-props":{
         min:0,
         max:10,
@@ -38,7 +38,7 @@ const schema = {
       }
     },
     ke13: {
-      "x-component":"Radio",
+      "x-component":"AtRadio",
       "x-component-props":{
         options:[
           { label: '单选项一', value: 'option1', desc: '单选项描述' },
@@ -48,7 +48,7 @@ const schema = {
       }
     },
     ke14: {
-      "x-component":"Checkbox",
+      "x-component":"AtCheckbox",
       "x-component-props":{
         options : [{
           value: 'list1',
@@ -71,35 +71,35 @@ const schema = {
     }
     },
     ke15: {
-      "x-component":"Rate",
+      "x-component":"AtRate",
       "x-component-props":{
         max:10,
       }
     },
     ke16: {
-      "x-component":"Switch",
+      "x-component":"AtSwitch",
       "x-component-props":{
       }
     },
     ke17: {
-      "x-component":"Textarea",
+      "x-component":"AtTextarea",
       "x-component-props":{
         maxLength:200,
         placeholder:'你的问题是...'
       }
     },
     ke18: {
-      "x-component":"SearchBar",
+      "x-component":"AtSearchBar",
       "x-component-props":{
       }
     },
     ke19: {
-      "x-component":"Slider",
+      "x-component":"AtSlider",
       "x-component-props":{
       }
     },
     ke20: {
-      "x-component":"Range",
+      "x-component":"AtRange",
       "x-component-props":{
       }
     },

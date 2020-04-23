@@ -60,7 +60,7 @@ class UniElement extends Component<PageStateProps, any> {
     // }
     return (
       <View>
-        <Text>Error: UnSupport Component!</Text>
+        <Text>{`Error: UnSupport ${component}`}</Text>
       </View>
     );
   }

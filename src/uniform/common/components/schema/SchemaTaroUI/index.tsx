@@ -1,4 +1,5 @@
 import React from "react";
+import {toJS} from 'mobx'
 import { observer } from "mobx-react";
 import { IElementProps } from "../type";
 import BaseSchemaComponent from "../BaseSchemaComponent";
@@ -62,7 +63,8 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
 > {
   render() {
     const { store } = this.props;
-    const { component, componentProps } = store;
+    const { component, componentProps: componentPropsObj } = store;
+    const componentProps = toJS(componentPropsObj)
     switch (component) {
       case EnumComponentName.AtActionSheet:
         return (
@@ -244,6 +246,8 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtCalendar {...componentProps} onClick={this.onClick}></AtCalendar>
         );
+        default:
+          return null;
     }
   }
 }
