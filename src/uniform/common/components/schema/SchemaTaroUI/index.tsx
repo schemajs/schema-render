@@ -54,57 +54,6 @@ import {
   AtCalendar
 } from "taro-ui";
 import { EnumComponentName } from "../../../const";
-const {
-  ActionSheet,
-  ActionSheetItem,
-  ActivityIndicator,
-  Avatar,
-  Badge,
-  Button,
-  Card,
-  Checkbox,
-  Drawer,
-  Fab,
-  FloatLayout,
-  Form,
-  Grid,
-  Icon,
-  InputNumber,
-  Input,
-  ListItem,
-  List,
-  Modal,
-  NavBar,
-  Noticebar,
-  Pagination,
-  Progress,
-  Radio,
-  Rate,
-  SegmentedControl,
-  Switch,
-  SearchBar,
-  TabBar,
-  Tabs,
-  Tag,
-  Textarea,
-  Timeline,
-  Toast,
-  TabsPane,
-  SwipeAction,
-  Accordion,
-  LoadMore,
-  Divider,
-  Countdown,
-  Steps,
-  Curtain,
-  Slider,
-  Message,
-  ImagePicker,
-  Indexes,
-  Range,
-  FloatButton,
-  Calendar
-} = EnumComponentName;
 
 @observer
 export default class SchemaTaroUI extends BaseSchemaComponent<
@@ -115,183 +64,183 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
     const { store } = this.props;
     const { component, componentProps } = store;
     switch (component) {
-      case ActionSheet:
+      case EnumComponentName.AtActionSheet:
         return (
           <AtActionSheet
             {...componentProps}
             onClick={this.onClick}
           ></AtActionSheet>
         );
-      case ActionSheetItem:
+      case EnumComponentName.AtActionSheetItem:
         return (
           <AtActionSheetItem
             {...componentProps}
             onClick={this.onClick}
           ></AtActionSheetItem>
         );
-      case ActivityIndicator:
+      case EnumComponentName.AtActivityIndicator:
         return (
           <AtActivityIndicator
             {...componentProps}
             onClick={this.onClick}
           ></AtActivityIndicator>
         );
-      case Avatar:
+      case EnumComponentName.AtAvatar:
         return <AtAvatar {...componentProps} onClick={this.onClick}></AtAvatar>;
-      case Badge:
+      case EnumComponentName.AtBadge:
         return <AtBadge {...componentProps} onClick={this.onClick}></AtBadge>;
-      case Button:
+      case EnumComponentName.AtButton:
         return <AtButton {...componentProps} onClick={this.onClick}></AtButton>;
-      case Card:
+      case EnumComponentName.AtCard:
         return <AtCard {...componentProps} onClick={this.onClick}></AtCard>;
-      case Checkbox:
+      case EnumComponentName.AtCheckbox:
         return (
           <AtCheckbox {...componentProps} onClick={this.onClick}></AtCheckbox>
         );
-      case Drawer:
+      case EnumComponentName.AtDrawer:
         return <AtDrawer {...componentProps} onClick={this.onClick}></AtDrawer>;
-      case Fab:
+      case EnumComponentName.AtFab:
         return <AtFab {...componentProps} onClick={this.onClick}></AtFab>;
-      case FloatLayout:
+      case EnumComponentName.AtFloatLayout:
         return (
           <AtFloatLayout
             {...componentProps}
             onClick={this.onClick}
           ></AtFloatLayout>
         );
-      case Form:
+      case EnumComponentName.AtForm:
         return <AtForm {...componentProps} onClick={this.onClick}></AtForm>;
-      case Grid:
+      case EnumComponentName.AtGrid:
         return <AtGrid {...componentProps} onClick={this.onClick}></AtGrid>;
-      case Icon:
+      case EnumComponentName.AtIcon:
         return <AtIcon {...componentProps} onClick={this.onClick}></AtIcon>;
-      case InputNumber:
+      case EnumComponentName.AtInputNumber:
         return (
           <AtInputNumber
             {...componentProps}
             onClick={this.onClick}
           ></AtInputNumber>
         );
-      case Input:
+      case EnumComponentName.AtInput:
         return <AtInput {...componentProps} onClick={this.onClick}></AtInput>;
-      case ListItem:
+      case EnumComponentName.AtListItem:
         return (
           <AtListItem {...componentProps} onClick={this.onClick}></AtListItem>
         );
-      case List:
+      case EnumComponentName.AtList:
         return <AtList {...componentProps} onClick={this.onClick}></AtList>;
-      case Modal:
+      case EnumComponentName.AtModal:
         return <AtModal {...componentProps} onClick={this.onClick}></AtModal>;
-      case NavBar:
+      case EnumComponentName.AtNavBar:
         return <AtNavBar {...componentProps} onClick={this.onClick}></AtNavBar>;
-      case Noticebar:
+      case EnumComponentName.AtNoticebar:
         return (
           <AtNoticebar {...componentProps} onClick={this.onClick}></AtNoticebar>
         );
-      case Pagination:
+      case EnumComponentName.AtPagination:
         return (
           <AtPagination
             {...componentProps}
             onClick={this.onClick}
           ></AtPagination>
         );
-      case Progress:
+      case EnumComponentName.AtProgress:
         return (
           <AtProgress {...componentProps} onClick={this.onClick}></AtProgress>
         );
-      case Radio:
+      case EnumComponentName.AtRadio:
         return <AtRadio {...componentProps} onClick={this.onClick}></AtRadio>;
-      case Rate:
+      case EnumComponentName.AtRate:
         return <AtRate {...componentProps} onClick={this.onClick}></AtRate>;
-      case SegmentedControl:
+      case EnumComponentName.AtSegmentedControl:
         return (
           <AtSegmentedControl
             {...componentProps}
             onClick={this.onClick}
           ></AtSegmentedControl>
         );
-      case Switch:
+      case EnumComponentName.AtSwitch:
         return <AtSwitch {...componentProps} onClick={this.onClick}></AtSwitch>;
-      case SearchBar:
+      case EnumComponentName.AtSearchBar:
         return (
           <AtSearchBar {...componentProps} onClick={this.onClick}></AtSearchBar>
         );
-      case TabBar:
+      case EnumComponentName.AtTabBar:
         return <AtTabBar {...componentProps} onClick={this.onClick}></AtTabBar>;
-      case Tabs:
+      case EnumComponentName.AtTabs:
         return <AtTabs {...componentProps} onClick={this.onClick}></AtTabs>;
-      case Tag:
+      case EnumComponentName.AtTag:
         return <AtTag {...componentProps} onClick={this.onClick}></AtTag>;
-      case Textarea:
+      case EnumComponentName.AtTextarea:
         return (
           <AtTextarea {...componentProps} onClick={this.onClick}></AtTextarea>
         );
-      case Timeline:
+      case EnumComponentName.AtTimeline:
         return (
           <AtTimeline {...componentProps} onClick={this.onClick}></AtTimeline>
         );
-      case Toast:
+      case EnumComponentName.AtToast:
         return <AtToast {...componentProps} onClick={this.onClick}></AtToast>;
-      case TabsPane:
+      case EnumComponentName.AtTabsPane:
         return (
           <AtTabsPane {...componentProps} onClick={this.onClick}></AtTabsPane>
         );
-      case SwipeAction:
+      case EnumComponentName.AtSwipeAction:
         return (
           <AtSwipeAction
             {...componentProps}
             onClick={this.onClick}
           ></AtSwipeAction>
         );
-      case Accordion:
+      case EnumComponentName.AtAccordion:
         return (
           <AtAccordion {...componentProps} onClick={this.onClick}></AtAccordion>
         );
-      case LoadMore:
+      case EnumComponentName.AtLoadMore:
         return (
           <AtLoadMore {...componentProps} onClick={this.onClick}></AtLoadMore>
         );
-      case Divider:
+      case EnumComponentName.AtDivider:
         return (
           <AtDivider {...componentProps} onClick={this.onClick}></AtDivider>
         );
-      case Countdown:
+      case EnumComponentName.AtCountdown:
         return (
           <AtCountdown {...componentProps} onClick={this.onClick}></AtCountdown>
         );
-      case Steps:
+      case EnumComponentName.AtSteps:
         return <AtSteps {...componentProps} onClick={this.onClick}></AtSteps>;
-      case Curtain:
+      case EnumComponentName.AtCurtain:
         return (
           <AtCurtain {...componentProps} onClick={this.onClick}></AtCurtain>
         );
-      case Slider:
+      case EnumComponentName.AtSlider:
         return <AtSlider {...componentProps} onClick={this.onClick}></AtSlider>;
-      case Message:
+      case EnumComponentName.AtMessage:
         return (
           <AtMessage {...componentProps} onClick={this.onClick}></AtMessage>
         );
-      case ImagePicker:
+      case EnumComponentName.AtImagePicker:
         return (
           <AtImagePicker
             {...componentProps}
             onClick={this.onClick}
           ></AtImagePicker>
         );
-      case Indexes:
+      case EnumComponentName.AtIndexes:
         return (
           <AtIndexes {...componentProps} onClick={this.onClick}></AtIndexes>
         );
-      case Range:
+      case EnumComponentName.AtRange:
         return <AtRange {...componentProps} onClick={this.onClick}></AtRange>;
-      case FloatButton:
+      case EnumComponentName.AtFloatButton:
         return (
           <AtFloatButton
             {...componentProps}
             onClick={this.onClick}
           ></AtFloatButton>
         );
-      case Calendar:
+      case EnumComponentName.AtCalendar:
         return (
           <AtCalendar {...componentProps} onClick={this.onClick}></AtCalendar>
         );
