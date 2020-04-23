@@ -7,11 +7,15 @@ export default class BaseSchemaComponent<
   IProps extends IElementProps,
   IState
 > extends Component<IProps, IState> {
-  onClick = event => {
+  getEventTrigger=(eventName)=>{
     const { containerStore, store } = this.props;
-    const key = `${store.path}:onClick`;
-    containerStore.triggerEvent(key, {
-      event
-    });
-  };
+    return (eventParams)=>{
+      containerStore.triggerEvent(`${store.path}:${eventName}`, {
+        store,
+        eventName, 
+        eventParams
+      });
+    }
+  }
+  onClick = this.getEventTrigger('onClick')
 }
