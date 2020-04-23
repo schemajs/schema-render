@@ -35,10 +35,10 @@ class UniElement extends Component<PageStateProps, any> {
     const items = this.elementStore.items;
     return (
       <View>
-        {properties &&
+        {!!properties &&
           Object.keys(properties).map(subKey => this.renderElement(subKey))}
-        {items &&
-          Object.keys(items.properties).map(subKey =>
+        {!!items &&
+          Object.keys((items as any).properties).map(subKey =>
             this.renderElement(subKey)
           )}
       </View>
@@ -49,6 +49,7 @@ class UniElement extends Component<PageStateProps, any> {
     const { component } = this.elementStore
     if(isTaroUI(component)){
       return <SchemaTaroUI containerStore={containerStore} store={this.elementStore}>
+        {this.renderChildren()}
       </SchemaTaroUI>
     }
     // if(component=="listItem"){

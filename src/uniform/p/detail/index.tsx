@@ -104,16 +104,10 @@ const schema = {
       }
     },
     key118: {
-      type: "object",
-      title:"key12",
-      description:"comp key12",
-      "x-component":"list",
+      "x-component":"AtList",
       properties: {
         key21: {
-          type: "object",
-          title:"key21",
-          "x-component":"listItem",
-          description:"comp key21",
+          "x-component":"AtListItem",
           "x-component-props":{
             title:"x-component-props key21",
             note:"note",
