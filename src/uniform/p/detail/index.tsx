@@ -4,7 +4,7 @@ import { observer, inject } from "mobx-react";
 import Taro from "@tarojs/taro";
 
 import "./index.scss";
-import UniForm from "../../common/components/UniForm/UniForm";
+import UniForm from "../../common/components/base/UniForm";
 
 type PageStateProps = {
  
