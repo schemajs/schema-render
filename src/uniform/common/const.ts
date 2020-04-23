@@ -62,7 +62,7 @@ export enum EnumComponentName {
   AtAtTextarea = "AtAtTextarea"
 }
 
-const ComponentNames = Object.values(EnumComponentName);
+// const ComponentNames = Object.values(EnumComponentName);
 
 const TaroUIComponentNames = [
   "AtActionSheet",
