@@ -16,7 +16,7 @@ import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "../../types"
 import { UniContainerStore } from "../../stores/UniContainerStore";
 import { getContainerStore } from "../../stores/factory";
 import UniContainer from "./UniContainer";
-import Component,{BaseComponentPropsType} from '../BaseComponent'
+import Component,{BaseComponentPropsType} from './BaseComponent'
 
 interface PageStateProps extends BaseComponentPropsType {
   schema:ISchema
