@@ -32,6 +32,7 @@ const schema = {
       }
     },
     ke11: {
+      "required":true,
       "x-component":"AtInput",
       "x-component-props":{
         name:'value',

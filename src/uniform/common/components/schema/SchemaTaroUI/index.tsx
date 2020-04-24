@@ -55,12 +55,27 @@ import {
   AtCalendar
 } from "taro-ui";
 import { TaroUIComponentNames } from "../../../const";
+import { checkIsNotZeroValue } from "../../../utils/validators";
+import { IValidator } from "../../../utils/validators/type";
 
 @observer
 export default class SchemaTaroUI extends BaseSchemaComponent<
   IElementProps,
   any
 > {
+  constructor(props: IElementProps) {
+    super(props);
+    this.initStore(props);
+  }
+  initStore(props: IElementProps) {
+    const { store } = props;
+    const { schemaData } = store;
+    const validators: IValidator[] = [];
+    if (schemaData.required) {
+      validators.push(checkIsNotZeroValue);
+    }
+    store.setValidators(validators);
+  }
   onGetUserInfo = this.getEventTrigger("onGetUserInfo");
   onContact = this.getEventTrigger("onContact");
   onGetPhoneNumber = this.getEventTrigger("onGetPhoneNumber");
@@ -104,10 +119,16 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
   onDayLongClick = this.getEventTrigger("onDayLongClick");
   onMonthChange = this.getEventTrigger("onMonthChange");
   onSelectDate = this.getEventTrigger("onSelectDate");
-
+  onInputChange = (...args) => {
+    const { store } = this.props;
+    console.log(`args:`, args);
+    store.setValue(args[0]);
+    this.onChange(args);
+  };
   render() {
     const { store, children } = this.props;
-    const { component, componentProps: componentPropsObj } = store;
+    const { component, componentProps: componentPropsObj, schemaData,value,showError } = store;
+    const { required, maxLength } = schemaData;
     const componentProps = toJS(componentPropsObj);
     switch (component) {
       case TaroUIComponentNames.AtActionSheet:
@@ -243,9 +264,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
       case TaroUIComponentNames.AtInput:
         return (
           <AtInput
+            required={required}
+            maxLength={maxLength}
+            value={value}
+            error={showError}
             {...componentProps}
             onClick={this.onClick}
-            onChange={this.onChange}
+            onChange={this.onInputChange}
             onFocus={this.onFocus}
             onBlur={this.onBlur}
             onConfirm={this.onConfirm}

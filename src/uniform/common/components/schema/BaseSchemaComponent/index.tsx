@@ -9,11 +9,11 @@ export default class BaseSchemaComponent<
 > extends Component<IProps, IState> {
   getEventTrigger=(eventName)=>{
     const { containerStore, store } = this.props;
-    return (eventParams)=>{
+    return (...args)=>{
       containerStore.triggerEvent(`${store.path}:${eventName}`, {
         store,
         eventName, 
-        eventParams
+        eventArgs:args
       });
     }
   }

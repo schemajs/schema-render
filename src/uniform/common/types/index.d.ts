@@ -1,4 +1,4 @@
-import { Validator } from "@/uniform/common/utils/validators/type.d.ts";
+import { IValidator } from "@/uniform/common/utils/validators/type.d.ts";
 import { CSSProperties } from "react";
 
 export interface AtComponent {
@@ -13,7 +13,7 @@ export interface ICustomStyles {
   root?: any;
 }
 
-export type SchemaValidator = Validator;
+export type SchemaValidator = IValidator;
 
 export interface IValidMessage {
   showError: boolean;

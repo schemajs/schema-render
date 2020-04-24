@@ -1,7 +1,7 @@
 import createDebug from "debug";
 
 import { action, computed, observable } from "mobx";
-import { Validator } from "@/uniform/common/utils/validators/type";
+import { IValidator } from "@/uniform/common/utils/validators/type";
 
 import {
   checkIsNotEmptyString,
@@ -50,7 +50,7 @@ export class  UniElementStore<IProps,IState> {
   @observable
   tempValue: any;
 
-  validators: Validator[] = [];
+  validators: IValidator[] = [];
 
   @observable
   isValid: boolean = true;
@@ -160,12 +160,12 @@ export class  UniElementStore<IProps,IState> {
     }
   }
 
-  setValidators(validators: Validator[]) {
+  setValidators(validators: IValidator[]) {
     this.validators = validators;
   }
 
   @action.bound
-  pushValidator(validator:Validator){
+  pushValidator(validator:IValidator){
     this.validators.push(validator)
   }
 

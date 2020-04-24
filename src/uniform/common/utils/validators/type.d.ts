@@ -3,4 +3,4 @@ export interface ValidatorParams {
   value: any
   message?: string
 }
-export type Validator = (params: ValidatorParams) => void
+export type IValidator = (params: ValidatorParams) => void
