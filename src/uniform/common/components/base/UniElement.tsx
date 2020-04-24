@@ -7,10 +7,11 @@ import SchemaTaro from "../schema/SchemaTaro";
 import { UniSchemaStore } from "../../stores/UniSchemaStore";
 import { isTaroUI, isTaro } from "../../const";
 import { ISchema } from "../../types";
+import { UniContainerStore } from "../../stores/UniContainerStore";
 
 interface PageStateProps extends BaseComponentPropsType {
   path: string;
-  containerStore: any;
+  containerStore: UniContainerStore;
 }
 
 @observer
@@ -19,7 +20,7 @@ class UniElement extends Component<PageStateProps, any> {
   constructor(props) {
     super(props);
     const { containerStore, path } = props;
-    this.schemaStore = containerStore.getSchemaStore(path);
+    this.schemaStore = containerStore.schemaStoreRegistry.getItem(path);
   }
   renderElement(subKey) {
     const { containerStore, path } = this.props;

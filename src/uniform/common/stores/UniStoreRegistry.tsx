@@ -7,7 +7,7 @@ export class UniRegistry<T> {
     [key: string]: T;
   } = {};
 
-  @computed
+  // @computed
   getItem(path: string) {
     return this.registry[path];
   }

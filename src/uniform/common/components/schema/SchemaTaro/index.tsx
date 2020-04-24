@@ -50,9 +50,9 @@ import {
   PageMeta
 } from "@tarojs/components";
 import { TaroComponentNames } from "../../../const";
-import { AnyUniFormItemStore, UniFormItemStore } from "@/uniform/common/stores/UniFormItemStore";
-import { IValidator } from "@/uniform/common/utils/validators/type";
-import { checkIsNotZeroValue } from "@/uniform/common/utils/validators";
+import { AnyUniFormItemStore, UniFormItemStore } from "../../../stores/UniFormItemStore";
+import { IValidator } from "../../../utils/validators/type";
+import { checkIsNotZeroValue } from "../../../utils/validators";
 
 @observer
 export default class SchemaTaroUI extends BaseSchemaComponent<
@@ -154,7 +154,8 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
     // const { required, maxLength } = schema;
     const componentProps = toJS(componentPropsObj);
     // elementStore
-    const { value,showError } = this.elementStore;
+    const { value:storeValue,showError } = this.elementStore;
+    const value = toJS(storeValue)
     switch (component) {
       case TaroComponentNames.ScrollView:
         return (
