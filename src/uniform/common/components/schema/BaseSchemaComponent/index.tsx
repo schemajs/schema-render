@@ -1,17 +1,24 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { IElementProps } from "../type";
+import { AnyUniSchemaStore } from "@/uniform/common/stores/UniSchemaStore";
 
 @observer
 export default class BaseSchemaComponent<
   IProps extends IElementProps,
   IState
 > extends Component<IProps, IState> {
+  schemaStore:AnyUniSchemaStore
+  constructor(props: IElementProps) {
+    super((props as any))
+    this.schemaStore = props.schemaStore
+  }
+
   getEventTrigger=(eventName)=>{
-    const { containerStore, schemaStore: store } = this.props;
+    const { containerStore, schemaStore } = this.props;
     return (...args)=>{
-      containerStore.triggerEvent(`${store.path}:${eventName}`, {
-        store,
+      containerStore.triggerEvent(`${schemaStore.path}:${eventName}`, {
+        schemaStore,
         eventName, 
         eventArgs:args
       });

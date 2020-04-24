@@ -57,18 +57,24 @@ import {
 import { TaroUIComponentNames } from "../../../const";
 import { checkIsNotZeroValue } from "../../../utils/validators";
 import { IValidator } from "../../../utils/validators/type";
+import { UniDisplayItemStore, AnyUniDisplayItemStore } from "@/uniform/common/stores/UniDisplayItemStore";
+import { AnyUniFormItemStore, UniFormItemStore } from "@/uniform/common/stores/UniFormItemStore";
+import { AnyUniSchemaStore } from "@/uniform/common/stores/UniSchemaStore";
 
 @observer
 export default class SchemaTaroUI extends BaseSchemaComponent<
   IElementProps,
   any
 > {
+  elementStore: AnyUniFormItemStore
   constructor(props: IElementProps) {
     super(props);
     this.initStore(props);
   }
   initStore(props: IElementProps) {
-    const { schemaStore: store } = props;
+    const { schemaStore } = props;
+    const store = new UniFormItemStore(schemaStore)
+    this.elementStore = store
     const { schema } = store;
     const validators: IValidator[] = [];
     if (schema.required) {
@@ -120,28 +126,32 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
   onMonthChange = this.getEventTrigger("onMonthChange");
   onSelectDate = this.getEventTrigger("onSelectDate");
   onOpenWithSetValue = (...args) => {
-    const { schemaStore: store } = this.props;
+    const store = this.elementStore
     console.log(`onOpen args:`, args);
     store.setValue(true);
     this.onOpen(args);
   };
   onCloseWithSetValue = (...args) => {
-    const { schemaStore: store } = this.props;
+    const store = this.elementStore
     console.log(`onClose args:`, args);
     store.setValue(false);
     this.onClose(args);
   };
   onChangeWithSetValue = (...args) => {
-    const { schemaStore: store } = this.props;
+    const store = this.elementStore
     console.log(`onChange args:`, args);
     store.setValue(args[0]);
     this.onChange(args);
   };
   render() {
-    const { schemaStore: store, children } = this.props;
-    const { component, componentProps: componentPropsObj, schema,value,showError } = store;
+    const { schemaStore ,children } = this.props;
+    // schemaStore
+    const { component, componentProps: componentPropsObj, schema } = schemaStore;
     const { required, maxLength } = schema;
     const componentProps = toJS(componentPropsObj);
+    // elementStore
+    const { value,showError } = this.elementStore;
+
     switch (component) {
       case TaroUIComponentNames.AtActionSheet:
         return (

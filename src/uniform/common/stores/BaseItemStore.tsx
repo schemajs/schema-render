@@ -16,28 +16,8 @@ export class BaseElementStore<IProps, IState> {
   }
 
   @computed
-  get id() {
-    return this.schema.id || "";
-  }
-
-  @computed
-  get name() {
-    return this.schema.name || "";
-  }
-
-  @computed
   get schema() {
     return this.schemaStore.schema || {};
-  }
-
-  @computed
-  get path(): string {
-    return this.schema.path!;
-  }
-
-  @computed
-  get defaultValue(): string {
-    return this.schema.default;
   }
 
   constructor(schemaStore: UniSchemaStore<IProps>) {

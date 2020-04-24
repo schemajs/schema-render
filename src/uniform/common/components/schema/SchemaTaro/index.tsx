@@ -50,12 +50,32 @@ import {
   PageMeta
 } from "@tarojs/components";
 import { TaroComponentNames } from "../../../const";
+import { AnyUniFormItemStore, UniFormItemStore } from "@/uniform/common/stores/UniFormItemStore";
+import { IValidator } from "@/uniform/common/utils/validators/type";
+import { checkIsNotZeroValue } from "@/uniform/common/utils/validators";
 
 @observer
 export default class SchemaTaroUI extends BaseSchemaComponent<
   IElementProps,
   any
 > {
+  elementStore: AnyUniFormItemStore
+  constructor(props: IElementProps) {
+    super(props);
+    this.initStore(props);
+  }
+  initStore(props: IElementProps) {
+    const { schemaStore } = props;
+    const store = new UniFormItemStore(schemaStore)
+    this.elementStore = store
+    const { schema } = store;
+    const validators: IValidator[] = [];
+    if (schema.required) {
+      validators.push(checkIsNotZeroValue);
+    }
+    // maxLength
+    store.setValidators(validators);
+  }
   onScrollToUpper = this.getEventTrigger("onScrollToUpper");
   onScrollToLower = this.getEventTrigger("onScrollToLower");
   onScroll = this.getEventTrigger("onScroll");
@@ -122,16 +142,19 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
   onMessage = this.getEventTrigger("onMessage");
   onClose = this.getEventTrigger("onClose");
   onChangeWithSetValue = (...args) => {
-    const { schemaStore: store } = this.props;
+    const store = this.elementStore
     console.log(`onChange args:`, args);
     store.setValue(args[0]);
     this.onChange(args);
   };
   render() {
-    const { schemaStore: store, children } = this.props;
-    const { component, componentProps: componentPropsObj, schema,value,showError } = store;
+    const { schemaStore ,children } = this.props;
+    // schemaStore
+    const { component, componentProps: componentPropsObj, schema } = schemaStore;
     // const { required, maxLength } = schema;
     const componentProps = toJS(componentPropsObj);
+    // elementStore
+    const { value,showError } = this.elementStore;
     switch (component) {
       case TaroComponentNames.ScrollView:
         return (

@@ -1,5 +1,5 @@
 import { ISchema } from "../types";
-import { observable } from "mobx";
+import { observable, computed } from "mobx";
 
 
 
@@ -13,6 +13,25 @@ export class  UniSchemaStore<IProps> {
   @observable
   schema: ISchema={};
 
+  @computed
+  get id() {
+    return this.schema.id || "";
+  }
+
+  @computed
+  get name() {
+    return this.schema.name || "";
+  }
+  @computed
+  get path(): string {
+    return this.schema.path!;
+  }
+
+  @computed
+  get defaultValue(): string {
+    return this.schema.default;
+  }
+  
   get component(){
     return this.schema['x-component'] || ""
   }
