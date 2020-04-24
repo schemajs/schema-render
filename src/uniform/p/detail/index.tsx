@@ -38,7 +38,9 @@ const schema = {
         name:'value',
         title:'标准五个字',
         type:'text',
-        placeholder:'标准五个字'
+        placeholder:'标准五个字',
+        clear:true,
+        autoFocus:true
       }
     },
     ke12: {
@@ -97,7 +99,8 @@ const schema = {
       "x-component":"AtTextarea",
       "x-component-props":{
         maxLength:200,
-        placeholder:'你的问题是...'
+        placeholder:'你的问题是...',
+        count:true
       }
     },
     ke18: {

@@ -74,6 +74,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
     if (schemaData.required) {
       validators.push(checkIsNotZeroValue);
     }
+    // maxLength
     store.setValidators(validators);
   }
   onGetUserInfo = this.getEventTrigger("onGetUserInfo");
@@ -264,11 +265,11 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
       case TaroUIComponentNames.AtInput:
         return (
           <AtInput
+            {...componentProps}
             required={required}
             maxLength={maxLength}
             value={value}
             error={showError}
-            {...componentProps}
             onClick={this.onClick}
             onChange={this.onInputChange}
             onFocus={this.onFocus}
