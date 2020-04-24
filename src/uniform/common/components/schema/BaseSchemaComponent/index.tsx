@@ -18,4 +18,12 @@ export default class BaseSchemaComponent<
     }
   }
   onClick = this.getEventTrigger('onClick')
+  onChange = this.getEventTrigger('onChange')
+  onChangeWithSetValue = (...args) => {
+    const { store } = this.props;
+    console.log(`onChange args:`, args);
+    store.setValue(args[0]);
+    this.onChange(args);
+  };
+
 }

@@ -97,7 +97,7 @@ export class  UniElementStore<IProps,IState> {
     this.schemaData = schema || ({} as ISchema);
 
     // 默认值
-    this.value = schema.default || "";
+    this.value = schema.default;
 
     // 校验
     this.getRules(schema);

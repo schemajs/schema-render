@@ -123,7 +123,8 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
   onClose = this.getEventTrigger("onClose");
   render() {
     const { store, children } = this.props;
-    const { component, componentProps: componentPropsObj } = store;
+    const { component, componentProps: componentPropsObj, schemaData,value,showError } = store;
+    // const { required, maxLength } = schemaData;
     const componentProps = toJS(componentPropsObj);
     switch (component) {
       case TaroComponentNames.ScrollView:
@@ -292,7 +293,9 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
           <Picker
             {...componentProps}
             onCancel={this.onCancel}
-            onChange={this.onChange}
+            value={value}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
             onColumnChange={this.onColumnChange}
           >
             {children}

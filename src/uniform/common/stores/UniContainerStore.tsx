@@ -96,7 +96,7 @@ export class UniContainerStore {
   @action.bound
   addElementStoreBySchema(schema: ISchema, path: string) {
     schema.path = path;
-    // console.log(`path: ${path}`);
+    console.log(`path: ${path}`);
     const eleStore: AnyUniElementStore = new UniElementStore(schema);
     this.putElementStore(path, eleStore);
   }

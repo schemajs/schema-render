@@ -88,7 +88,6 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
   onCancel = this.getEventTrigger("onCancel");
   onConfirm = this.getEventTrigger("onConfirm");
   onGotoMore = this.getEventTrigger("onGotoMore");
-  onChange = this.getEventTrigger("onChange");
   onClear = this.getEventTrigger("onClear");
   onSubmit = this.getEventTrigger("onSubmit");
   onReset = this.getEventTrigger("onReset");
@@ -120,11 +119,17 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
   onDayLongClick = this.getEventTrigger("onDayLongClick");
   onMonthChange = this.getEventTrigger("onMonthChange");
   onSelectDate = this.getEventTrigger("onSelectDate");
-  onInputChange = (...args) => {
+  onOpenWithSetValue = (...args) => {
     const { store } = this.props;
-    console.log(`args:`, args);
-    store.setValue(args[0]);
-    this.onChange(args);
+    console.log(`onOpen args:`, args);
+    store.setValue(true);
+    this.onOpen(args);
+  };
+  onCloseWithSetValue = (...args) => {
+    const { store } = this.props;
+    console.log(`onClose args:`, args);
+    store.setValue(false);
+    this.onClose(args);
   };
   render() {
     const { store, children } = this.props;
@@ -191,8 +196,9 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtCheckbox
             {...componentProps}
-            onClick={this.onClick}
-            onChange={this.onChange}
+            selectedList={value}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
           >
             {children}
           </AtCheckbox>
@@ -201,9 +207,9 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtDrawer
             {...componentProps}
-            onClick={this.onClick}
+            show={value}
             onItemClick={this.onItemClick}
-            onClose={this.onClose}
+            onClose={this.onCloseWithSetValue}
           >
             {children}
           </AtDrawer>
@@ -254,8 +260,9 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtInputNumber
             {...componentProps}
-            onClick={this.onClick}
-            onChange={this.onChange}
+            value={value}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
             onBlur={this.onBlur}
             onErrorInput={this.onErrorInput}
           >
@@ -270,8 +277,8 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             maxLength={maxLength}
             value={value}
             error={showError}
-            onClick={this.onClick}
-            onChange={this.onInputChange}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
             onFocus={this.onFocus}
             onBlur={this.onBlur}
             onConfirm={this.onConfirm}
@@ -285,8 +292,9 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtListItem
             {...componentProps}
+            switchIsCheck={value}
             onClick={this.onClick}
-            onSwitchChange={this.onSwitchChange}
+            onSwitchChange={this.onChangeWithSetValue}
           >
             {children}
           </AtListItem>
@@ -336,8 +344,9 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtPagination
             {...componentProps}
-            onClick={this.onClick}
-            onPageChange={this.onPageChange}
+            current={value}
+            onClick={this.onChangeWithSetValue}
+            onPageChange={this.onChangeWithSetValue}
           >
             {children}
           </AtPagination>
@@ -350,7 +359,12 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         );
       case TaroUIComponentNames.AtRadio:
         return (
-          <AtRadio {...componentProps} onClick={this.onClick}>
+          <AtRadio 
+          {...componentProps}
+          value={value}
+          onClick={this.onChangeWithSetValue}
+          onChange={this.onChangeWithSetValue}
+          >
             {children}
           </AtRadio>
         );
@@ -358,15 +372,21 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtRate
             {...componentProps}
-            onClick={this.onClick}
-            onChange={this.onChange}
+            value={value}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
           >
             {children}
           </AtRate>
         );
       case TaroUIComponentNames.AtSegmentedControl:
         return (
-          <AtSegmentedControl {...componentProps} onClick={this.onClick}>
+          <AtSegmentedControl 
+            {...componentProps} 
+            current={value}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
+          >
             {children}
           </AtSegmentedControl>
         );
@@ -374,8 +394,9 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtSwitch
             {...componentProps}
-            onClick={this.onClick}
-            onChange={this.onChange}
+            checked={value}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
           >
             {children}
           </AtSwitch>
@@ -384,8 +405,10 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtSearchBar
             {...componentProps}
-            onClick={this.onClick}
-            onChange={this.onChange}
+            value={value}
+            maxLength={maxLength}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
             onFocus={this.onFocus}
             onClear={this.onClear}
             onBlur={this.onBlur}
@@ -397,13 +420,23 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         );
       case TaroUIComponentNames.AtTabBar:
         return (
-          <AtTabBar {...componentProps} onClick={this.onClick}>
+          <AtTabBar 
+          {...componentProps} 
+          current={value}
+          onClick={this.onChangeWithSetValue}
+          onChange={this.onChangeWithSetValue}
+          >
             {children}
           </AtTabBar>
         );
       case TaroUIComponentNames.AtTabs:
         return (
-          <AtTabs {...componentProps} onClick={this.onClick}>
+          <AtTabs 
+          {...componentProps} 
+          current={value}
+          onClick={this.onChangeWithSetValue}
+          onChange={this.onChangeWithSetValue}
+          >
             {children}
           </AtTabs>
         );
@@ -417,8 +450,10 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtTextarea
             {...componentProps}
-            onClick={this.onClick}
-            onChange={this.onChange}
+            value={value}
+            maxLength={maxLength}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
             onFocus={this.onFocus}
             onBlur={this.onBlur}
             onConfirm={this.onConfirm}
@@ -512,8 +547,9 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtSlider
             {...componentProps}
-            onClick={this.onClick}
-            onChange={this.onChange}
+            value={value}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
             onChanging={this.onChanging}
           >
             {children}
@@ -529,8 +565,9 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtImagePicker
             {...componentProps}
-            onClick={this.onClick}
-            onChange={this.onChange}
+            files={value}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
             onImageClick={this.onImageClick}
             onFail={this.onFail}
           >
@@ -551,8 +588,9 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtRange
             {...componentProps}
-            onClick={this.onClick}
-            onChange={this.onChange}
+            value={value}
+            onClick={this.onChangeWithSetValue}
+            onChange={this.onChangeWithSetValue}
             onAfterChange={this.onAfterChange}
           >
             {children}
@@ -568,13 +606,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
         return (
           <AtCalendar
             {...componentProps}
-            onClick={this.onClick}
+            currentDate={value}
             onClickPreMonth={this.onClickPreMonth}
             onClickNextMonth={this.onClickNextMonth}
             onDayClick={this.onDayClick}
             onDayLongClick={this.onDayLongClick}
             onMonthChange={this.onMonthChange}
-            onSelectDate={this.onSelectDate}
+            onSelectDate={this.onChangeWithSetValue}
           >
             {children}
           </AtCalendar>
