@@ -1,5 +1,3 @@
-export const pathPrefix = "pathPrefix";
-
 export const TaroComponentNames = {
   //taro
   ScrollView: "ScrollView",
