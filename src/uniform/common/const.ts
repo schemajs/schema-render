@@ -109,14 +109,15 @@ export const TaroUIComponentNames = {
   AtAtInput: "AtAtInput",
   AtAtTextarea: "AtAtTextarea"
 }
-export const AllComponentNames = {
-  ...TaroComponentNames,
-  ...TaroUIComponentNames,
-}
 
-export function supportComponent(name: string): boolean {
-  return !!AllComponentNames[name]
-}
+// export const AllComponentNames = {
+//   ...TaroComponentNames,
+//   ...TaroUIComponentNames,
+// }
+
+// export function supportComponent(name: string): boolean {
+//   return !!AllComponentNames[name]
+// }
 
 export function isTaro(name: string): boolean {
   return !!TaroComponentNames[name]

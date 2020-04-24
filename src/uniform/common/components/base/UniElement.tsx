@@ -47,14 +47,6 @@ class UniElement extends Component<PageStateProps, any> {
   renderContent() {
     const { containerStore } = this.props;
     const { component } = this.elementStore;
-    if (!supportComponent(component)) {
-      // return null
-      return (
-        <View>
-          <Text>{`Error: UnSupport ${component}`}</Text>
-        </View>
-      );
-    }
     if (isTaroUI(component)) {
       return (
         <SchemaTaroUI containerStore={containerStore} store={this.elementStore}>
@@ -68,7 +60,12 @@ class UniElement extends Component<PageStateProps, any> {
         </SchemaTaro>
       );
     }
-    return null;
+    // return null;
+    return (
+      <View>
+        <Text>{`Error: UnSupport ${component}`}</Text>
+      </View>
+    );
   }
   render() {
     const { path } = this.props;
