@@ -16,9 +16,9 @@ import {
   SchemaValidator,
 } from "@/uniform/common/types";
 import { UniSchemaStore } from "./UniSchemaStore";
-import { BaseElementStore } from "./BaseElementStore";
+import { BaseElementStore } from "./BaseItemStore";
 
-const debug = createDebug("mapp:stores/ui/form/FormItem");
+const debug = createDebug("mapp:stores/UniFormItemStore");
 
 export class UniFormItemStore<IProps, IState> extends BaseElementStore<IProps,IState> {
 
@@ -33,6 +33,10 @@ export class UniFormItemStore<IProps, IState> extends BaseElementStore<IProps,IS
 
   @observable
   isValid: boolean = true;
+
+  isForm():boolean{
+    return true
+  }
 
   /**
    * 是否被更新过

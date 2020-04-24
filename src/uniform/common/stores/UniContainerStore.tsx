@@ -9,7 +9,7 @@ import {
 // comp
 import { UniSchemaStore, AnyUniSchemaStore } from "./UniSchemaStore";
 import isArray from "lodash/isArray";
-import { AnyBaseElementStore } from "./BaseElementStore";
+import { AnyBaseElementStore } from "./BaseItemStore";
 import { UniRegistry } from "./UniStoreRegistry";
 
 type EventListener = (...args: any[]) => void;
@@ -46,13 +46,15 @@ export class UniContainerStore {
       name: ""
     };
     Object.values(this.elementStoreRegistry).map(store => {
-      let { isValid, showError, errMessage, name } = store;
-      if (showError) {
-        err.name = name;
-        err.isValid = isValid;
-        err.showError = showError;
-        err.errMessage = errMessage;
-        return err;
+      if(store.isFormItem()){
+        let { isValid, showError, errMessage, displayName } = store;
+        if (showError) {
+          err.name = displayName;
+          err.isValid = isValid;
+          err.showError = showError;
+          err.errMessage = errMessage;
+          return err;
+        }
       }
     });
     return err;

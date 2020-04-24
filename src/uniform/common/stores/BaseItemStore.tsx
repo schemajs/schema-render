@@ -3,7 +3,7 @@ import createDebug from "debug";
 import { action, computed, observable } from "mobx";
 import { UniSchemaStore, AnyUniSchemaStore } from "./UniSchemaStore";
 
-const debug = createDebug("mapp:stores/ui/form/FormItem");
+const debug = createDebug("mapp:stores/BaseElementStore");
 
 export class BaseElementStore<IProps, IState> {
   schemaStore: UniSchemaStore<IProps>;
@@ -11,19 +11,34 @@ export class BaseElementStore<IProps, IState> {
   @observable
   componentState: IState;
 
+  isForm():boolean{
+    return false
+  }
+
+  @computed
+  get id() {
+    return this.schema.id || "";
+  }
+
+  @computed
+  get name() {
+    return this.schema.name || "";
+  }
+
+  @computed
   get schema() {
     return this.schemaStore.schema || {};
   }
 
+  @computed
   get path(): string {
     return this.schema.path!;
   }
 
+  @computed
   get defaultValue(): string {
     return this.schema.default;
   }
-
-  
 
   constructor(schemaStore: UniSchemaStore<IProps>) {
     this.reset();
@@ -37,19 +52,8 @@ export class BaseElementStore<IProps, IState> {
     this.componentState = {} as IState;
   }
 
-  
-
-  @computed
-  get name() {
-    return this.schema.name || "";
-  }
-
-
-
-
-
   @action.bound
-  putComponentState(key: string, value: any) {
+  putComponentStateByKey(key: string, value: any) {
     this.componentState[key] = value;
   }
 
