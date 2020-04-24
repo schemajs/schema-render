@@ -237,3 +237,5 @@ export class  UniElementStore<IProps,IState> {
   }
 
 }
+
+export type AnyUniElementStore = UniElementStore<any,any>

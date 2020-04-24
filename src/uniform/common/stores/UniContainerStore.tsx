@@ -7,13 +7,13 @@ import {
   ISchemaProperties
 } from "@/uniform/common/types";
 // comp
-import { UniElementStore } from "./UniElementStore";
+import { UniElementStore,AnyUniElementStore } from "./UniElementStore";
 import isArray from "lodash/isArray";
 
 import { eventNames, EventNames } from "../utils/events/EventNames";
 
 type ElementStoreInfo = {
-  [key: string]: UniElementStore;
+  [key: string]: AnyUniElementStore;
 };
 
 type EventListener = (...args: any[]) => void;
@@ -49,7 +49,7 @@ export class UniContainerStore {
       const path = `${parentPath}.${schema.id}`;
       schema.path = path;
       // console.log(`path: ${path}`);
-      const eleStore: UniElementStore = new UniElementStore(schema);
+      const eleStore: AnyUniElementStore = new UniElementStore(schema);
       this.putElementStore(path, eleStore);
       return this.parseBySchemaNode(schema, path);
     });
@@ -95,7 +95,7 @@ export class UniContainerStore {
   }
 
   @action.bound
-  putElementStore(path: string, store: UniElementStore) {
+  putElementStore(path: string, store: AnyUniElementStore) {
     this.elementStores[path] = store;
   }
 
