@@ -1,7 +1,7 @@
-import { AnyUniElementStore } from "../../stores/UniElementStore";
+import { AnyUniSchemaStore } from "../../stores/UniSchemaStore";
 import { UniContainerStore } from "../../stores/UniContainerStore";
 
 export interface IElementProps  {
   containerStore:UniContainerStore
-  store:AnyUniElementStore
+  schemaStore:AnyUniSchemaStore
 }

@@ -8,7 +8,7 @@ export default class BaseSchemaComponent<
   IState
 > extends Component<IProps, IState> {
   getEventTrigger=(eventName)=>{
-    const { containerStore, store } = this.props;
+    const { containerStore, schemaStore: store } = this.props;
     return (...args)=>{
       containerStore.triggerEvent(`${store.path}:${eventName}`, {
         store,
@@ -19,11 +19,6 @@ export default class BaseSchemaComponent<
   }
   onClick = this.getEventTrigger('onClick')
   onChange = this.getEventTrigger('onChange')
-  onChangeWithSetValue = (...args) => {
-    const { store } = this.props;
-    console.log(`onChange args:`, args);
-    store.setValue(args[0]);
-    this.onChange(args);
-  };
+ 
 
 }

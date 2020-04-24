@@ -14,7 +14,7 @@ interface PageStateProps extends BaseComponentPropsType {
 class UniContainer extends Component<PageStateProps, any> {
   render() {
     const { containerStore } = this.props;
-    const properties = containerStore.properties;
+    const properties = containerStore.rootSchemaStore.properties;
     return (
       <View className="UniContainer">
         {/* fields */}

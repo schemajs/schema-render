@@ -12,36 +12,20 @@ import {
 } from "../utils/validators/index";
 
 // type
-import { ISchema, SchemaValidator, setDataOptions } from "@/uniform/common/types";
+import {
+  ISchema,
+  SchemaValidator,
+  setDataOptions
+} from "@/uniform/common/types";
+import { UniSchemaStore, AnyUniSchemaStore } from "./UniSchemaStore";
 
 const debug = createDebug("mapp:stores/ui/form/FormItem");
 
-export class  UniElementStore<IProps,IState> {
-  @observable
-  schemaData: ISchema={};
+export class UniElementStore<IProps, IState> {
+  schemaStore: UniSchemaStore<IProps>;
 
   @observable
-  componentState:IState
-
-  get component(){
-    return this.schemaData['x-component'] || ""
-  }
-
-  get componentProps():IProps{
-    return (this.schemaData['x-component-props'] || {}) as IProps
-  }
-
-  get props():IProps{
-    return (this.schemaData['x-props'] || {}) as IProps
-  }
-
-  get properties(){
-    return this.schemaData.properties || {}
-  }
-
-  get items():any{
-    return this.schemaData.items || {}
-  }
+  componentState: IState;
 
   @observable
   value: any;
@@ -64,48 +48,42 @@ export class  UniElementStore<IProps,IState> {
   @observable
   reason: string = "";
 
+  get schema() {
+    return this.schemaStore.schema || {};
+  }
+
   get path(): string {
-    return this.schemaData.path!;
+    return this.schema.path!;
   }
 
   get defaultValue(): string {
-    return this.schemaData.default || "";
+    return this.schema.default;
   }
 
   get errMsgPrefix(): string {
-    return this.schemaData.title || "";
+    return this.schema.title || "";
   }
 
-  constructor(schema?: ISchema) {
+  constructor(schemaStore: UniSchemaStore<IProps>) {
     this.reset();
+
     // 初始化
-    if (schema) {
-      this.initBySchema(schema);
-    }
-    this.componentState = {} as IState
+    this.schemaStore = schemaStore;
+    const schema = schemaStore.schema;
+    // 校验规则
+    this.parseRules(schema);
   }
 
   @action.bound
   reset() {
+    this.componentState = {} as IState;
     this.setValue(this.defaultValue);
     this.setIsValueUpdated(false);
     this.tempValue = this.defaultValue;
   }
 
   @action.bound
-  initBySchema(schema: ISchema) {
-    this.schemaData = schema || ({} as ISchema);
-
-    // 默认值
-    this.value = schema.default;
-
-    // 校验
-    this.getRules(schema);
-  }
-
-
-  @action.bound
-  getRules(schema) {
+  parseRules(schema) {
     let rules: Array<SchemaValidator> = [];
 
     if (schema.required) rules.push(checkIsNotEmptyString);
@@ -137,7 +115,7 @@ export class  UniElementStore<IProps,IState> {
 
   @computed
   get name() {
-    return this.schemaData.name || ""
+    return this.schema.name || "";
   }
 
   validateValue(value): void {
@@ -165,16 +143,16 @@ export class  UniElementStore<IProps,IState> {
   }
 
   @action.bound
-  pushValidator(validator:IValidator){
-    this.validators.push(validator)
+  pushValidator(validator: IValidator) {
+    this.validators.push(validator);
   }
 
   /**
    * 无校验设置
-   * @param value 
+   * @param value
    */
   @action.bound
-  setValueWithoutValidate(value:any) {
+  setValueWithoutValidate(value: any) {
     this.value = value;
     this.setIsValueUpdated(true);
     return;
@@ -182,10 +160,10 @@ export class  UniElementStore<IProps,IState> {
 
   /**
    * 带校验设置
-   * @param value 
+   * @param value
    */
   @action.bound
-  setValue(value:any) {
+  setValue(value: any) {
     let isValid = true,
       reason = "";
     try {
@@ -202,23 +180,23 @@ export class  UniElementStore<IProps,IState> {
   }
 
   @action.bound
-  setTempValue(value:any){
+  setTempValue(value: any) {
     this.tempValue = value;
   }
 
   @action.bound
-  putComponentState(key:string,value:any){
+  putComponentState(key: string, value: any) {
     this.componentState[key] = value;
   }
 
   @action.bound
-  setComponentState(value:IState){
+  setComponentState(value: IState) {
     this.componentState = value;
   }
 
   @action.bound
   syncTempValue() {
-    this.setValue(this.tempValue)
+    this.setValue(this.tempValue);
   }
 
   @action.bound
@@ -235,7 +213,6 @@ export class  UniElementStore<IProps,IState> {
   setIsValueUpdated(val: boolean) {
     this.isValueUpdated = val;
   }
-
 }
 
-export type AnyUniElementStore = UniElementStore<any,any>
+export type AnyUniElementStore = UniElementStore<any, any>;

@@ -68,10 +68,10 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
     this.initStore(props);
   }
   initStore(props: IElementProps) {
-    const { store } = props;
-    const { schemaData } = store;
+    const { schemaStore: store } = props;
+    const { schema } = store;
     const validators: IValidator[] = [];
-    if (schemaData.required) {
+    if (schema.required) {
       validators.push(checkIsNotZeroValue);
     }
     // maxLength
@@ -120,21 +120,27 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
   onMonthChange = this.getEventTrigger("onMonthChange");
   onSelectDate = this.getEventTrigger("onSelectDate");
   onOpenWithSetValue = (...args) => {
-    const { store } = this.props;
+    const { schemaStore: store } = this.props;
     console.log(`onOpen args:`, args);
     store.setValue(true);
     this.onOpen(args);
   };
   onCloseWithSetValue = (...args) => {
-    const { store } = this.props;
+    const { schemaStore: store } = this.props;
     console.log(`onClose args:`, args);
     store.setValue(false);
     this.onClose(args);
   };
+  onChangeWithSetValue = (...args) => {
+    const { schemaStore: store } = this.props;
+    console.log(`onChange args:`, args);
+    store.setValue(args[0]);
+    this.onChange(args);
+  };
   render() {
-    const { store, children } = this.props;
-    const { component, componentProps: componentPropsObj, schemaData,value,showError } = store;
-    const { required, maxLength } = schemaData;
+    const { schemaStore: store, children } = this.props;
+    const { component, componentProps: componentPropsObj, schema,value,showError } = store;
+    const { required, maxLength } = schema;
     const componentProps = toJS(componentPropsObj);
     switch (component) {
       case TaroUIComponentNames.AtActionSheet:

@@ -3,12 +3,12 @@ import { ISchema } from "@/uniform/common/types";
 import { UniContainerStore } from "./UniContainerStore";
 
 export function transformSchema(schema: any): ISchema {
-  const schemaData = schema;
-  return schemaData;
+  const schema = schema;
+  return schema;
 }
 
 export function getContainerStore(schema: any) {
-  const schemaData: ISchema = transformSchema(schema);
-  const containerStore = new UniContainerStore(schemaData);
+  const schema: ISchema = transformSchema(schema);
+  const containerStore = new UniContainerStore(schema);
   return containerStore;
 }

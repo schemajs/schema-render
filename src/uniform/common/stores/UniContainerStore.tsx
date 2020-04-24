@@ -7,108 +7,34 @@ import {
   ISchemaProperties
 } from "@/uniform/common/types";
 // comp
-import { UniElementStore,AnyUniElementStore } from "./UniElementStore";
+import { UniSchemaStore, AnyUniSchemaStore } from "./UniSchemaStore";
 import isArray from "lodash/isArray";
-
-import { eventNames, EventNames } from "../utils/events/EventNames";
-
-type ElementStoreInfo = {
-  [key: string]: AnyUniElementStore;
-};
+import { AnyUniElementStore } from "./UniElementStore";
+import { UniRegistry } from "./UniStoreRegistry";
 
 type EventListener = (...args: any[]) => void;
 
 export class UniContainerStore {
   private eventCenter: any;
-  eventNames: EventNames;
+  rootSchemaStore: AnyUniSchemaStore;
+  schemaStoreRegistry: UniRegistry<AnyUniSchemaStore>;
+  elementStoreRegistry: UniRegistry<AnyUniElementStore>;
 
-  @observable
-  schemaData: ISchema = {};
-
-  elementStores: ElementStoreInfo = {};
-
-  containerId:string
-
+  get containerId() {
+    return this.rootSchemaStore.schema.id || "uni";
+  }
+  
   constructor(schema: ISchema) {
-    this.schemaData = schema;
-    this.containerId = schema.id || "uni";
-    this.eventCenter = new Events();
-    this.eventNames = eventNames;
+    this.rootSchemaStore = new UniSchemaStore(schema);
     this.reset();
   }
 
   @action.bound
   reset() {
-    this.elementStores = {};
-    this.parseBySchemaNode(this.schemaData, this.containerId);
-  }
-
-
-
-  @action.bound
-  parseBySchemaArray(parentPath: string, schemaArray: ISchema[]) {
-    schemaArray.map(schema => {
-      const path = `${parentPath}.${schema.id}`;
-      this.addElementStoreBySchema(schema,path)
-      return this.parseBySchemaNode(schema, path);
-    });
-  }
-
-  getArrayFromProperties(properties: ISchemaProperties) {
-    return Object.entries(properties).map(entry => {
-      const item = entry[1];
-      item.id = entry[0];
-      return item;
-    });
-  }
-
-  @action.bound
-  parseBySchemaNode(schema: ISchema, parentPath: string) {
-    const { properties, items } = schema;
-    if (properties) {
-      const arr = this.getArrayFromProperties(properties);
-      this.parseBySchemaArray(parentPath, arr);
-    }
-    if (items) {
-      if (isArray(items)) {
-        this.parseBySchemaArray(parentPath, items);
-      } else {
-        const itemsProperties = items.properties;
-        if (itemsProperties) {
-          const arr = this.getArrayFromProperties(itemsProperties);
-          this.parseBySchemaArray(parentPath, arr);
-        }
-      }
-    }
-  }
-
-  get properties() {
-    if (!this.schemaData) {
-      return null;
-    }
-    return this.schemaData.properties;
-  }
-
-  getElementStore(path: string) {
-    return this.elementStores[path];
-  }
-
-  @action.bound
-  addElementStoreBySchema(schema: ISchema, path: string) {
-    schema.path = path;
-    console.log(`path: ${path}`);
-    const eleStore: AnyUniElementStore = new UniElementStore(schema);
-    this.putElementStore(path, eleStore);
-  }
-
-  @action.bound
-  putElementStore(path: string, store: AnyUniElementStore) {
-    this.elementStores[path] = store;
-  }
-
-  @action.bound
-  deleteElementStore(path: string) {
-    delete this.elementStores[path];
+    this.eventCenter = new Events();
+    this.schemaStoreRegistry = new UniRegistry()
+    this.elementStoreRegistry = new UniRegistry()
+    this.parseBySchemaNode(this.rootSchemaStore.schema, this.containerId);
   }
 
   @action.bound
@@ -119,7 +45,7 @@ export class UniContainerStore {
       errMessage: "",
       name: ""
     };
-    Object.values(this.elementStores).map(store => {
+    Object.values(this.elementStoreRegistry).map(store => {
       let { isValid, showError, errMessage, name } = store;
       if (showError) {
         err.name = name;
@@ -132,6 +58,7 @@ export class UniContainerStore {
     return err;
   }
 
+  // events
   /**
    * 监听一个事件，接受参数
    */
@@ -167,5 +94,51 @@ export class UniContainerStore {
     return this.eventCenter.trigger(eventName, ...args);
   }
 
-  
+  // deep parse
+
+  @action.bound
+  addSchemaStoreBySchema(schema: ISchema, path: string) {
+    schema.path = path;
+    const schemaStore: AnyUniSchemaStore = new UniSchemaStore(schema);
+    this.schemaStoreRegistry.regItem(path, schemaStore);
+  }
+
+
+  @action.bound
+  parseBySchemaArray(parentPath: string, schemaArray: ISchema[]) {
+    schemaArray.map(schema => {
+      const path = `${parentPath}.${schema.id}`;
+      this.addSchemaStoreBySchema(schema, path);
+      // 递归解析
+      return this.parseBySchemaNode(schema, path);
+    });
+  }
+
+  getArrayFromProperties(properties: ISchemaProperties) {
+    return Object.entries(properties).map(entry => {
+      const item = entry[1];
+      item.id = entry[0];
+      return item;
+    });
+  }
+
+  @action.bound
+  parseBySchemaNode(schema: ISchema, parentPath: string) {
+    const { properties, items } = schema;
+    if (properties) {
+      const arr = this.getArrayFromProperties(properties);
+      this.parseBySchemaArray(parentPath, arr);
+    }
+    if (items) {
+      if (isArray(items)) {
+        this.parseBySchemaArray(parentPath, items);
+      } else {
+        const itemsProperties = items.properties;
+        if (itemsProperties) {
+          const arr = this.getArrayFromProperties(itemsProperties);
+          this.parseBySchemaArray(parentPath, arr);
+        }
+      }
+    }
+  }
 }
