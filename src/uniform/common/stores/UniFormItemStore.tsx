@@ -13,19 +13,14 @@ import {
 
 // type
 import {
-  ISchema,
   SchemaValidator,
-  setDataOptions
 } from "@/uniform/common/types";
-import { UniSchemaStore, AnyUniSchemaStore } from "./UniSchemaStore";
+import { UniSchemaStore } from "./UniSchemaStore";
+import { BaseElementStore } from "./BaseElementStore";
 
 const debug = createDebug("mapp:stores/ui/form/FormItem");
 
-export class UniElementStore<IProps, IState> {
-  schemaStore: UniSchemaStore<IProps>;
-
-  @observable
-  componentState: IState;
+export class UniFormItemStore<IProps, IState> extends BaseElementStore<IProps,IState> {
 
   @observable
   value: any;
@@ -48,30 +43,16 @@ export class UniElementStore<IProps, IState> {
   @observable
   reason: string = "";
 
-  get schema() {
-    return this.schemaStore.schema || {};
-  }
-
-  get path(): string {
-    return this.schema.path!;
-  }
-
-  get defaultValue(): string {
-    return this.schema.default;
-  }
-
   get errMsgPrefix(): string {
     return this.schema.title || "";
   }
 
   constructor(schemaStore: UniSchemaStore<IProps>) {
+    super(schemaStore)
     this.reset();
-
     // 初始化
-    this.schemaStore = schemaStore;
-    const schema = schemaStore.schema;
     // 校验规则
-    this.parseRules(schema);
+    this.parseRules(schemaStore.schema);
   }
 
   @action.bound
@@ -111,11 +92,6 @@ export class UniElementStore<IProps, IState> {
   @computed
   get errMessage() {
     return `${this.errMsgPrefix}校验错误: ${this.reason}`;
-  }
-
-  @computed
-  get name() {
-    return this.schema.name || "";
   }
 
   validateValue(value): void {
@@ -185,16 +161,6 @@ export class UniElementStore<IProps, IState> {
   }
 
   @action.bound
-  putComponentState(key: string, value: any) {
-    this.componentState[key] = value;
-  }
-
-  @action.bound
-  setComponentState(value: IState) {
-    this.componentState = value;
-  }
-
-  @action.bound
   syncTempValue() {
     this.setValue(this.tempValue);
   }
@@ -215,4 +181,4 @@ export class UniElementStore<IProps, IState> {
   }
 }
 
-export type AnyUniElementStore = UniElementStore<any, any>;
+export type AnyUniFormItemStore = UniFormItemStore<any, any>;

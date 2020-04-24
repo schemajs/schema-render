@@ -9,7 +9,7 @@ import {
 // comp
 import { UniSchemaStore, AnyUniSchemaStore } from "./UniSchemaStore";
 import isArray from "lodash/isArray";
-import { AnyUniElementStore } from "./UniElementStore";
+import { AnyBaseElementStore } from "./BaseElementStore";
 import { UniRegistry } from "./UniStoreRegistry";
 
 type EventListener = (...args: any[]) => void;
@@ -18,7 +18,7 @@ export class UniContainerStore {
   private eventCenter: any;
   rootSchemaStore: AnyUniSchemaStore;
   schemaStoreRegistry: UniRegistry<AnyUniSchemaStore>;
-  elementStoreRegistry: UniRegistry<AnyUniElementStore>;
+  elementStoreRegistry: UniRegistry<AnyBaseElementStore>;
 
   get containerId() {
     return this.rootSchemaStore.schema.id || "uni";
