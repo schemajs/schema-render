@@ -8,7 +8,6 @@ import {
 } from "@/uniform/common/types";
 // comp
 import { UniElementStore } from "./UniElementStore";
-import { pathPrefix } from "../const";
 import isArray from "lodash/isArray";
 
 import { eventNames, EventNames } from "../utils/events/EventNames";
@@ -28,8 +27,11 @@ export class UniContainerStore {
 
   elementStores: ElementStoreInfo = {};
 
+  containerId:string
+
   constructor(schema: ISchema) {
     this.schemaData = schema;
+    this.containerId = schema.id || "uni";
     this.eventCenter = new Events();
     this.eventNames = eventNames;
     this.reset();
@@ -38,15 +40,15 @@ export class UniContainerStore {
   @action.bound
   reset() {
     this.elementStores = {};
-    this.parseBySchemaNode(this.schemaData, pathPrefix);
+    this.parseBySchemaNode(this.schemaData, this.containerId);
   }
 
   @action.bound
   parseBySchemaArray(parentPath: string, schemaArray: ISchema[]) {
     schemaArray.map(schema => {
-      const path = `${parentPath}.${schema.key}`;
+      const path = `${parentPath}.${schema.id}`;
       schema.path = path;
-      console.log(`path: ${path}`);
+      // console.log(`path: ${path}`);
       const eleStore: UniElementStore = new UniElementStore(schema);
       this.putElementStore(path, eleStore);
       return this.parseBySchemaNode(schema, path);
@@ -56,7 +58,7 @@ export class UniContainerStore {
   getArrayFromProperties(properties: ISchemaProperties) {
     return Object.entries(properties).map(entry => {
       const item = entry[1];
-      item.key = entry[0];
+      item.id = entry[0];
       return item;
     });
   }

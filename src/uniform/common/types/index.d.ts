@@ -32,7 +32,7 @@ export interface ISchemaProperties {
 
 export interface ISchema {
   /** base json schema spec**/
-  key?:string
+  id?:string
   title?: string
   description?: string
   default?: any

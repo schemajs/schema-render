@@ -25,7 +25,6 @@ interface PageStateProps extends BaseComponentPropsType {
   footerClassName?: string | string[] | { [key: string]: boolean };
 };
 
-
 @observer
 class UniForm extends Component<PageStateProps,any> {
   containerStore: UniContainerStore;

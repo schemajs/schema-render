@@ -1,12 +1,11 @@
 import React from "react";
-import { View, Text } from "@tarojs/components";
+import { View } from "@tarojs/components";
 import { observer } from "mobx-react";
 
 import UniElement from "./UniElement";
 import { UniContainerStore } from "../../stores/UniContainerStore";
 import { pathPrefix } from "../../const";
 import Component, { BaseComponentPropsType } from "./BaseComponent";
-import { AtList } from "taro-ui";
 
 interface PageStateProps extends BaseComponentPropsType {
   containerStore: UniContainerStore;

@@ -1,5 +1,5 @@
 // type
-import { IValidMessage, ISchema } from "@/uniform/common/types";
+import { ISchema } from "@/uniform/common/types";
 import { UniContainerStore } from "./UniContainerStore";
 
 export function transformSchema(schema: any): ISchema {

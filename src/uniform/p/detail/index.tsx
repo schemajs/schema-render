@@ -15,12 +15,12 @@ interface Index {
 }
 
 const schema = {
+  id:"s1",
   type: "object",
   properties: {
     view1: {
       "x-component":"View",
       "x-component-props":{
-       
       },
       properties: {
         text1: {
