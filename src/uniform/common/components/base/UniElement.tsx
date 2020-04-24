@@ -5,7 +5,7 @@ import Component, { BaseComponentPropsType } from "./BaseComponent";
 import SchemaTaroUI from "../schema/SchemaTaroUI";
 import SchemaTaro from "../schema/SchemaTaro";
 import { UniElementStore } from "../../stores/UniElementStore";
-import { supportComponent, isTaroUI, isTaro } from "../../const";
+import { isTaroUI, isTaro } from "../../const";
 
 interface PageStateProps extends BaseComponentPropsType {
   path: string;
@@ -60,30 +60,19 @@ class UniElement extends Component<PageStateProps, any> {
         </SchemaTaro>
       );
     }
-    // return null;
-    return (
-      <View>
-        <Text>{`Error: UnSupport ${component}`}</Text>
-      </View>
-    );
+    console.error(`Error: UnSupport Component: ${component}`)
+    return null;
   }
   render() {
     const { path } = this.props;
     if (!path) {
-      return (
-        <View>
-          <Text>Error: No path!</Text>
-        </View>
-      );
+      console.error("no path!")
+      return null;
     }
     if (!this.elementStore) {
-      return (
-        <View>
-          <Text>{`>error: ${path}`}</Text>
-        </View>
-      );
+      console.error(`no elementStore! path: ${path}`)
+      return null;
     }
-    console.log(`path:${path}`);
     return this.renderContent();
   }
 }
