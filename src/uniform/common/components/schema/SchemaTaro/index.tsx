@@ -49,7 +49,7 @@ import {
   NavigationBar,
   PageMeta
 } from "@tarojs/components";
-import { EnumComponentName } from "../../../const";
+import { TaroComponentNames } from "../../../const";
 
 @observer
 export default class SchemaTaroUI extends BaseSchemaComponent<
@@ -126,7 +126,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
     const { component, componentProps: componentPropsObj } = store;
     const componentProps = toJS(componentPropsObj);
     switch (component) {
-      case EnumComponentName.ScrollView:
+      case TaroComponentNames.ScrollView:
         return (
           <ScrollView
             {...componentProps}
@@ -141,19 +141,19 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </ScrollView>
         );
-      case EnumComponentName.View:
+      case TaroComponentNames.View:
         return (
           <View {...componentProps} onClick={this.onClick}>
             {children}
           </View>
         );
-      case EnumComponentName.Block:
+      case TaroComponentNames.Block:
         return (
           <Block {...componentProps} onClick={this.onClick}>
             {children}
           </Block>
         );
-      case EnumComponentName.Swiper:
+      case TaroComponentNames.Swiper:
         return (
           <Swiper
             {...componentProps}
@@ -164,19 +164,19 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Swiper>
         );
-      case EnumComponentName.SwiperItem:
+      case TaroComponentNames.SwiperItem:
         return (
           <SwiperItem {...componentProps} onClick={this.onClick}>
             {children}
           </SwiperItem>
         );
-      case EnumComponentName.MovableView:
+      case TaroComponentNames.MovableView:
         return (
           <MovableView {...componentProps} onClick={this.onClick}>
             {children}
           </MovableView>
         );
-      case EnumComponentName.MovableArea:
+      case TaroComponentNames.MovableArea:
         return (
           <MovableArea
             {...componentProps}
@@ -188,43 +188,43 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </MovableArea>
         );
-      case EnumComponentName.CoverView:
+      case TaroComponentNames.CoverView:
         return (
           <CoverView {...componentProps} onClick={this.onClick}>
             {children}
           </CoverView>
         );
-      case EnumComponentName.CoverImage:
+      case TaroComponentNames.CoverImage:
         return (
           <CoverImage {...componentProps} onClick={this.onClick}>
             {children}
           </CoverImage>
         );
-      case EnumComponentName.Icon:
+      case TaroComponentNames.Icon:
         return (
           <Icon {...componentProps} onClick={this.onClick}>
             {children}
           </Icon>
         );
-      case EnumComponentName.Text:
+      case TaroComponentNames.Text:
         return (
           <Text {...componentProps} onClick={this.onClick}>
             {componentProps.text}
           </Text>
         );
-      case EnumComponentName.RichText:
+      case TaroComponentNames.RichText:
         return (
           <RichText {...componentProps} onClick={this.onClick}>
             {children}
           </RichText>
         );
-      case EnumComponentName.Progress:
+      case TaroComponentNames.Progress:
         return (
           <Progress {...componentProps} onClick={this.onClick}>
             {children}
           </Progress>
         );
-      case EnumComponentName.Button:
+      case TaroComponentNames.Button:
         return (
           <Button
             {...componentProps}
@@ -240,25 +240,25 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Button>
         );
-      case EnumComponentName.Checkbox:
+      case TaroComponentNames.Checkbox:
         return (
           <Checkbox {...componentProps} onChange={this.onChange}>
             {children}
           </Checkbox>
         );
-      case EnumComponentName.CheckboxGroup:
+      case TaroComponentNames.CheckboxGroup:
         return (
           <CheckboxGroup {...componentProps} onClick={this.onClick}>
             {children}
           </CheckboxGroup>
         );
-      case EnumComponentName.Editor:
+      case TaroComponentNames.Editor:
         return (
           <Editor {...componentProps} onClick={this.onClick}>
             {children}
           </Editor>
         );
-      case EnumComponentName.Form:
+      case TaroComponentNames.Form:
         return (
           <Form
             {...componentProps}
@@ -268,7 +268,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Form>
         );
-      case EnumComponentName.Input:
+      case TaroComponentNames.Input:
         return (
           <Input
             {...componentProps}
@@ -281,13 +281,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Input>
         );
-      case EnumComponentName.Label:
+      case TaroComponentNames.Label:
         return (
           <Label {...componentProps} onClick={this.onClick}>
             {children}
           </Label>
         );
-      case EnumComponentName.Picker:
+      case TaroComponentNames.Picker:
         return (
           <Picker
             {...componentProps}
@@ -298,7 +298,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Picker>
         );
-      case EnumComponentName.PickerView:
+      case TaroComponentNames.PickerView:
         return (
           <PickerView
             {...componentProps}
@@ -309,25 +309,25 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </PickerView>
         );
-      case EnumComponentName.PickerViewColumn:
+      case TaroComponentNames.PickerViewColumn:
         return (
           <PickerViewColumn {...componentProps} onClick={this.onClick}>
             {children}
           </PickerViewColumn>
         );
-      case EnumComponentName.Radio:
+      case TaroComponentNames.Radio:
         return (
           <Radio {...componentProps} onClick={this.onClick}>
             {children}
           </Radio>
         );
-      case EnumComponentName.RadioGroup:
+      case TaroComponentNames.RadioGroup:
         return (
           <RadioGroup {...componentProps} onClick={this.onClick}>
             {children}
           </RadioGroup>
         );
-      case EnumComponentName.Slider:
+      case TaroComponentNames.Slider:
         return (
           <Slider
             {...componentProps}
@@ -337,13 +337,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Slider>
         );
-      case EnumComponentName.Switch:
+      case TaroComponentNames.Switch:
         return (
           <Switch {...componentProps} onChange={this.onChange}>
             {children}
           </Switch>
         );
-      case EnumComponentName.Textarea:
+      case TaroComponentNames.Textarea:
         return (
           <Textarea
             {...componentProps}
@@ -357,7 +357,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Textarea>
         );
-      case EnumComponentName.Image:
+      case TaroComponentNames.Image:
         return (
           <Image
             {...componentProps}
@@ -368,7 +368,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Image>
         );
-      case EnumComponentName.Navigator:
+      case TaroComponentNames.Navigator:
         return (
           <Navigator
             {...componentProps}
@@ -379,7 +379,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Navigator>
         );
-      case EnumComponentName.Camera:
+      case TaroComponentNames.Camera:
         return (
           <Camera
             {...componentProps}
@@ -391,7 +391,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Camera>
         );
-      case EnumComponentName.Canvas:
+      case TaroComponentNames.Canvas:
         return (
           <Canvas
             {...componentProps}
@@ -405,13 +405,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Canvas>
         );
-      case EnumComponentName.OpenData:
+      case TaroComponentNames.OpenData:
         return (
           <OpenData {...componentProps} onError={this.onError}>
             {children}
           </OpenData>
         );
-      case EnumComponentName.Video:
+      case TaroComponentNames.Video:
         return (
           <Video
             {...componentProps}
@@ -428,7 +428,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Video>
         );
-      case EnumComponentName.Ad:
+      case TaroComponentNames.Ad:
         return (
           <Ad
             {...componentProps}
@@ -439,7 +439,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Ad>
         );
-      case EnumComponentName.Audio:
+      case TaroComponentNames.Audio:
         return (
           <Audio
             {...componentProps}
@@ -452,25 +452,25 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Audio>
         );
-      case EnumComponentName.FunctionalPageNavigator:
+      case TaroComponentNames.FunctionalPageNavigator:
         return (
           <FunctionalPageNavigator {...componentProps} onClick={this.onClick}>
             {children}
           </FunctionalPageNavigator>
         );
-      case EnumComponentName.LivePlayer:
+      case TaroComponentNames.LivePlayer:
         return (
           <LivePlayer {...componentProps} onClick={this.onClick}>
             {children}
           </LivePlayer>
         );
-      case EnumComponentName.LivePusher:
+      case TaroComponentNames.LivePusher:
         return (
           <LivePusher {...componentProps} onClick={this.onClick}>
             {children}
           </LivePusher>
         );
-      case EnumComponentName.Map:
+      case TaroComponentNames.Map:
         return (
           <Map
             {...componentProps}
@@ -486,7 +486,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </Map>
         );
-      case EnumComponentName.WebView:
+      case TaroComponentNames.WebView:
         return (
           <WebView
             {...componentProps}
@@ -497,7 +497,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </WebView>
         );
-      case EnumComponentName.OfficialAccount:
+      case TaroComponentNames.OfficialAccount:
         return (
           <OfficialAccount
             {...componentProps}
@@ -507,13 +507,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </OfficialAccount>
         );
-      case EnumComponentName.NavigationBar:
+      case TaroComponentNames.NavigationBar:
         return (
           <NavigationBar {...componentProps} onClick={this.onClick}>
             {children}
           </NavigationBar>
         );
-      case EnumComponentName.PageMeta:
+      case TaroComponentNames.PageMeta:
         return (
           <PageMeta {...componentProps} onClick={this.onClick}>
             {children}

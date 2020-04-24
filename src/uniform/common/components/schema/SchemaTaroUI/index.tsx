@@ -54,7 +54,7 @@ import {
   AtFloatButton,
   AtCalendar
 } from "taro-ui";
-import { EnumComponentName } from "../../../const";
+import { TaroUIComponentNames } from "../../../const";
 
 @observer
 export default class SchemaTaroUI extends BaseSchemaComponent<
@@ -110,7 +110,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
     const { component, componentProps: componentPropsObj } = store;
     const componentProps = toJS(componentPropsObj);
     switch (component) {
-      case EnumComponentName.AtActionSheet:
+      case TaroUIComponentNames.AtActionSheet:
         return (
           <AtActionSheet
             {...componentProps}
@@ -121,31 +121,31 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtActionSheet>
         );
-      case EnumComponentName.AtActionSheetItem:
+      case TaroUIComponentNames.AtActionSheetItem:
         return (
           <AtActionSheetItem {...componentProps} onClick={this.onClick}>
             {children}
           </AtActionSheetItem>
         );
-      case EnumComponentName.AtActivityIndicator:
+      case TaroUIComponentNames.AtActivityIndicator:
         return (
           <AtActivityIndicator {...componentProps} onClick={this.onClick}>
             {children}
           </AtActivityIndicator>
         );
-      case EnumComponentName.AtAvatar:
+      case TaroUIComponentNames.AtAvatar:
         return (
           <AtAvatar {...componentProps} onClick={this.onClick}>
             {children}
           </AtAvatar>
         );
-      case EnumComponentName.AtBadge:
+      case TaroUIComponentNames.AtBadge:
         return (
           <AtBadge {...componentProps} onClick={this.onClick}>
             {children}
           </AtBadge>
         );
-      case EnumComponentName.AtButton:
+      case TaroUIComponentNames.AtButton:
         return (
           <AtButton
             {...componentProps}
@@ -159,13 +159,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtButton>
         );
-      case EnumComponentName.AtCard:
+      case TaroUIComponentNames.AtCard:
         return (
           <AtCard {...componentProps} onClick={this.onClick}>
             {children}
           </AtCard>
         );
-      case EnumComponentName.AtCheckbox:
+      case TaroUIComponentNames.AtCheckbox:
         return (
           <AtCheckbox
             {...componentProps}
@@ -175,7 +175,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtCheckbox>
         );
-      case EnumComponentName.AtDrawer:
+      case TaroUIComponentNames.AtDrawer:
         return (
           <AtDrawer
             {...componentProps}
@@ -186,13 +186,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtDrawer>
         );
-      case EnumComponentName.AtFab:
+      case TaroUIComponentNames.AtFab:
         return (
           <AtFab {...componentProps} onClick={this.onClick}>
             {children}
           </AtFab>
         );
-      case EnumComponentName.AtFloatLayout:
+      case TaroUIComponentNames.AtFloatLayout:
         return (
           <AtFloatLayout
             {...componentProps}
@@ -205,7 +205,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtFloatLayout>
         );
-      case EnumComponentName.AtForm:
+      case TaroUIComponentNames.AtForm:
         return (
           <AtForm
             {...componentProps}
@@ -216,19 +216,19 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtForm>
         );
-      case EnumComponentName.AtGrid:
+      case TaroUIComponentNames.AtGrid:
         return (
           <AtGrid {...componentProps} onClick={this.onClick}>
             {children}
           </AtGrid>
         );
-      case EnumComponentName.AtIcon:
+      case TaroUIComponentNames.AtIcon:
         return (
           <AtIcon {...componentProps} onClick={this.onClick}>
             {children}
           </AtIcon>
         );
-      case EnumComponentName.AtInputNumber:
+      case TaroUIComponentNames.AtInputNumber:
         return (
           <AtInputNumber
             {...componentProps}
@@ -240,7 +240,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtInputNumber>
         );
-      case EnumComponentName.AtInput:
+      case TaroUIComponentNames.AtInput:
         return (
           <AtInput
             {...componentProps}
@@ -255,7 +255,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtInput>
         );
-      case EnumComponentName.AtListItem:
+      case TaroUIComponentNames.AtListItem:
         return (
           <AtListItem
             {...componentProps}
@@ -265,13 +265,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtListItem>
         );
-      case EnumComponentName.AtList:
+      case TaroUIComponentNames.AtList:
         return (
           <AtList {...componentProps} onClick={this.onClick}>
             {children}
           </AtList>
         );
-      case EnumComponentName.AtModal:
+      case TaroUIComponentNames.AtModal:
         return (
           <AtModal
             {...componentProps}
@@ -283,7 +283,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtModal>
         );
-      case EnumComponentName.AtNavBar:
+      case TaroUIComponentNames.AtNavBar:
         return (
           <AtNavBar
             {...componentProps}
@@ -295,7 +295,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtNavBar>
         );
-      case EnumComponentName.AtNoticebar:
+      case TaroUIComponentNames.AtNoticebar:
         return (
           <AtNoticebar
             {...componentProps}
@@ -306,7 +306,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtNoticebar>
         );
-      case EnumComponentName.AtPagination:
+      case TaroUIComponentNames.AtPagination:
         return (
           <AtPagination
             {...componentProps}
@@ -316,19 +316,19 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtPagination>
         );
-      case EnumComponentName.AtProgress:
+      case TaroUIComponentNames.AtProgress:
         return (
           <AtProgress {...componentProps} onClick={this.onClick}>
             {children}
           </AtProgress>
         );
-      case EnumComponentName.AtRadio:
+      case TaroUIComponentNames.AtRadio:
         return (
           <AtRadio {...componentProps} onClick={this.onClick}>
             {children}
           </AtRadio>
         );
-      case EnumComponentName.AtRate:
+      case TaroUIComponentNames.AtRate:
         return (
           <AtRate
             {...componentProps}
@@ -338,13 +338,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtRate>
         );
-      case EnumComponentName.AtSegmentedControl:
+      case TaroUIComponentNames.AtSegmentedControl:
         return (
           <AtSegmentedControl {...componentProps} onClick={this.onClick}>
             {children}
           </AtSegmentedControl>
         );
-      case EnumComponentName.AtSwitch:
+      case TaroUIComponentNames.AtSwitch:
         return (
           <AtSwitch
             {...componentProps}
@@ -354,7 +354,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtSwitch>
         );
-      case EnumComponentName.AtSearchBar:
+      case TaroUIComponentNames.AtSearchBar:
         return (
           <AtSearchBar
             {...componentProps}
@@ -369,25 +369,25 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtSearchBar>
         );
-      case EnumComponentName.AtTabBar:
+      case TaroUIComponentNames.AtTabBar:
         return (
           <AtTabBar {...componentProps} onClick={this.onClick}>
             {children}
           </AtTabBar>
         );
-      case EnumComponentName.AtTabs:
+      case TaroUIComponentNames.AtTabs:
         return (
           <AtTabs {...componentProps} onClick={this.onClick}>
             {children}
           </AtTabs>
         );
-      case EnumComponentName.AtTag:
+      case TaroUIComponentNames.AtTag:
         return (
           <AtTag {...componentProps} onClick={this.onClick}>
             {children}
           </AtTag>
         );
-      case EnumComponentName.AtTextarea:
+      case TaroUIComponentNames.AtTextarea:
         return (
           <AtTextarea
             {...componentProps}
@@ -401,13 +401,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtTextarea>
         );
-      case EnumComponentName.AtTimeline:
+      case TaroUIComponentNames.AtTimeline:
         return (
           <AtTimeline {...componentProps} onClick={this.onClick}>
             {children}
           </AtTimeline>
         );
-      case EnumComponentName.AtToast:
+      case TaroUIComponentNames.AtToast:
         return (
           <AtToast
             {...componentProps}
@@ -417,7 +417,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtToast>
         );
-      case EnumComponentName.AtTabsPane:
+      case TaroUIComponentNames.AtTabsPane:
         return (
           <AtTabsPane
             {...componentProps}
@@ -428,31 +428,31 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtTabsPane>
         );
-      case EnumComponentName.AtSwipeAction:
+      case TaroUIComponentNames.AtSwipeAction:
         return (
           <AtSwipeAction {...componentProps} onClick={this.onClick}>
             {children}
           </AtSwipeAction>
         );
-      case EnumComponentName.AtAccordion:
+      case TaroUIComponentNames.AtAccordion:
         return (
           <AtAccordion {...componentProps} onClick={this.onClick}>
             {children}
           </AtAccordion>
         );
-      case EnumComponentName.AtLoadMore:
+      case TaroUIComponentNames.AtLoadMore:
         return (
           <AtLoadMore {...componentProps} onClick={this.onClick}>
             {children}
           </AtLoadMore>
         );
-      case EnumComponentName.AtDivider:
+      case TaroUIComponentNames.AtDivider:
         return (
           <AtDivider {...componentProps} onClick={this.onClick}>
             {children}
           </AtDivider>
         );
-      case EnumComponentName.AtCountdown:
+      case TaroUIComponentNames.AtCountdown:
         return (
           <AtCountdown
             {...componentProps}
@@ -462,7 +462,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtCountdown>
         );
-      case EnumComponentName.AtSteps:
+      case TaroUIComponentNames.AtSteps:
         return (
           <AtSteps
             {...componentProps}
@@ -472,7 +472,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtSteps>
         );
-      case EnumComponentName.AtCurtain:
+      case TaroUIComponentNames.AtCurtain:
         return (
           <AtCurtain
             {...componentProps}
@@ -482,7 +482,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtCurtain>
         );
-      case EnumComponentName.AtSlider:
+      case TaroUIComponentNames.AtSlider:
         return (
           <AtSlider
             {...componentProps}
@@ -493,13 +493,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtSlider>
         );
-      case EnumComponentName.AtMessage:
+      case TaroUIComponentNames.AtMessage:
         return (
           <AtMessage {...componentProps} onClick={this.onClick}>
             {children}
           </AtMessage>
         );
-      case EnumComponentName.AtImagePicker:
+      case TaroUIComponentNames.AtImagePicker:
         return (
           <AtImagePicker
             {...componentProps}
@@ -511,7 +511,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtImagePicker>
         );
-      case EnumComponentName.AtIndexes:
+      case TaroUIComponentNames.AtIndexes:
         return (
           <AtIndexes
             {...componentProps}
@@ -521,7 +521,7 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtIndexes>
         );
-      case EnumComponentName.AtRange:
+      case TaroUIComponentNames.AtRange:
         return (
           <AtRange
             {...componentProps}
@@ -532,13 +532,13 @@ export default class SchemaTaroUI extends BaseSchemaComponent<
             {children}
           </AtRange>
         );
-      case EnumComponentName.AtFloatButton:
+      case TaroUIComponentNames.AtFloatButton:
         return (
           <AtFloatButton {...componentProps} onClick={this.onClick}>
             {children}
           </AtFloatButton>
         );
-      case EnumComponentName.AtCalendar:
+      case TaroUIComponentNames.AtCalendar:
         return (
           <AtCalendar
             {...componentProps}
