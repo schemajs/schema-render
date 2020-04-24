@@ -43,14 +43,13 @@ export class UniContainerStore {
     this.parseBySchemaNode(this.schemaData, this.containerId);
   }
 
+
+
   @action.bound
   parseBySchemaArray(parentPath: string, schemaArray: ISchema[]) {
     schemaArray.map(schema => {
       const path = `${parentPath}.${schema.id}`;
-      schema.path = path;
-      // console.log(`path: ${path}`);
-      const eleStore: AnyUniElementStore = new UniElementStore(schema);
-      this.putElementStore(path, eleStore);
+      this.addElementStoreBySchema(schema,path)
       return this.parseBySchemaNode(schema, path);
     });
   }
@@ -92,6 +91,14 @@ export class UniContainerStore {
 
   getElementStore(path: string) {
     return this.elementStores[path];
+  }
+
+  @action.bound
+  addElementStoreBySchema(schema: ISchema, path: string) {
+    schema.path = path;
+    // console.log(`path: ${path}`);
+    const eleStore: AnyUniElementStore = new UniElementStore(schema);
+    this.putElementStore(path, eleStore);
   }
 
   @action.bound
