@@ -2,17 +2,17 @@ import createDebug from "debug";
 import { IElementStore,EnumElementType } from '../../../types'
 import { FormElementStore } from "../../stores/element/FormElementStore";
 
-const debug = createDebug("schema-ui:stores/CustomItemStore");
+const debug = createDebug("schema-ui:stores/LeapUIElementStore");
 
-export  interface ICustomItemStoreProps {
+export  interface IProps {
   
 }
 
-export  interface ICustomItemStoreState {
+export  interface IState {
   
 }
 
-export default class DemoCustomItemStore extends FormElementStore<ICustomItemStoreProps, ICustomItemStoreState> implements IElementStore<ICustomItemStoreProps, ICustomItemStoreState> {
+export default class LeapUIElementStore extends FormElementStore<IProps, IState> implements IElementStore<IProps, IState> {
  
   
 }
