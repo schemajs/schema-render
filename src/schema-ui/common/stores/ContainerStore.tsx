@@ -4,7 +4,10 @@ import { action, computed, observable } from "mobx";
 import {
   IValidMessage,
   ISchema,
-  ISchemaProperties
+  ISchemaProperties,
+  IElementStore,
+  EnumElementType,
+  IFormItemStore
 } from "../../types";
 // comp
 import { SchemaStore, AnySchemaStore } from "./SchemaStore";
@@ -45,11 +48,13 @@ export class ContainerStore {
       errMessage: "",
       name: ""
     };
-    Object.values(this.elementStoreRegistry).map(store => {
-      if(store.isFormItem()){
-        let { isValid, showError, errMessage, displayName } = store;
+    Object.values(this.elementStoreRegistry).map((store:IElementStore) => {
+      const name = store.schemaStore.name;
+      if(store.type == EnumElementType.FORM){
+        const formStore = store as IFormItemStore
+        let { isValid, showError, errMessage } = formStore;
         if (showError) {
-          err.name = displayName;
+          err.name = name;
           err.isValid = isValid;
           err.showError = showError;
           err.errMessage = errMessage;

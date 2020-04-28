@@ -16,3 +16,22 @@ export interface IElementProps  {
   containerStore:ContainerStore
   schemaStore:AnySchemaStore
 }
+
+export interface IValidMessage {
+  showError: boolean;
+  errMessage?: string;
+  name?: string;
+}
+
+export interface ValidatorParams {
+  messagePrefix?: string
+  value: any
+  message?: string
+}
+export type IValidator = (params: ValidatorParams) => void
+export type SchemaValidator = IValidator;
+
+
+export interface IFormSubmit {
+  (param?: IValidMessage): void;
+}
