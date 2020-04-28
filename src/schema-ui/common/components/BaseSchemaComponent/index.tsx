@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import { IElementProps } from "../type";
+import { IElementProps } from "../../../types";
 import { AnySchemaStore } from "../../stores/SchemaStore";
 
 @observer

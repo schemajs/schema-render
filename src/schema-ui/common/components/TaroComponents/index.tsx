@@ -54,7 +54,7 @@ import { AnyFormItemStore, FormItemStore } from "../../stores/FormItemStore";
 import { checkIsNotZeroValue } from "../../utils/validators";
 
 @observer
-export default class TaroUIComponents extends BaseSchemaComponent<
+export default class TaroComponents extends BaseSchemaComponent<
   IElementProps,
   any
 > {
@@ -65,6 +65,10 @@ export default class TaroUIComponents extends BaseSchemaComponent<
   }
   initStore(props: IElementProps) {
     const { schemaStore } = props;
+    console.log("TaroComponents initStore",schemaStore)
+    if(!schemaStore){
+      return null;
+    }
     const store = new FormItemStore(schemaStore)
     this.elementStore = store
     const { schema } = store;

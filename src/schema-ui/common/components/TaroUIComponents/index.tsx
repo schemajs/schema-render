@@ -70,6 +70,10 @@ export default class TaroUIComponents extends BaseSchemaComponent<
   }
   initStore(props: IElementProps) {
     const { schemaStore } = props;
+    console.log("TaroUIComponents initStore",schemaStore)
+    if(!schemaStore){
+      return null;
+    }
     const store = new FormItemStore(schemaStore)
     this.elementStore = store
     const { schema } = store;

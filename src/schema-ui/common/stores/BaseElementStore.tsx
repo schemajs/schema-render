@@ -16,16 +16,12 @@ export class BaseElementStore<IProps, IState> {
   }
 
   constructor(schemaStore: SchemaStore<IProps>) {
-    this.reset();
-
+    this.componentState = {} as IState;
     // 初始化
     this.schemaStore = schemaStore;
   }
 
-  @action.bound
-  reset() {
-    this.componentState = {} as IState;
-  }
+  
 
   @action.bound
   putComponentStateByKey(key: string, value: any) {

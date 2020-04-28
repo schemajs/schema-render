@@ -12,7 +12,7 @@ import {
   AtSwitch,
 } from "taro-ui";
 // var
-import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "../../../types";
+import { IValidMessage, ISchema } from "../../../types";
 import { ContainerStore } from "../../stores/ContainerStore";
 import { getContainerStore } from "../../stores/factory";
 import Container from "../Container";
@@ -20,7 +20,7 @@ import Component,{BaseComponentPropsType} from '../BaseComponent'
 
 interface PageStateProps extends BaseComponentPropsType {
   schema:ISchema
-  onSubmit?: IFormSubmit;
+  onSubmit?: any;
   renderFooter?: JSX.Element;
   footerClassName?: string | string[] | { [key: string]: boolean };
 };
