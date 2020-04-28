@@ -1,7 +1,7 @@
 import React from "react";
 import { toJS } from "mobx";
 import { observer } from "mobx-react";
-import { IElementProps } from "../type";
+import { IElementProps,IValidator } from "../../types";
 import BaseSchemaComponent from "../BaseSchemaComponent";
 import {
   ScrollView,
@@ -51,7 +51,6 @@ import {
 } from "@tarojs/components";
 import { TaroComponentNames } from "../../const";
 import { AnyFormItemStore, FormItemStore } from "../../stores/FormItemStore";
-import { IValidator } from "../../utils/validators/type";
 import { checkIsNotZeroValue } from "../../utils/validators";
 
 @observer

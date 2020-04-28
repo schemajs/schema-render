@@ -1,7 +1,7 @@
 import React from "react";
 import { toJS } from "mobx";
 import { observer } from "mobx-react";
-import { IElementProps } from "../type";
+import { IElementProps,IValidator } from "../../types";
 import BaseSchemaComponent from "../BaseSchemaComponent";
 import {
   AtActionSheet,
@@ -56,7 +56,6 @@ import {
 } from "taro-ui";
 import { TaroUIComponentNames } from "../../const";
 import { checkIsNotZeroValue } from "../../utils/validators";
-import { IValidator } from "../../utils/validators/type";
 import { AnyFormItemStore, FormItemStore } from "../../stores/FormItemStore";
 
 @observer

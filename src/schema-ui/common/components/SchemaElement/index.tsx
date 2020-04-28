@@ -2,10 +2,11 @@ import React from "react";
 import { View, Text, Block } from "@tarojs/components";
 import { observer } from "mobx-react";
 import Component, { BaseComponentPropsType } from "../BaseComponent";
-import TaroUIComponents from "../TaroUIComponents";
+import TaroComponentsUI from "../TaroComponentsUI";
 import TaroComponents from "../TaroComponents";
 import { SchemaStore } from "../../stores/SchemaStore";
 import { isTaroUI, isTaro } from "../../const";
+import { ISchema } from "../../types";
 import { ContainerStore } from "../../stores/ContainerStore";
 
 interface PageStateProps extends BaseComponentPropsType {
@@ -50,12 +51,12 @@ class Element extends Component<PageStateProps, any> {
     const { component } = this.schemaStore;
     if (isTaroUI(component)) {
       return (
-        <TaroUIComponents
+        <TaroComponentsUI
           containerStore={containerStore}
           schemaStore={this.schemaStore}
         >
           {this.renderChildren()}
-        </TaroUIComponents>
+        </TaroComponentsUI>
       );
     } else if (isTaro(component)) {
       return (
