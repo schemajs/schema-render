@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
-import { AnySchemaStore } from "../stores/SchemaStore";
-import { ContainerStore } from "../stores/ContainerStore";
+import { ContainerStore } from "../common/stores/ContainerStore";
+import { AnySchemaStore } from "../common/stores/SchemaStore";
 
 export interface AtComponent {
   className?: string | string[] | { [key: string]: boolean };
