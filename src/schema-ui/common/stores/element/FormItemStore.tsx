@@ -1,14 +1,14 @@
 import createDebug from "debug";
 import { action, computed, observable } from "mobx";
-import { IValidator,  SchemaValidator,IFormItemStore,EnumElementType } from "../../types";
+import { IValidator,  SchemaValidator,IFormItemStore,EnumElementType } from "../../../types";
 import {
   checkIsNotEmptyString,
   checkIsStringLength,
   checkIsNumberMax,
   checkIsNumberMin,
   checkIsPatternAllow
-} from "../utils/validators/index";
-import { SchemaStore } from "./SchemaStore";
+} from "../../utils/validators/index";
+import { SchemaStore } from "../SchemaStore";
 import { BaseElementStore } from "./BaseElementStore";
 
 const debug = createDebug("schema-ui:stores/FormItemStore");

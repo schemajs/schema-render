@@ -12,7 +12,7 @@ import {
 // comp
 import { SchemaStore, AnySchemaStore } from "./SchemaStore";
 import isArray from "lodash/isArray";
-import { AnyBaseElementStore } from "./BaseElementStore";
+import { AnyBaseElementStore } from "./element/BaseElementStore";
 import  Registry from "./Registry";
 
 type EventListener = (...args: any[]) => void;

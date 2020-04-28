@@ -50,15 +50,15 @@ import {
   PageMeta
 } from "@tarojs/components";
 import { TaroComponentNames } from "../../const";
-import { AnyFormItemStore, FormItemStore } from "../../stores/FormItemStore";
 import { checkIsNotZeroValue } from "../../utils/validators";
+import { FormElementStore, AnyFormElementStore } from "../../stores/element/FormElementStore";
 
 @observer
 export default class TaroComponents extends BaseSchemaComponent<
   IElementProps,
   any
 > {
-  elementStore: AnyFormItemStore
+  elementStore: AnyFormElementStore
   constructor(props: IElementProps) {
     super(props);
     this.initStore(props);
@@ -69,7 +69,7 @@ export default class TaroComponents extends BaseSchemaComponent<
     if(!schemaStore){
       return null;
     }
-    const store = new FormItemStore(schemaStore)
+    const store = new FormElementStore(schemaStore)
     this.elementStore = store
     const { schema } = store;
     const validators: IValidator[] = [];
@@ -77,7 +77,7 @@ export default class TaroComponents extends BaseSchemaComponent<
       validators.push(checkIsNotZeroValue);
     }
     // maxLength
-    store.setValidators(validators);
+    store.formItemStore.setValidators(validators);
   }
   onScrollToUpper = this.getEventTrigger("onScrollToUpper");
   onScrollToLower = this.getEventTrigger("onScrollToLower");
@@ -147,7 +147,7 @@ export default class TaroComponents extends BaseSchemaComponent<
   onChangeWithSetValue = (...args) => {
     const store = this.elementStore
     console.log(`onChange args:`, args);
-    store.setValue(args[0]);
+    store.formItemStore.setValue(args[0]);
     this.onChange(args);
   };
   render() {

@@ -14,11 +14,11 @@ export interface IElementStore<IProps,IState> {
 
 export type AnyElementStore = IElementStore<any,any>
 
-export interface IDisplayItemStore extends AnyElementStore {
+export interface IDisplayElementStore<IProps,IState> extends IElementStore<IProps,IState> {
 
 }
 
-export interface IFormItemStore extends  AnyElementStore {
+export interface IFormElementStore<IProps,IState> extends IElementStore<IProps,IState> {
   value: any;
   isValid: boolean;
   errMessage: string

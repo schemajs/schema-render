@@ -1,6 +1,6 @@
 import createDebug from "debug";
-import { SchemaStore } from "./SchemaStore";
-import { StateStore } from "./StateStore";
+import { SchemaStore } from "../SchemaStore";
+import { StateStore } from "../StateStore";
 const debug = createDebug("schema-ui:stores/BaseElementStore");
 
 export class BaseElementStore<IProps, IState> {

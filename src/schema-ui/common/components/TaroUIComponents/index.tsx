@@ -56,14 +56,14 @@ import {
 } from "taro-ui";
 import { TaroUIComponentNames } from "../../const";
 import { checkIsNotZeroValue } from "../../utils/validators";
-import { AnyFormItemStore, FormItemStore } from "../../stores/FormItemStore";
+import { FormElementStore,AnyFormElementStore } from "../../stores/element/FormElementStore";
 
 @observer
 export default class TaroUIComponents extends BaseSchemaComponent<
   IElementProps,
   any
 > {
-  elementStore: AnyFormItemStore
+  elementStore: AnyFormElementStore
   constructor(props: IElementProps) {
     super(props);
     this.initStore(props);
@@ -74,7 +74,7 @@ export default class TaroUIComponents extends BaseSchemaComponent<
     if(!schemaStore){
       return null;
     }
-    const store = new FormItemStore(schemaStore)
+    const store = new FormElementStore(schemaStore)
     this.elementStore = store
     const { schema } = store;
     const validators: IValidator[] = [];
@@ -82,7 +82,7 @@ export default class TaroUIComponents extends BaseSchemaComponent<
       validators.push(checkIsNotZeroValue);
     }
     // maxLength
-    store.setValidators(validators);
+    store.formItemStore.setValidators(validators);
   }
   onGetUserInfo = this.getEventTrigger("onGetUserInfo");
   onContact = this.getEventTrigger("onContact");
@@ -129,19 +129,19 @@ export default class TaroUIComponents extends BaseSchemaComponent<
   onOpenWithSetValue = (...args) => {
     const store = this.elementStore
     console.log(`onOpen args:`, args);
-    store.setValue(true);
+    store.formItemStore.setValue(true);
     this.onOpen(args);
   };
   onCloseWithSetValue = (...args) => {
     const store = this.elementStore
     console.log(`onClose args:`, args);
-    store.setValue(false);
+    store.formItemStore.setValue(false);
     this.onClose(args);
   };
   onChangeWithSetValue = (...args) => {
     const store = this.elementStore
     console.log(`onChange args:`, args);
-    store.setValue(args[0]);
+    store.formItemStore.setValue(args[0]);
     this.onChange(args);
   };
   render() {
