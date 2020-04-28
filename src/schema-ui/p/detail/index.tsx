@@ -18,7 +18,7 @@ const schema = {
   id:"s1",
   type: "object",
   properties: {
-    view1: {
+    step1: {
       "x-component":"View",
       "x-component-props":{
       },
@@ -31,7 +31,7 @@ const schema = {
         }
       }
     },
-    ke11: {
+    step2: {
       "required":true,
       "x-component":"AtInput",
       "x-component-props":{
@@ -43,7 +43,7 @@ const schema = {
         autoFocus:true
       }
     },
-    ke12: {
+    step3: {
       "x-component":"AtInputNumber",
       "x-component-props":{
         min:0,

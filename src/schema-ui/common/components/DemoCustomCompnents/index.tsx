@@ -6,7 +6,6 @@ import BaseSchemaComponent from "../BaseSchemaComponent";
 import {
   AtInputNumber
 } from "taro-ui";
-import { TaroUIComponentNames } from "../../const";
 import { checkIsNotZeroValue } from "../../utils/validators";
 import DemoCustomItemStore from "./DemoCustomItemStore";
 
@@ -34,17 +33,21 @@ export default class DemoCustomCompnents extends BaseSchemaComponent<
     // schemaStore
     const schema = store.schemaStore.schema;
 
-    // componentStateStore
-    store.componentStateStore.putComponentStateByKey("foo",{
+    // stateStore
+    store.stateStore.setStateByKey("foo",{
       test_a:2
     })
 
     // validators
-    const validators: IValidator[] = [];
+    // const validators: IValidator[] = [];
+    // if (schema.required) {
+    //   validators.push(checkIsNotZeroValue);
+    // }
+    // store.setValidators(validators);
     if (schema.required) {
-      validators.push(checkIsNotZeroValue);
+        store.pushValidator(checkIsNotZeroValue)
     }
-    store.setValidators(validators);
+    
   }
    // events
   onBlur = this.getEventTrigger("onBlur");
@@ -68,7 +71,7 @@ export default class DemoCustomCompnents extends BaseSchemaComponent<
     const { value:storeValue,showError } = this.elementStore;
     const value = toJS(storeValue)
     switch (component) {
-      case TaroUIComponentNames.AtInputNumber:
+      case "LeapInputNumber":
         return (
           <AtInputNumber
             {...componentProps}

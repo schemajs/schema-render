@@ -14,5 +14,6 @@ export  interface ICustomItemStoreState {
 
 export default class DemoCustomItemStore extends FormItemStore<ICustomItemStoreProps, ICustomItemStoreState> implements IElementStore<ICustomItemStoreProps, ICustomItemStoreState> {
  
+  
 }
 

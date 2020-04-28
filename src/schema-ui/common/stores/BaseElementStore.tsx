@@ -1,6 +1,6 @@
 import createDebug from "debug";
 import { SchemaStore } from "./SchemaStore";
-import { ComponentStateStore } from "./ComponentStateStore";
+import { StateStore } from "./StateStore";
 const debug = createDebug("schema-ui:stores/BaseElementStore");
 
 export class BaseElementStore<IProps, IState> {
@@ -13,7 +13,7 @@ export class BaseElementStore<IProps, IState> {
     return this.schemaStore.schema || {}
   }
 
-  componentStateStore: ComponentStateStore<IState>;
+  stateStore: StateStore<IState>;
 
   constructor(schemaStore: SchemaStore<IProps>) {
     // 初始化
