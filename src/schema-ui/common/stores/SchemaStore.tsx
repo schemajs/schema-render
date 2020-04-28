@@ -1,4 +1,4 @@
-import { ISchema } from "../types";
+import { ISchema } from "../../types";
 import { observable, computed } from "mobx";
 
 export class  SchemaStore<IProps> {

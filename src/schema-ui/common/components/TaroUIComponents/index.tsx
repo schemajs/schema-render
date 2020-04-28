@@ -1,7 +1,7 @@
 import React from "react";
 import { toJS } from "mobx";
 import { observer } from "mobx-react";
-import { IElementProps,IValidator } from "../../types";
+import { IElementProps,IValidator } from "../../../types";
 import BaseSchemaComponent from "../BaseSchemaComponent";
 import {
   AtActionSheet,

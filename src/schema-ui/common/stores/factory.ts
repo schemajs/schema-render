@@ -1,5 +1,5 @@
 // type
-import { ISchema } from "../types";
+import { ISchema } from "../../types";
 import { ContainerStore } from "./ContainerStore";
 
 export function transformSchema(schema: any): ISchema {

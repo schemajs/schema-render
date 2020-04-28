@@ -1,6 +1,6 @@
 import createDebug from "debug";
 import { BaseElementStore } from "./BaseElementStore";
-import { IElementStore,EnumElementType } from '../types'
+import { IElementStore,EnumElementType } from '../../types'
 
 const debug = createDebug("schema-ui:stores/DisplayItemStore");
 

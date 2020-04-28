@@ -5,7 +5,7 @@ import _isString from "lodash/isString";
 import _isNumber from "lodash/isNumber";
 import _toNumber from "lodash/toNumber";
 import { ValidateError } from "../errorType";
-import { ValidatorParams } from "../../types";
+import { ValidatorParams } from "../../../types";
 
 import { isArrayLike } from "mobx";
 

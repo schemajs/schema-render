@@ -5,7 +5,7 @@ import {
   IValidMessage,
   ISchema,
   ISchemaProperties
-} from "../types";
+} from "../../types";
 // comp
 import { SchemaStore, AnySchemaStore } from "./SchemaStore";
 import isArray from "lodash/isArray";

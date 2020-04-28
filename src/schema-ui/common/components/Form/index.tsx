@@ -12,7 +12,7 @@ import {
   AtSwitch,
 } from "taro-ui";
 // var
-import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "../../types";
+import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "../../../types";
 import { ContainerStore } from "../../stores/ContainerStore";
 import { getContainerStore } from "../../stores/factory";
 import Container from "../Container";
