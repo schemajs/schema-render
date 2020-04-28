@@ -55,10 +55,11 @@ export class FormItemStore<IProps, IState> extends BaseElementStore<IProps,IStat
 
   @action.bound
   reset() {
+    const defaultValue = this.schema.default
     this.componentState = {} as IState;
-    this.setValue(this.defaultValue);
+    this.setValue(defaultValue);
     this.setIsValueUpdated(false);
-    this.tempValue = this.defaultValue;
+    this.tempValue = defaultValue;
   }
 
   @action.bound
