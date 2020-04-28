@@ -8,34 +8,45 @@ import {
 } from "taro-ui";
 import { TaroUIComponentNames } from "../../const";
 import { checkIsNotZeroValue } from "../../utils/validators";
-import { AnyFormItemStore, FormItemStore } from "../../stores/FormItemStore";
+import DemoCustomItemStore from "./DemoCustomItemStore";
 
 @observer
-export default class TaroUIComponents extends BaseSchemaComponent<
+export default class DemoCustomCompnents extends BaseSchemaComponent<
   IElementProps,
   any
 > {
-  elementStore: AnyFormItemStore
+  elementStore: DemoCustomItemStore
+
   constructor(props: IElementProps) {
     super(props);
     this.initStore(props);
   }
+
   initStore(props: IElementProps) {
     const { schemaStore } = props;
-    console.log("TaroUIComponents initStore",schemaStore)
+    console.log("DemoCustomCompnents initStore",schemaStore)
     if(!schemaStore){
       return null;
     }
-    const store = new FormItemStore(schemaStore)
+    // 构建 store
+    const store = new DemoCustomItemStore(schemaStore)
     this.elementStore = store
-    const { schema } = store;
+    // schemaStore
+    const schema = store.schemaStore.schema;
+
+    // componentStateStore
+    store.componentStateStore.putComponentStateByKey("foo",{
+      test_a:2
+    })
+
+    // validators
     const validators: IValidator[] = [];
     if (schema.required) {
       validators.push(checkIsNotZeroValue);
     }
-    // maxLength
     store.setValidators(validators);
   }
+   // events
   onBlur = this.getEventTrigger("onBlur");
   onErrorClick = this.getEventTrigger("onErrorClick");
   onErrorInput = this.getEventTrigger("onErrorInput");
@@ -47,6 +58,7 @@ export default class TaroUIComponents extends BaseSchemaComponent<
     store.setValue(args[0]);
     this.onChange(args);
   };
+  
   render() {
     const { schemaStore ,children } = this.props;
     // schemaStore
