@@ -1,5 +1,5 @@
-import { AnySchemaStore,SchemaStore } from '../common/stores/SchemaStore';
-import { AnyStateStore,StateStore } from '../common/stores/StateStore';
+import { SchemaStore } from '../common/stores/SchemaStore';
+import { StateStore } from '../common/stores/StateStore';
 
 export enum EnumElementType {
   DISPLAY,
@@ -12,11 +12,13 @@ export interface IElementStore<IProps,IState> {
   stateStore?: StateStore<IState>;
 }
 
-export type AnyElementStore = IElementStore<any,any>
+export type IAnyElementStore = IElementStore<any,any>
 
 export interface IDisplayElementStore<IProps,IState> extends IElementStore<IProps,IState> {
 
 }
+
+export type IAnyDisplayElementStore = IDisplayElementStore<any,any>
 
 export interface IFormElementStore<IProps,IState> extends IElementStore<IProps,IState> {
   value: any;
@@ -24,3 +26,5 @@ export interface IFormElementStore<IProps,IState> extends IElementStore<IProps,I
   errMessage: string
   showError :boolean
 }
+
+export type IAnyFormElementStore = IFormElementStore<any,any>

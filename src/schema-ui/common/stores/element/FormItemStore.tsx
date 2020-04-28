@@ -1,6 +1,6 @@
 import createDebug from "debug";
 import { action, computed, observable } from "mobx";
-import { IValidator,  SchemaValidator,IFormItemStore,EnumElementType } from "../../../types";
+import { IValidator,  SchemaValidator,EnumElementType } from "../../../types";
 import {
   checkIsNotEmptyString,
   checkIsStringLength,
@@ -13,7 +13,7 @@ import { BaseElementStore } from "./BaseElementStore";
 
 const debug = createDebug("schema-ui:stores/FormItemStore");
 
-export class FormItemStore<IProps, IState> extends BaseElementStore<IProps,IState> implements IFormItemStore {
+export class FormItemStore<IProps, IState> extends BaseElementStore<IProps,IState> {
 
   @observable
   value: any;

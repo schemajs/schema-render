@@ -6,8 +6,8 @@ import {
   ISchema,
   ISchemaProperties,
   EnumElementType,
-  IFormItemStore,
-  AnyElementStore
+  IAnyElementStore,
+  IAnyFormElementStore
 } from "../../types";
 // comp
 import { SchemaStore, AnySchemaStore } from "./SchemaStore";
@@ -48,10 +48,10 @@ export class ContainerStore {
       errMessage: "",
       name: ""
     };
-    Object.values(this.elementStoreRegistry).map((store:AnyElementStore) => {
+    Object.values(this.elementStoreRegistry).map((store:IAnyElementStore) => {
       const name = store.schemaStore.name;
       if(store.type == EnumElementType.FORM){
-        const formStore = store as IFormItemStore
+        const formStore = store as IAnyFormElementStore
         let { isValid, showError, errMessage } = formStore;
         if (showError) {
           err.name = name;

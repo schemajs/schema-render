@@ -58,7 +58,7 @@ export default class DemoCustomCompnents extends BaseSchemaComponent<
   onChangeWithSetValue = (...args) => {
     const store = this.elementStore
     console.log(`onChange args:`, args);
-    store.setValue(args[0]);
+    store.formItemStore.setValue(args[0]);
     this.onChange(args);
   };
   
