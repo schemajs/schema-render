@@ -1,7 +1,6 @@
 import createDebug from "debug";
 import { action, computed, observable } from "mobx";
-import { IValidator,  SchemaValidator,
-  IFormItemStore,EnumElementType } from "../types";
+import { IValidator,  SchemaValidator,IFormItemStore,EnumElementType } from "../types";
 import {
   checkIsNotEmptyString,
   checkIsStringLength,

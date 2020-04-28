@@ -1,5 +1,5 @@
 export default {
-  pages: ["uniform/p/detail/index"],
+  pages: ["schema-ui/p/detail/index"],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
