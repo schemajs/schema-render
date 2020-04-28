@@ -1,36 +1,17 @@
 import createDebug from "debug";
-
 import { action, computed, observable } from "mobx";
 import { SchemaStore } from "./SchemaStore";
+import { ComponentStateStore } from "./ComponentStateStore";
 const debug = createDebug("schema-ui:stores/BaseElementStore");
 
 export class BaseElementStore<IProps, IState> {
   schemaStore: SchemaStore<IProps>;
 
-  @observable
-  componentState: IState;
-
-  @computed
-  get schema() {
-    return this.schemaStore.schema || {};
-  }
+  componentStateStore: ComponentStateStore<IState>;
 
   constructor(schemaStore: SchemaStore<IProps>) {
-    this.componentState = {} as IState;
     // 初始化
     this.schemaStore = schemaStore;
-  }
-
-  
-
-  @action.bound
-  putComponentStateByKey(key: string, value: any) {
-    this.componentState[key] = value;
-  }
-
-  @action.bound
-  setComponentState(value: IState) {
-    this.componentState = value;
   }
 
 }

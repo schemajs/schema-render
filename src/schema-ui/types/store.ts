@@ -1,4 +1,5 @@
-import {ISchema}  from './schema'
+import { AnySchemaStore } from '../common/stores/SchemaStore';
+import { AnyComponentStateStore } from '../common/stores/ComponentStateStore';
 
 export enum EnumElementType {
   DISPLAY,
@@ -6,14 +7,11 @@ export enum EnumElementType {
 }
 export interface IElementStore {
   type:EnumElementType
-  schema:ISchema
+  schemaStore: AnySchemaStore;
+  componentStateStore?: AnyComponentStateStore;
 }
-export interface IFormItemStore extends  IElementStore {
-  value: any;
-  tempValue?: any;
-  isValid: boolean;
-  errMessage: string
-  showError :boolean
+export interface IDisplayItemStore extends  IElementStore {
+
 }
 export interface IFormItemStore extends  IElementStore {
   value: any;
