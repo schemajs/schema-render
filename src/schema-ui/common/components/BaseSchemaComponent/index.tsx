@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { IElementProps } from "../type";
-import { AnyUniSchemaStore } from "@/uniform/common/stores/UniSchemaStore";
+import { AnyUniSchemaStore } from "../../stores/SchemaSchemaStore";
 
 @observer
 export default class BaseSchemaComponent<

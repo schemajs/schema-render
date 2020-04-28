@@ -1,21 +1,21 @@
 import React from "react";
 import { View, Text, Block } from "@tarojs/components";
 import { observer } from "mobx-react";
-import Component, { BaseComponentPropsType } from "./BaseComponent";
-import SchemaTaroUI from "../schema/SchemaTaroUI";
-import SchemaTaro from "../schema/SchemaTaro";
-import { UniSchemaStore } from "../../stores/UniSchemaStore";
+import Component, { BaseComponentPropsType } from "../BaseComponent";
+import SchemaTaroUI from "../SchemaTaroUI";
+import SchemaTaro from "../SchemaTaro";
+import { UniSchemaStore } from "../../stores/SchemaSchemaStore";
 import { isTaroUI, isTaro } from "../../const";
 import { ISchema } from "../../types";
-import { UniContainerStore } from "../../stores/UniContainerStore";
+import { SchemaContainerStore } from "../../stores/SchemaContainerStore";
 
 interface PageStateProps extends BaseComponentPropsType {
   path: string;
-  containerStore: UniContainerStore;
+  containerStore: SchemaContainerStore;
 }
 
 @observer
-class UniElement extends Component<PageStateProps, any> {
+class SchemaElement extends Component<PageStateProps, any> {
   schemaStore: UniSchemaStore<PageStateProps>;
   constructor(props) {
     super(props);
@@ -26,11 +26,11 @@ class UniElement extends Component<PageStateProps, any> {
     const { containerStore, path } = this.props;
     const subElementPath = `${path}.${subKey}`;
     return (
-      <UniElement
+      <SchemaElement
         key={subElementPath}
         path={subElementPath}
         containerStore={containerStore}
-      ></UniElement>
+      ></SchemaElement>
     );
   }
   renderChildren() {
@@ -85,4 +85,4 @@ class UniElement extends Component<PageStateProps, any> {
   }
 }
 
-export default UniElement;
+export default SchemaElement;

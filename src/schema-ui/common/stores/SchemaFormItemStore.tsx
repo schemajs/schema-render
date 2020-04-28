@@ -15,12 +15,12 @@ import {
 import {
   SchemaValidator,
 } from "@/uniform/common/types";
-import { UniSchemaStore } from "./UniSchemaStore";
-import { BaseElementStore } from "./BaseItemStore";
+import { UniSchemaStore } from "./SchemaSchemaStore";
+import { BaseElementStore } from "./BaseElementStore";
 
-const debug = createDebug("mapp:stores/UniFormItemStore");
+const debug = createDebug("mapp:stores/SchemaFormItemStore");
 
-export class UniFormItemStore<IProps, IState> extends BaseElementStore<IProps,IState> {
+export class SchemaFormItemStore<IProps, IState> extends BaseElementStore<IProps,IState> {
 
   @observable
   value: any;
@@ -185,4 +185,4 @@ export class UniFormItemStore<IProps, IState> extends BaseElementStore<IProps,IS
   }
 }
 
-export type AnyUniFormItemStore = UniFormItemStore<any, any>;
+export type AnySchemaFormItemStore = SchemaFormItemStore<any, any>;

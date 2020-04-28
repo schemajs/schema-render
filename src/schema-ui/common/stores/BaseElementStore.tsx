@@ -1,7 +1,7 @@
 import createDebug from "debug";
 
 import { action, computed, observable } from "mobx";
-import { UniSchemaStore, AnyUniSchemaStore } from "./UniSchemaStore";
+import { UniSchemaStore, AnyUniSchemaStore } from "./SchemaSchemaStore";
 
 const debug = createDebug("mapp:stores/BaseElementStore");
 

@@ -1,6 +1,6 @@
 import { observable, computed, action } from "mobx";
 
-export class UniRegistry<T> {
+export class SchemaRegistry<T> {
 
   @observable
   registry: {
@@ -14,7 +14,7 @@ export class UniRegistry<T> {
 
   @action.bound
   putItem(path: string, item: T) {
-    console.log(`UniRegistry putItem, path: ${path}`);
+    console.log(`SchemaRegistry putItem, path: ${path}`);
     this.registry[path] = item;
   }
 
@@ -42,4 +42,4 @@ export class UniRegistry<T> {
 
 }
 
-export type AnyUniRegistry = UniRegistry<any>;
+export type AnySchemaRegistry = SchemaRegistry<any>;

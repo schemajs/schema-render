@@ -1,5 +1,5 @@
 import createDebug from "debug";
-import { BaseElementStore } from "./BaseItemStore";
+import { BaseElementStore } from "./BaseElementStore";
 
 const debug = createDebug("mapp:stores/UniDisplayItemStore");
 

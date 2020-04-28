@@ -2,31 +2,31 @@ import React from "react";
 import { View } from "@tarojs/components";
 import { observer } from "mobx-react";
 
-import UniElement from "./UniElement";
-import { UniContainerStore } from "../../stores/UniContainerStore";
-import Component, { BaseComponentPropsType } from "./BaseComponent";
+import SchemaElement from "../SchemaElement";
+import { SchemaContainerStore } from "../../stores/SchemaContainerStore";
+import Component, { BaseComponentPropsType } from "../BaseComponent";
 
 interface PageStateProps extends BaseComponentPropsType {
-  containerStore: UniContainerStore;
+  containerStore: SchemaContainerStore;
 }
 
 @observer
-class UniContainer extends Component<PageStateProps, any> {
+class SchemaContainer extends Component<PageStateProps, any> {
   render() {
     const { containerStore } = this.props;
     const properties = containerStore.rootSchemaStore.properties;
     return (
-      <View className="UniContainer">
+      <View className="SchemaContainer">
         {/* fields */}
         {properties &&
           Object.keys(properties).map(subKey => {
             const elePath = `${containerStore.containerId}.${subKey}`;
             return (
-              <UniElement
+              <SchemaElement
                 key={elePath}
                 path={elePath}
                 containerStore={containerStore}
-              ></UniElement>
+              ></SchemaElement>
             );
           })}
       </View>
@@ -34,4 +34,4 @@ class UniContainer extends Component<PageStateProps, any> {
   }
 }
 
-export default UniContainer;
+export default SchemaContainer;

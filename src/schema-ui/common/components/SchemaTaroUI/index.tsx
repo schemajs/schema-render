@@ -54,24 +54,24 @@ import {
   AtFloatButton,
   AtCalendar
 } from "taro-ui";
-import { TaroUIComponentNames } from "../../../const";
-import { checkIsNotZeroValue } from "../../../utils/validators";
-import { IValidator } from "../../../utils/validators/type";
-import { AnyUniFormItemStore, UniFormItemStore } from "../../../stores/UniFormItemStore";
+import { TaroUIComponentNames } from "../../const";
+import { checkIsNotZeroValue } from "../../utils/validators";
+import { IValidator } from "../../utils/validators/type";
+import { AnySchemaFormItemStore, SchemaFormItemStore } from "../../stores/SchemaFormItemStore";
 
 @observer
 export default class SchemaTaroUI extends BaseSchemaComponent<
   IElementProps,
   any
 > {
-  elementStore: AnyUniFormItemStore
+  elementStore: AnySchemaFormItemStore
   constructor(props: IElementProps) {
     super(props);
     this.initStore(props);
   }
   initStore(props: IElementProps) {
     const { schemaStore } = props;
-    const store = new UniFormItemStore(schemaStore)
+    const store = new SchemaFormItemStore(schemaStore)
     this.elementStore = store
     const { schema } = store;
     const validators: IValidator[] = [];

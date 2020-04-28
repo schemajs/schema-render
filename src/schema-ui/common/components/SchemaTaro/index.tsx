@@ -49,24 +49,24 @@ import {
   NavigationBar,
   PageMeta
 } from "@tarojs/components";
-import { TaroComponentNames } from "../../../const";
-import { AnyUniFormItemStore, UniFormItemStore } from "../../../stores/UniFormItemStore";
-import { IValidator } from "../../../utils/validators/type";
-import { checkIsNotZeroValue } from "../../../utils/validators";
+import { TaroComponentNames } from "../../const";
+import { AnySchemaFormItemStore, SchemaFormItemStore } from "../../stores/SchemaFormItemStore";
+import { IValidator } from "../../utils/validators/type";
+import { checkIsNotZeroValue } from "../../utils/validators";
 
 @observer
 export default class SchemaTaroUI extends BaseSchemaComponent<
   IElementProps,
   any
 > {
-  elementStore: AnyUniFormItemStore
+  elementStore: AnySchemaFormItemStore
   constructor(props: IElementProps) {
     super(props);
     this.initStore(props);
   }
   initStore(props: IElementProps) {
     const { schemaStore } = props;
-    const store = new UniFormItemStore(schemaStore)
+    const store = new SchemaFormItemStore(schemaStore)
     this.elementStore = store
     const { schema } = store;
     const validators: IValidator[] = [];

@@ -5,20 +5,20 @@ import {
   IValidMessage,
   ISchema,
   ISchemaProperties
-} from "@/uniform/common/types";
+} from "../types";
 // comp
-import { UniSchemaStore, AnyUniSchemaStore } from "./UniSchemaStore";
+import { UniSchemaStore, AnyUniSchemaStore } from "./SchemaSchemaStore";
 import isArray from "lodash/isArray";
-import { AnyBaseElementStore } from "./BaseItemStore";
-import { UniRegistry } from "./UniStoreRegistry";
+import { AnyBaseElementStore } from "./BaseElementStore";
+import { SchemaRegistry } from "./SchemaRegistry";
 
 type EventListener = (...args: any[]) => void;
 
-export class UniContainerStore {
+export class SchemaContainerStore {
   private eventCenter: any;
   rootSchemaStore: AnyUniSchemaStore;
-  schemaStoreRegistry: UniRegistry<AnyUniSchemaStore>;
-  elementStoreRegistry: UniRegistry<AnyBaseElementStore>;
+  schemaStoreRegistry: SchemaRegistry<AnyUniSchemaStore>;
+  elementStoreRegistry: SchemaRegistry<AnyBaseElementStore>;
 
   get containerId() {
     return this.rootSchemaStore.schema.id || "uni";
@@ -32,8 +32,8 @@ export class UniContainerStore {
   @action.bound
   reset() {
     this.eventCenter = new Events();
-    this.schemaStoreRegistry = new UniRegistry()
-    this.elementStoreRegistry = new UniRegistry()
+    this.schemaStoreRegistry = new SchemaRegistry()
+    this.elementStoreRegistry = new SchemaRegistry()
     this.parseBySchemaNode(this.rootSchemaStore.schema, this.containerId);
   }
 

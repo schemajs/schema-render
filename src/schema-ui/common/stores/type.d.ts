@@ -1,3 +1,3 @@
-export interface UniElementStore {
+export interface SchemaElementStore {
   
 }
