@@ -1,4 +1,3 @@
-import { IValidator } from "@/uniform/common/utils/validators/type.d.ts";
 import { CSSProperties } from "react";
 
 export interface AtComponent {
@@ -106,3 +105,22 @@ export interface setDataOptions {
 }
 
 
+export interface IElementStore {
+  isForm()
+  schema:ISchema
+}
+
+export interface IFormItemStore extends  IElementStore {
+  value: any;
+  tempValue?: any;
+  isValid: boolean;
+  errMessage: string
+  showError :boolean
+}
+
+export interface ValidatorParams {
+  messagePrefix?: string
+  value: any
+  message?: string
+}
+export type IValidator = (params: ValidatorParams) => void

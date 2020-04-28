@@ -10,7 +10,7 @@ import {
 import { UniSchemaStore, AnyUniSchemaStore } from "./SchemaSchemaStore";
 import isArray from "lodash/isArray";
 import { AnyBaseElementStore } from "./BaseElementStore";
-import { SchemaRegistry } from "./SchemaRegistry";
+import  SchemaRegistry from "./SchemaRegistry";
 
 type EventListener = (...args: any[]) => void;
 

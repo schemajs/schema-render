@@ -2,10 +2,10 @@ import createDebug from "debug";
 
 import { action, computed, observable } from "mobx";
 import { UniSchemaStore, AnyUniSchemaStore } from "./SchemaSchemaStore";
-
+import { IElementStore } from '../types'
 const debug = createDebug("mapp:stores/BaseElementStore");
 
-export class BaseElementStore<IProps, IState> {
+export class BaseElementStore<IProps, IState> implements IElementStore {
   schemaStore: UniSchemaStore<IProps>;
 
   @observable

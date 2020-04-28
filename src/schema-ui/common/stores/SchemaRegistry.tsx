@@ -1,6 +1,6 @@
 import { observable, computed, action } from "mobx";
 
-export class SchemaRegistry<T> {
+export default class SchemaRegistry<T> {
 
   @observable
   registry: {

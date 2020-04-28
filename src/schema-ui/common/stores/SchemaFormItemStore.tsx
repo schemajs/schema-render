@@ -1,7 +1,7 @@
 import createDebug from "debug";
 
 import { action, computed, observable } from "mobx";
-import { IValidator } from "@/uniform/common/utils/validators/type";
+import { IValidator } from "../types";
 
 import {
   checkIsNotEmptyString,
@@ -14,13 +14,14 @@ import {
 // type
 import {
   SchemaValidator,
-} from "@/uniform/common/types";
+  IFormItemStore,
+} from "../types";
 import { UniSchemaStore } from "./SchemaSchemaStore";
 import { BaseElementStore } from "./BaseElementStore";
 
 const debug = createDebug("mapp:stores/SchemaFormItemStore");
 
-export class SchemaFormItemStore<IProps, IState> extends BaseElementStore<IProps,IState> {
+export class SchemaFormItemStore<IProps, IState> extends BaseElementStore<IProps,IState> implements IFormItemStore {
 
   @observable
   value: any;
@@ -88,7 +89,7 @@ export class SchemaFormItemStore<IProps, IState> extends BaseElementStore<IProps
 
   // 是否提示错误
   @computed
-  get showError() {
+  get showError() :boolean{
     // 已经被更新过, 且值不合法.
     return this.isValueUpdated && !this.isValid;
   }
