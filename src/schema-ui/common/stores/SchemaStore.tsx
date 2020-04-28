@@ -1,10 +1,7 @@
 import { ISchema } from "../types";
 import { observable, computed } from "mobx";
 
-
-
-
-export class  UniSchemaStore<IProps> {
+export class  SchemaStore<IProps> {
 
   constructor(schema:ISchema){
     this.schema = schema
@@ -54,4 +51,4 @@ export class  UniSchemaStore<IProps> {
 
 }
 
-export type AnyUniSchemaStore = UniSchemaStore<any>
+export type AnySchemaStore = SchemaStore<any>

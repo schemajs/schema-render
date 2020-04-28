@@ -2,31 +2,31 @@ import React from "react";
 import { View } from "@tarojs/components";
 import { observer } from "mobx-react";
 
-import SchemaElement from "../SchemaElement";
-import { SchemaContainerStore } from "../../stores/SchemaContainerStore";
+import Element from "../Element";
+import { ContainerStore } from "../../stores/ContainerStore";
 import Component, { BaseComponentPropsType } from "../BaseComponent";
 
 interface PageStateProps extends BaseComponentPropsType {
-  containerStore: SchemaContainerStore;
+  containerStore: ContainerStore;
 }
 
 @observer
-class SchemaContainer extends Component<PageStateProps, any> {
+class Container extends Component<PageStateProps, any> {
   render() {
     const { containerStore } = this.props;
     const properties = containerStore.rootSchemaStore.properties;
     return (
-      <View className="SchemaContainer">
+      <View className="Container">
         {/* fields */}
         {properties &&
           Object.keys(properties).map(subKey => {
             const elePath = `${containerStore.containerId}.${subKey}`;
             return (
-              <SchemaElement
+              <Element
                 key={elePath}
                 path={elePath}
                 containerStore={containerStore}
-              ></SchemaElement>
+              ></Element>
             );
           })}
       </View>
@@ -34,4 +34,4 @@ class SchemaContainer extends Component<PageStateProps, any> {
   }
 }
 
-export default SchemaContainer;
+export default Container;

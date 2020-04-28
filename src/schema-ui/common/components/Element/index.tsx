@@ -2,21 +2,21 @@ import React from "react";
 import { View, Text, Block } from "@tarojs/components";
 import { observer } from "mobx-react";
 import Component, { BaseComponentPropsType } from "../BaseComponent";
-import SchemaTaroUI from "../SchemaTaroUI";
-import SchemaTaro from "../SchemaTaro";
-import { UniSchemaStore } from "../../stores/SchemaSchemaStore";
+import TaroComponentsUI from "../TaroComponentsUI";
+import TaroComponents from "../TaroComponents";
+import { SchemaStore } from "../../stores/SchemaStore";
 import { isTaroUI, isTaro } from "../../const";
 import { ISchema } from "../../types";
-import { SchemaContainerStore } from "../../stores/SchemaContainerStore";
+import { ContainerStore } from "../../stores/ContainerStore";
 
 interface PageStateProps extends BaseComponentPropsType {
   path: string;
-  containerStore: SchemaContainerStore;
+  containerStore: ContainerStore;
 }
 
 @observer
-class SchemaElement extends Component<PageStateProps, any> {
-  schemaStore: UniSchemaStore<PageStateProps>;
+class Element extends Component<PageStateProps, any> {
+  schemaStore: SchemaStore<PageStateProps>;
   constructor(props) {
     super(props);
     const { containerStore, path } = props;
@@ -26,11 +26,11 @@ class SchemaElement extends Component<PageStateProps, any> {
     const { containerStore, path } = this.props;
     const subElementPath = `${path}.${subKey}`;
     return (
-      <SchemaElement
+      <Element
         key={subElementPath}
         path={subElementPath}
         containerStore={containerStore}
-      ></SchemaElement>
+      ></Element>
     );
   }
   renderChildren() {
@@ -51,21 +51,21 @@ class SchemaElement extends Component<PageStateProps, any> {
     const { component } = this.schemaStore;
     if (isTaroUI(component)) {
       return (
-        <SchemaTaroUI
+        <TaroComponentsUI
           containerStore={containerStore}
           schemaStore={this.schemaStore}
         >
           {this.renderChildren()}
-        </SchemaTaroUI>
+        </TaroComponentsUI>
       );
     } else if (isTaro(component)) {
       return (
-        <SchemaTaro
+        <TaroComponents
           containerStore={containerStore}
           schemaStore={this.schemaStore}
         >
           {this.renderChildren()}
-        </SchemaTaro>
+        </TaroComponents>
       );
     }
     console.error(`Error: UnSupport Component: ${component}`);
@@ -85,4 +85,4 @@ class SchemaElement extends Component<PageStateProps, any> {
   }
 }
 
-export default SchemaElement;
+export default Element;

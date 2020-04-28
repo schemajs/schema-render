@@ -7,33 +7,33 @@ import {
   ISchemaProperties
 } from "../types";
 // comp
-import { UniSchemaStore, AnyUniSchemaStore } from "./SchemaSchemaStore";
+import { SchemaStore, AnySchemaStore } from "./SchemaStore";
 import isArray from "lodash/isArray";
 import { AnyBaseElementStore } from "./BaseElementStore";
-import  SchemaRegistry from "./SchemaRegistry";
+import  Registry from "./Registry";
 
 type EventListener = (...args: any[]) => void;
 
-export class SchemaContainerStore {
+export class ContainerStore {
   private eventCenter: any;
-  rootSchemaStore: AnyUniSchemaStore;
-  schemaStoreRegistry: SchemaRegistry<AnyUniSchemaStore>;
-  elementStoreRegistry: SchemaRegistry<AnyBaseElementStore>;
+  rootSchemaStore: AnySchemaStore;
+  schemaStoreRegistry: Registry<AnySchemaStore>;
+  elementStoreRegistry: Registry<AnyBaseElementStore>;
 
   get containerId() {
     return this.rootSchemaStore.schema.id || "uni";
   }
   
   constructor(schema: ISchema) {
-    this.rootSchemaStore = new UniSchemaStore(schema);
+    this.rootSchemaStore = new SchemaStore(schema);
     this.reset();
   }
 
   @action.bound
   reset() {
     this.eventCenter = new Events();
-    this.schemaStoreRegistry = new SchemaRegistry()
-    this.elementStoreRegistry = new SchemaRegistry()
+    this.schemaStoreRegistry = new Registry()
+    this.elementStoreRegistry = new Registry()
     this.parseBySchemaNode(this.rootSchemaStore.schema, this.containerId);
   }
 
@@ -101,7 +101,7 @@ export class SchemaContainerStore {
   @action.bound
   addSchemaStoreBySchema(schema: ISchema, path: string) {
     schema.path = path;
-    const schemaStore: AnyUniSchemaStore = new UniSchemaStore(schema);
+    const schemaStore: AnySchemaStore = new SchemaStore(schema);
     this.schemaStoreRegistry.regItem(path, schemaStore);
   }
 

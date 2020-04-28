@@ -13,9 +13,9 @@ import {
 } from "taro-ui";
 // var
 import { IFormSubmit, ICustomStyles, IValidMessage, ISchema } from "../../types";
-import { SchemaContainerStore } from "../../stores/SchemaContainerStore";
+import { ContainerStore } from "../../stores/ContainerStore";
 import { getContainerStore } from "../../stores/factory";
-import SchemaContainer from "../SchemaContainer";
+import Container from "../Container";
 import Component,{BaseComponentPropsType} from '../BaseComponent'
 
 interface PageStateProps extends BaseComponentPropsType {
@@ -26,8 +26,8 @@ interface PageStateProps extends BaseComponentPropsType {
 };
 
 @observer
-class SchemaForm extends Component<PageStateProps,any> {
-  containerStore: SchemaContainerStore;
+class Form extends Component<PageStateProps,any> {
+  containerStore: ContainerStore;
   constructor(props) {
     super(props);
     this.containerStore = getContainerStore(props.schema);
@@ -49,9 +49,9 @@ class SchemaForm extends Component<PageStateProps,any> {
   render() {
     return (
       <View>
-          <SchemaContainer
+          <Container
             containerStore={this.containerStore}
-          ></SchemaContainer>
+          ></Container>
          {this.props.children}
           <View onClick={this._onSubmit}>
              <AtButton type="primary" formType="submit">
@@ -64,4 +64,4 @@ class SchemaForm extends Component<PageStateProps,any> {
   }
 }
 
-export default SchemaForm;
+export default Form;

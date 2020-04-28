@@ -4,7 +4,7 @@ import { observer, inject } from "mobx-react";
 import Taro from "@tarojs/taro";
 
 import "./index.scss";
-import SchemaForm from "../../common/components/SchemaForm";
+import Form from "../../common/components/Form";
 
 type PageStateProps = {
  
@@ -154,10 +154,10 @@ class Index extends Component {
   render() {
     return (
       <View className="index">
-        <SchemaForm
+        <Form
           schema={schema}
           onSubmit={this.onSubmit}
-        ></SchemaForm>
+        ></Form>
       </View>
     );
   }

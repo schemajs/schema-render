@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { IElementProps } from "../type";
-import { AnyUniSchemaStore } from "../../stores/SchemaSchemaStore";
+import { AnySchemaStore } from "../../stores/SchemaStore";
 
 @observer
 export default class BaseSchemaComponent<
   IProps extends IElementProps,
   IState
 > extends Component<IProps, IState> {
-  schemaStore:AnyUniSchemaStore
+  schemaStore:AnySchemaStore
   constructor(props: IElementProps) {
     super((props as any))
     this.schemaStore = props.schemaStore

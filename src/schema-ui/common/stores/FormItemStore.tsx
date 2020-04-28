@@ -1,8 +1,7 @@
 import createDebug from "debug";
-
 import { action, computed, observable } from "mobx";
-import { IValidator } from "../types";
-
+import { IValidator,  SchemaValidator,
+  IFormItemStore,EnumElementType } from "../types";
 import {
   checkIsNotEmptyString,
   checkIsStringLength,
@@ -10,18 +9,12 @@ import {
   checkIsNumberMin,
   checkIsPatternAllow
 } from "../utils/validators/index";
-
-// type
-import {
-  SchemaValidator,
-  IFormItemStore,
-} from "../types";
-import { UniSchemaStore } from "./SchemaSchemaStore";
+import { SchemaStore } from "./SchemaStore";
 import { BaseElementStore } from "./BaseElementStore";
 
-const debug = createDebug("mapp:stores/SchemaFormItemStore");
+const debug = createDebug("schema-ui:stores/FormItemStore");
 
-export class SchemaFormItemStore<IProps, IState> extends BaseElementStore<IProps,IState> implements IFormItemStore {
+export class FormItemStore<IProps, IState> extends BaseElementStore<IProps,IState> implements IFormItemStore {
 
   @observable
   value: any;
@@ -35,8 +28,8 @@ export class SchemaFormItemStore<IProps, IState> extends BaseElementStore<IProps
   @observable
   isValid: boolean = true;
 
-  isForm():boolean{
-    return true
+  get type(){
+    return EnumElementType.FORM
   }
 
   /**
@@ -52,7 +45,7 @@ export class SchemaFormItemStore<IProps, IState> extends BaseElementStore<IProps
     return this.schema.title || "";
   }
 
-  constructor(schemaStore: UniSchemaStore<IProps>) {
+  constructor(schemaStore: SchemaStore<IProps>) {
     super(schemaStore)
     this.reset();
     // 初始化
@@ -186,4 +179,4 @@ export class SchemaFormItemStore<IProps, IState> extends BaseElementStore<IProps
   }
 }
 
-export type AnySchemaFormItemStore = SchemaFormItemStore<any, any>;
+export type AnyFormItemStore = FormItemStore<any, any>;
