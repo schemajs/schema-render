@@ -55,7 +55,7 @@ import { IValidator } from "../../utils/validators/type";
 import { checkIsNotZeroValue } from "../../utils/validators";
 
 @observer
-export default class TaroComponentsUI extends BaseSchemaComponent<
+export default class TaroUIComponents extends BaseSchemaComponent<
   IElementProps,
   any
 > {

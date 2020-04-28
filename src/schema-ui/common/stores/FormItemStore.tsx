@@ -19,7 +19,7 @@ export class FormItemStore<IProps, IState> extends BaseElementStore<IProps,IStat
   @observable
   value: any;
 
-  // 用于辅助显示的值
+  // 临时值
   @observable
   tempValue: any;
 

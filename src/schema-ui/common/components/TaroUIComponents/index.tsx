@@ -60,7 +60,7 @@ import { IValidator } from "../../utils/validators/type";
 import { AnyFormItemStore, FormItemStore } from "../../stores/FormItemStore";
 
 @observer
-export default class TaroComponentsUI extends BaseSchemaComponent<
+export default class TaroUIComponents extends BaseSchemaComponent<
   IElementProps,
   any
 > {

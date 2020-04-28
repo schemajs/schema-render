@@ -1,7 +1,7 @@
 import createDebug from "debug";
 
 import { action, computed, observable } from "mobx";
-import { SchemaStore, AnySchemaStore } from "./SchemaStore";
+import { SchemaStore } from "./SchemaStore";
 const debug = createDebug("schema-ui:stores/BaseElementStore");
 
 export class BaseElementStore<IProps, IState> {
