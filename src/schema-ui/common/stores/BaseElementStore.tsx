@@ -1,11 +1,17 @@
 import createDebug from "debug";
-import { action, computed, observable } from "mobx";
 import { SchemaStore } from "./SchemaStore";
 import { ComponentStateStore } from "./ComponentStateStore";
 const debug = createDebug("schema-ui:stores/BaseElementStore");
 
 export class BaseElementStore<IProps, IState> {
   schemaStore: SchemaStore<IProps>;
+
+  get schema(){
+    if(!this.schemaStore){
+      return {}
+    }
+    return this.schemaStore.schema || {}
+  }
 
   componentStateStore: ComponentStateStore<IState>;
 

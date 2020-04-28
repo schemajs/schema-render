@@ -1,19 +1,23 @@
-import { AnySchemaStore } from '../common/stores/SchemaStore';
-import { AnyComponentStateStore } from '../common/stores/ComponentStateStore';
+import { AnySchemaStore,SchemaStore } from '../common/stores/SchemaStore';
+import { AnyComponentStateStore,ComponentStateStore } from '../common/stores/ComponentStateStore';
 
 export enum EnumElementType {
   DISPLAY,
   FORM
 }
-export interface IElementStore {
+
+export interface IElementStore<IProps,IState> {
   type:EnumElementType
-  schemaStore: AnySchemaStore;
-  componentStateStore?: AnyComponentStateStore;
+  schemaStore: SchemaStore<IProps>;
+  componentStateStore?: ComponentStateStore<IState>;
 }
-export interface IDisplayItemStore extends  IElementStore {
+
+export type AnyElementStore = IElementStore<any,any>
+
+export interface IDisplayItemStore extends AnyElementStore {
 
 }
-export interface IFormItemStore extends  IElementStore {
+export interface IFormItemStore extends  AnyElementStore {
   value: any;
   tempValue?: any;
   isValid: boolean;
