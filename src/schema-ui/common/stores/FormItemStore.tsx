@@ -18,10 +18,6 @@ export class FormItemStore<IProps, IState> extends BaseElementStore<IProps,IStat
   @observable
   value: any;
 
-  // 临时值
-  @observable
-  tempValue: any;
-
   validators: IValidator[] = [];
 
   @observable
@@ -57,7 +53,6 @@ export class FormItemStore<IProps, IState> extends BaseElementStore<IProps,IStat
     const defaultValue = this.schema.default
     this.setValue(defaultValue);
     this.setIsValueUpdated(false);
-    this.tempValue = defaultValue;
   }
 
   @action.bound
@@ -150,16 +145,6 @@ export class FormItemStore<IProps, IState> extends BaseElementStore<IProps,IStat
     this.value = value;
     this.setIsValueUpdated(true);
     return;
-  }
-
-  @action.bound
-  setTempValue(value: any) {
-    this.tempValue = value;
-  }
-
-  @action.bound
-  syncTempValue() {
-    this.setValue(this.tempValue);
   }
 
   @action.bound
