@@ -7,14 +7,14 @@ import {
   AtInputNumber
 } from "taro-ui";
 import { checkIsNotZeroValue } from "../../utils/validators";
-import DemoCustomItemStore from "./DemoCustomItemStore";
+import DemoCustomElementStore from "./DemoCustomElementStore";
 
 @observer
 export default class DemoCustomCompnents extends BaseSchemaComponent<
   IElementProps,
   any
 > {
-  elementStore: DemoCustomItemStore
+  elementStore: DemoCustomElementStore
 
   constructor(props: IElementProps) {
     super(props);
@@ -28,7 +28,7 @@ export default class DemoCustomCompnents extends BaseSchemaComponent<
       return null;
     }
     // 构建 store
-    const store = new DemoCustomItemStore(schemaStore)
+    const store = new DemoCustomElementStore(schemaStore)
     this.elementStore = store
     // schemaStore
     const schema = store.schemaStore.schema;
@@ -43,9 +43,9 @@ export default class DemoCustomCompnents extends BaseSchemaComponent<
     // if (schema.required) {
     //   validators.push(checkIsNotZeroValue);
     // }
-    // store.setValidators(validators);
+    // store.formItemStore.setValidators(validators);
     if (schema.required) {
-        store.pushValidator(checkIsNotZeroValue)
+        store.formItemStore.pushValidator(checkIsNotZeroValue)
     }
     
   }
