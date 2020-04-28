@@ -7,14 +7,14 @@ import {
   AtInputNumber
 } from "taro-ui";
 import { checkIsNotZeroValue } from "../../utils/validators";
-import DemoCustomElementStore from "./DemoCustomElementStore";
+import LeapUIElementStore from "./LeapUIElementStore";
 
 @observer
-export default class DemoCustomCompnents extends BaseSchemaComponent<
+export default class LeapUICompnents extends BaseSchemaComponent<
   IElementProps,
   any
 > {
-  elementStore: DemoCustomElementStore
+  elementStore: LeapUIElementStore
 
   constructor(props: IElementProps) {
     super(props);
@@ -23,12 +23,12 @@ export default class DemoCustomCompnents extends BaseSchemaComponent<
 
   initStore(props: IElementProps) {
     const { schemaStore } = props;
-    console.log("DemoCustomCompnents initStore",schemaStore)
+    console.log("LeapUICompnents initStore",schemaStore)
     if(!schemaStore){
       return null;
     }
     // 构建 store
-    const store = new DemoCustomElementStore(schemaStore)
+    const store = new LeapUIElementStore(schemaStore)
     this.elementStore = store
     // schemaStore
     const schema = store.schemaStore.schema;
