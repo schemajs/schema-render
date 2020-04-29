@@ -65,32 +65,32 @@ module.exports = [
         items: [
           // {
           //   text: '本地开发',
-          //   link: '/en/miscellaneous/local-development.html'
+          //   link: '/en/misc/local-development.html'
           // },
           {
             text: 'Design',
-            link: '/en/miscellaneous/design-concepts.html'
+            link: '/en/misc/design-concepts.html'
           },
 
           {
             text: 'Recursive Render',
-            link: '/en/miscellaneous/recursive-render.html'
+            link: '/en/misc/recursive-render.html'
           },
           {
             text: 'Custom Component',
-            link: '/en/miscellaneous/custom-component.html'
+            link: '/en/misc/custom-component.html'
           },
           {
             text: 'Custom Ui Lib',
-            link: '/en/miscellaneous/custom-ui-lib.html'
+            link: '/en/misc/custom-ui-lib.html'
           },
           {
             text: 'FAQ',
-            link: '/en/miscellaneous/faq.html'
+            link: '/en/misc/faq.html'
           },
           {
             text: 'Glossary',
-            link: '/en/miscellaneous/glossary.html'
+            link: '/en/misc/glossary.html'
           }
         ]
       },

@@ -44,6 +44,8 @@ module.exports = {
         sidebar: {
           '/en/api/': getApiSidebar("API","UI Lib"),
           '/en/guide/': getGuideSidebar('Guide','Concepts', 'Advanced'),
+          '/en/case/':getCaseSidebar("Case","UI Lib"),
+          '/en/misc/':getMiscSidebar("Extend Develop","Others")
         }
       },
       '/': {
@@ -57,6 +59,8 @@ module.exports = {
         sidebar: {
           '/zh/api/': getApiSidebar("API","UI 库"),
           '/zh/guide/': getGuideSidebar('指南','概念/术语理解', '深入'),
+          '/zh/case/':getCaseSidebar("案例","UI 库"),
+          '/zh/misc/':getMiscSidebar("扩展开发","其他")
         }
       }
     },
@@ -109,6 +113,54 @@ function getApiSidebar (group1, group2) {
         'taro',
         'taro-ui',
         'leap-ui',
+      ]
+    }
+  ]
+}
+
+function getCaseSidebar (group1, group2) {
+  return [
+    {
+      title: group1,
+      collapsable: false,
+      sidebarDepth: 2,
+      children: [
+        'simple',
+      ]
+    },
+    {
+      title: group2,
+      collapsable: false,
+      sidebarDepth: 2,
+      children: [
+        'taro',
+        'taro-ui',
+        'leap-ui',
+      ]
+    }
+  ]
+}
+
+function getMiscSidebar (group1, group2) {
+  return [
+    {
+      title: group1,
+      collapsable: false,
+      sidebarDepth: 2,
+      children: [
+        'design-concepts',
+        'recursive-render',
+        'custom-component',
+        'custom-ui-lib',
+      ]
+    },
+    {
+      title: group2,
+      collapsable: false,
+      sidebarDepth: 2,
+      children: [
+        'glossary',
+        'faq',
       ]
     }
   ]
