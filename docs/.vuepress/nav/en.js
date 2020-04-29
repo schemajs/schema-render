@@ -9,7 +9,7 @@ module.exports = [
     items: [
       {
         text: 'Simple',
-        link: '/en/case/simple/'
+        link: '/en/case/'
       },
       {
         text: 'UI Lib Kitchen',

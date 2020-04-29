@@ -1,7 +1,7 @@
 module.exports = [
   {
     text: '指南',
-    link: '/zh/guide/base/intro'
+    link: '/zh/guide/'
   },
   {
     text: '案例',
@@ -9,7 +9,7 @@ module.exports = [
     items: [
       {
         text: '简单',
-        link: '/zh/case/simple/'
+        link: '/zh/case/'
       },
       {
         text: 'UI Lib Kitchen',

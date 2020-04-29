@@ -8,7 +8,7 @@ module.exports = {
       title: 'SchemaUI',
       description: 'Schema-powered Renderer'
     },
-    '/': {
+    '/zh': {
       lang: 'zh-CN',
       title: 'SchemaUI',
       description: 'Schema 驱动的 UI 渲染器'
@@ -48,7 +48,7 @@ module.exports = {
           '/en/misc/':getMiscSidebar("Extend Develop","Others")
         }
       },
-      '/': {
+      '/zh': {
         label: '简体中文',
         selectText: '选择语言',
         ariaLabel: '选择语言',
@@ -63,35 +63,41 @@ module.exports = {
           '/zh/misc/':getMiscSidebar("扩展开发","其他")
         }
       }
-    },
-    plugins: [
-      ['@vuepress/back-to-top', true],
-      ['@vuepress/pwa', {
-        serviceWorker: true,
-        updatePopup: true
-      }],
-      ['@vuepress/medium-zoom', true],
-      ['@vuepress/nprogress'],
-      ['@vuepress/google-analytics', {
-        ga: 'G-001C1B3ZV0'
-      }],
-      ['container', {
-        type: 'vue',
-        before: '<pre class="vue-container"><code>',
-        after: '</code></pre>'
-      }],
-      ['container', {
-        type: 'upgrade',
-        before: info => `<UpgradePath title="${info}">`,
-        after: '</UpgradePath>'
-      }],
-      ['flowchart']
-    ],
-    extraWatchFiles: [
-      '.vuepress/nav/en.js',
-      '.vuepress/nav/zh.js'
-    ]
+    }
   },
+  plugins: [
+    [
+      'redirect',
+      {
+        // 提供多语言重定向功能
+        // 它会自动从 `/foo/bar/` 定向到 `/:locale/foo/bar/`，如果对应的页面存在
+        locales: true,
+      },
+    ],
+    '@vuepress/back-to-top',
+    ['@vuepress/pwa', {
+      serviceWorker: true,
+      updatePopup: true
+    }],
+    ['@vuepress/medium-zoom', true],
+    ['@vuepress/google-analytics', {
+      ga: 'G-001C1B3ZV0'
+    }],
+    ['container', {
+      type: 'vue',
+      before: '<pre class="vue-container"><code>',
+      after: '</code></pre>'
+    }],
+    ['container', {
+      type: 'upgrade',
+      before: info => `<UpgradePath title="${info}">`,
+      after: '</UpgradePath>'
+    }],
+  ],
+  extraWatchFiles: [
+    '.vuepress/nav/en.js',
+    '.vuepress/nav/zh.js'
+  ]
 };
 
 function getApiSidebar (group1, group2) {
@@ -125,7 +131,7 @@ function getCaseSidebar (group1, group2) {
       collapsable: false,
       sidebarDepth: 2,
       children: [
-        'simple',
+        '',
       ]
     },
     {
@@ -173,7 +179,7 @@ function getGuideSidebar (group1, group2,group3) {
       collapsable: false,
       sidebarDepth: 2,
       children: [
-        'base/intro',
+        '',
         'base/getting-started',
         'base/directory-structure',
       ]
