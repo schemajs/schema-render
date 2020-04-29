@@ -1,10 +1,12 @@
 module.exports = {
-  // base:"/docs/",
+  base:"/schema-ui/",
+  title: 'SchemaUI',
+  description: 'Schema 驱动的 UI 渲染器',
   locales: {
     '/en': {
       lang: 'en-US',
       title: 'SchemaUI',
-      description: 'Vue-powered Static Site Generator'
+      description: 'Schema-powered Renderer'
     },
     '/': {
       lang: 'zh-CN',
@@ -27,7 +29,7 @@ module.exports = {
     logo: '/logo.png',
     displayAllHeaders: true, // 默认值：false
     smoothScroll: true,
-    repo: 'schemajs/schema-ui-mobile',
+    repo: 'https://github.com/schemajs/schema-ui',
     editLinks: true,
     docsDir: 'docs',
     docsBranch: 'doc',
@@ -65,8 +67,9 @@ module.exports = {
         updatePopup: true
       }],
       ['@vuepress/medium-zoom', true],
+      ['@vuepress/nprogress'],
       ['@vuepress/google-analytics', {
-        ga: 'UA-128189152-1'
+        ga: 'G-001C1B3ZV0'
       }],
       ['container', {
         type: 'vue',

@@ -99,7 +99,7 @@ module.exports = [
         items: [
           {
             text: 'Changelog',
-            link: 'https://github.com/schemajs/schema-ui-mobile/blob/master/CHANGELOG.md'
+            link: 'https://github.com/schemajs/schema-ui/blob/master/CHANGELOG.md'
           }
         ]
       }
