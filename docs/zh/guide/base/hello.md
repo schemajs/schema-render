@@ -2,7 +2,7 @@
 
 编写以下代码:
 
-``` js {10}
+``` js {10,20}
 import Container from "@schemajs/schema-ui";
 
 // 定义 schema
