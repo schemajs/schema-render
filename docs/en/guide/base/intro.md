@@ -29,17 +29,3 @@ Schema 驱动的 UI 渲染器, 支持可视化构建.
 ### final-form
 
 ### 其他
-
-![logo](/logo.png)
-
-
-
-::: danger STOP
-危险区域，禁止通行
-:::
-
-::: details 点击查看代码
-```js
-console.log('你好，VuePress！')
-```
-:::

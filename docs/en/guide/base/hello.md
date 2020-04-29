@@ -27,6 +27,11 @@ class MyComponent extends Component {
 }
 ```
 
-你将会得到: 
+你将会得到以下 UI: 
 
-![hello world](/logo.png)
+h5:
+<img :src="$withBase('/demo/hello-world/h5.png')" alt="hello world h5">
+
+以及小程序:
+<img :src="$withBase('/demo/hello-world/weapp.png')" alt="hello world weapp">
+
