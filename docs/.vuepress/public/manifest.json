@@ -1,5 +1,7 @@
 {
   "name": "SchemaRender",
+  "description": "Schema => UI",
+  "lang": "zh-CN",
   "short_name": "SchemaRender",
   "icons": [
     {
@@ -11,5 +13,5 @@
   "start_url": "/schema-render/guide/base/hello.html",
   "display": "standalone",
   "background_color": "#fff",
-  "theme_color": "#3eaf7c"
+  "theme_color": "#0084ff"
 }
