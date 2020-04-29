@@ -26,6 +26,7 @@ module.exports = {
     ['meta', { name: 'msapplication-TileColor', content: '#000000' }]
   ],
   themeConfig: {
+    domain:"schemajs.github.io",
     logo: '/logo.png',
     displayAllHeaders: true, // 默认值：false
     smoothScroll: true,
@@ -66,6 +67,9 @@ module.exports = {
     }
   },
   plugins: [
+    'seo',
+    'check-md',
+    'vuepress-plugin-code-copy',
     [
       'redirect',
       {
@@ -80,7 +84,7 @@ module.exports = {
       serviceWorker: true,
       updatePopup: true
     }],
-    ['@vuepress/medium-zoom', true],
+    '@vuepress/medium-zoom',
     ['@vuepress/google-analytics', {
       ga: 'G-001C1B3ZV0'
     }],
@@ -94,6 +98,9 @@ module.exports = {
       before: info => `<UpgradePath title="${info}">`,
       after: '</UpgradePath>'
     }],
+    ['@vuepress/search', {
+      searchMaxSuggestions: 10
+    }]
   ],
   extraWatchFiles: [
     '.vuepress/nav/en.js',
@@ -124,12 +131,12 @@ function getRedirectorsByLang(lang) {
     {
       base: `/${lang}/guide/`,
       storage: true,
-      alternative: ['base/intro'],
+      alternative: ['base/hello'],
     },
     {
       base: `/${lang}/guide/base/`,
       storage: true,
-      alternative: ['intro'],
+      alternative: ['hello'],
     },
     {
       base: `/${lang}/guide/concepts/`,
@@ -229,6 +236,7 @@ function getGuideSidebar (group1, group2,group3) {
       collapsable: false,
       sidebarDepth: 2,
       children: [
+        'base/hello',
         'base/intro',
         'base/getting-started',
         'base/directory-structure',
