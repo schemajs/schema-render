@@ -32,6 +32,7 @@ class MyComponent extends Component {
 h5:
 <img :src="$withBase('/demo/hello-world/h5.png')" alt="hello world h5">
 
-以及小程序:
+微信小程序:
 <img :src="$withBase('/demo/hello-world/weapp.png')" alt="hello world weapp">
 
+当然, 还有 taro 支持的其他端.
