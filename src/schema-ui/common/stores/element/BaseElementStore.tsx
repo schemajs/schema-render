@@ -1,7 +1,7 @@
 import createDebug from "debug";
 import { SchemaStore } from "../SchemaStore";
 import { StateStore } from "../StateStore";
-const debug = createDebug("schema-ui:stores/BaseElementStore");
+const debug = createDebug("schema-render:stores/BaseElementStore");
 
 export class BaseElementStore<IProps, IState> {
   schemaStore: SchemaStore<IProps>;

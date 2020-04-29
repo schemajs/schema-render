@@ -2,7 +2,7 @@ import createDebug from "debug";
 import { IElementStore,EnumElementType } from '../../../types'
 import { FormElementStore } from "../../stores/element/FormElementStore";
 
-const debug = createDebug("schema-ui:stores/LeapUIElementStore");
+const debug = createDebug("schema-render:stores/LeapUIElementStore");
 
 export  interface IProps {
   

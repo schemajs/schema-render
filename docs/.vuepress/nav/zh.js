@@ -98,7 +98,7 @@ module.exports = [
           },
           {
             text: 'Changelog',
-            link: 'https://github.com/schemajs/schema-ui/blob/master/CHANGELOG.md'
+            link: 'https://github.com/schemajs/schema-render/blob/master/CHANGELOG.md'
           }
         ]
       }

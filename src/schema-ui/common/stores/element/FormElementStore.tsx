@@ -4,7 +4,7 @@ import { IFormElementStore,EnumElementType } from '../../../types'
 import { FormItemStore } from "./FormItemStore";
 import { SchemaStore } from "../SchemaStore";
 
-const debug = createDebug("schema-ui:stores/FormElementStore");
+const debug = createDebug("schema-render:stores/FormElementStore");
 
 export class FormElementStore<IProps, IState> extends BaseElementStore<IProps,IState> implements IFormElementStore<IProps,IState> {
   

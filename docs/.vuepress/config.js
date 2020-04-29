@@ -1,16 +1,16 @@
 module.exports = {
-  base:"/schema-ui/",
-  title: 'SchemaUI',
+  base:"/schema-render/",
+  title: 'SchemaRender',
   description: 'Schema 驱动的 UI 渲染器',
   locales: {
     '/en': {
       lang: 'en-US',
-      title: 'SchemaUI',
+      title: 'SchemaRender',
       description: 'Schema-powered Renderer'
     },
     '/zh': {
       lang: 'zh-CN',
-      title: 'SchemaUI',
+      title: 'SchemaRender',
       description: 'Schema 驱动的 UI 渲染器'
     }
   },
@@ -30,7 +30,7 @@ module.exports = {
     logo: '/logo.png',
     displayAllHeaders: true, // 默认值：false
     smoothScroll: true,
-    repo: 'https://github.com/schemajs/schema-ui',
+    repo: 'https://github.com/schemajs/schema-render',
     editLinks: true,
     docsDir: 'docs',
     docsBranch: 'master',

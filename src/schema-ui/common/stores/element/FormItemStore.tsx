@@ -11,7 +11,7 @@ import {
 import { SchemaStore } from "../SchemaStore";
 import { BaseElementStore } from "./BaseElementStore";
 
-const debug = createDebug("schema-ui:stores/FormItemStore");
+const debug = createDebug("schema-render:stores/FormItemStore");
 
 export class FormItemStore<IProps, IState> extends BaseElementStore<IProps,IState> {
 

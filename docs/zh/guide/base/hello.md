@@ -3,7 +3,7 @@
 编写以下代码:
 
 ``` js {10,20}
-import Container from "@schemajs/schema-ui";
+import Container from "@schemajs/schema-render";
 
 // 定义 schema
 const schema = {

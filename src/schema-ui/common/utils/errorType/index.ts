@@ -1,33 +1,33 @@
 
-export class SchemaUIError extends Error {
+export class SchemaRenderError extends Error {
   constructor(message) {
     super(message);
     this.message = message;
   }
 }
 
-export class EnvError extends SchemaUIError {
+export class EnvError extends SchemaRenderError {
   constructor(message) {
     super(message);
     this.name = "EnvError";
   }
 }
 
-export class FormatterError extends SchemaUIError {
+export class FormatterError extends SchemaRenderError {
   constructor(message) {
     super(message);
     this.name = "FormatterError";
   }
 }
 
-export class QueryStringError extends SchemaUIError {
+export class QueryStringError extends SchemaRenderError {
   constructor(message) {
     super(message);
     this.name = "QueryStringError";
   }
 }
 
-export class ValidateError extends SchemaUIError {
+export class ValidateError extends SchemaRenderError {
   constructor(message) {
     super(message);
     this.name = "ValidateError";

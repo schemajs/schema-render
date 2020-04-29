@@ -1,3 +1,3 @@
-# SchemaUI-Mobile
+# Schema Render
 
-SchemaUI Mobile
+Schema Render

@@ -1,7 +1,7 @@
 import createDebug from "debug";
 
 import { action, computed, observable } from "mobx";
-const debug = createDebug("schema-ui:stores/StateStore");
+const debug = createDebug("schema-render:stores/StateStore");
 
 export class StateStore<IState> {
 
