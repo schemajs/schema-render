@@ -2,6 +2,11 @@
   "name": "SchemaUI",
   "short_name": "SchemaUI",
   "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "636x636",
+      "type": "image/png"
+    }
   ],
   "start_url": "/index.html",
   "display": "standalone",

@@ -4,7 +4,7 @@ Schema 驱动的 UI 渲染器, 支持可视化构建.
 
 ## 它是如何工作的？
 
-基于 taro+taro-ui+mobx
+待补充
 
 ## Features
 
@@ -17,7 +17,6 @@ Schema 驱动的 UI 渲染器, 支持可视化构建.
   - pc: iframe
   - 小程序: 插件
   - h5: url
-
 
 ## 为什么不是...?
 

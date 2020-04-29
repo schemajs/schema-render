@@ -72,6 +72,7 @@ module.exports = {
         // 提供多语言重定向功能
         // 它会自动从 `/foo/bar/` 定向到 `/:locale/foo/bar/`，如果对应的页面存在
         locales: true,
+        redirectors: getRedirectors()
       },
     ],
     '@vuepress/back-to-top',
@@ -99,6 +100,55 @@ module.exports = {
     '.vuepress/nav/zh.js'
   ]
 };
+function getRedirectors(params) {
+  const en = getRedirectorsByLang('en')
+  const zh = getRedirectorsByLang('zh')
+  return [
+    ...en,
+    ...zh
+  ]
+}
+
+function getRedirectorsByLang(lang) {
+  return [
+    {
+      base: `/${lang}/api/`,
+      storage: true,
+      alternative: ['components'],
+    },
+    {
+      base: `/${lang}/case/`,
+      storage: true,
+      alternative: ['simple'],
+    },
+    {
+      base: `/${lang}/guide/`,
+      storage: true,
+      alternative: ['base/intro'],
+    },
+    {
+      base: `/${lang}/guide/base/`,
+      storage: true,
+      alternative: ['intro'],
+    },
+    {
+      base: `/${lang}/guide/concepts/`,
+      storage: true,
+      alternative: ['path'],
+    },
+    {
+      base: `/${lang}/guide/advance/`,
+      storage: true,
+      alternative: ['layout'],
+    },
+    {
+      base: `/${lang}/guide/misc/`,
+      storage: true,
+      alternative: ['design-concepts'],
+    },
+    
+  ]
+}
 
 function getApiSidebar (group1, group2) {
   return [
@@ -131,7 +181,7 @@ function getCaseSidebar (group1, group2) {
       collapsable: false,
       sidebarDepth: 2,
       children: [
-        '',
+        'simple',
       ]
     },
     {
@@ -179,7 +229,7 @@ function getGuideSidebar (group1, group2,group3) {
       collapsable: false,
       sidebarDepth: 2,
       children: [
-        '',
+        'base/intro',
         'base/getting-started',
         'base/directory-structure',
       ]
