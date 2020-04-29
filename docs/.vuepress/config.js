@@ -33,7 +33,7 @@ module.exports = {
     repo: 'https://github.com/schemajs/schema-ui',
     editLinks: true,
     docsDir: 'docs',
-    docsBranch: 'doc',
+    docsBranch: 'master',
     locales: {
       '/en': {
         label: 'English',
