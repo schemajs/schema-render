@@ -81,7 +81,7 @@ module.exports = [
             link: '/en/misc/custom-component.html'
           },
           {
-            text: 'Custom Ui Lib',
+            text: 'Custom UI Lib',
             link: '/en/misc/custom-ui-lib.html'
           },
           {
