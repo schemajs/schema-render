@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>实现递归渲染组件 | SchemaRender</title>
+    <meta name="generator" content="VuePress 1.4.1">
+    <link rel="icon" href="/schema-render/logo.png">
+    <link rel="manifest" href="/schema-render/manifest.json">
+    <meta name="description" content="Schema 驱动的 UI 渲染器">
+    <meta property="article:modified_time" content="2020-04-29T07:08:17.000Z">
+    <meta property="og:site_name" content="SchemaRender">
+    <meta property="og:title" content="实现递归渲染组件">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="schemajs.github.io/zh/misc/recursive-render.html">
+    <meta name="twitter:title" content="实现递归渲染组件">
+    <meta name="twitter:url" content="schemajs.github.io/zh/misc/recursive-render.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/schema-render/assets/css/0.styles.06186596.css" as="style"><link rel="preload" href="/schema-render/assets/js/app.8ca4021e.js" as="script"><link rel="preload" href="/schema-render/assets/js/2.ef3a985a.js" as="script"><link rel="preload" href="/schema-render/assets/js/59.0c009eac.js" as="script"><link rel="preload" href="/schema-render/assets/js/3.62143bb1.js" as="script"><link rel="prefetch" href="/schema-render/assets/js/10.2f129b73.js"><link rel="prefetch" href="/schema-render/assets/js/11.f835a8a8.js"><link rel="prefetch" href="/schema-render/assets/js/12.dcdd0860.js"><link rel="prefetch" href="/schema-render/assets/js/13.11fe22e6.js"><link rel="prefetch" href="/schema-render/assets/js/14.8b514ff1.js"><link rel="prefetch" href="/schema-render/assets/js/15.77374709.js"><link rel="prefetch" href="/schema-render/assets/js/16.e6a85bcd.js"><link rel="prefetch" href="/schema-render/assets/js/17.5f28b759.js"><link rel="prefetch" href="/schema-render/assets/js/18.5090d8b3.js"><link rel="prefetch" href="/schema-render/assets/js/19.d50fede2.js"><link rel="prefetch" href="/schema-render/assets/js/20.72466147.js"><link rel="prefetch" href="/schema-render/assets/js/21.c6c4839d.js"><link rel="prefetch" href="/schema-render/assets/js/22.e8b0066e.js"><link rel="prefetch" href="/schema-render/assets/js/23.a5d4e2ac.js"><link rel="prefetch" href="/schema-render/assets/js/24.df78caf3.js"><link rel="prefetch" href="/schema-render/assets/js/25.7f2af26d.js"><link rel="prefetch" href="/schema-render/assets/js/26.4f5a25f9.js"><link rel="prefetch" href="/schema-render/assets/js/27.4b7deb9c.js"><link rel="prefetch" href="/schema-render/assets/js/28.14d38bef.js"><link rel="prefetch" href="/schema-render/assets/js/29.f1803203.js"><link rel="prefetch" href="/schema-render/assets/js/30.7ca6901d.js"><link rel="prefetch" href="/schema-render/assets/js/31.f3e10ad7.js"><link rel="prefetch" href="/schema-render/assets/js/32.3c21bed4.js"><link rel="prefetch" href="/schema-render/assets/js/33.550b7f25.js"><link rel="prefetch" href="/schema-render/assets/js/34.d87667ea.js"><link rel="prefetch" href="/schema-render/assets/js/35.75f160f4.js"><link rel="prefetch" href="/schema-render/assets/js/36.ee22b68b.js"><link rel="prefetch" href="/schema-render/assets/js/37.0b37dc80.js"><link rel="prefetch" href="/schema-render/assets/js/38.4d516e3e.js"><link rel="prefetch" href="/schema-render/assets/js/39.36d59431.js"><link rel="prefetch" href="/schema-render/assets/js/4.a04ecfca.js"><link rel="prefetch" href="/schema-render/assets/js/40.10c4325b.js"><link rel="prefetch" href="/schema-render/assets/js/41.50a2efff.js"><link rel="prefetch" href="/schema-render/assets/js/42.1789c9fd.js"><link rel="prefetch" href="/schema-render/assets/js/43.ccfa7eca.js"><link rel="prefetch" href="/schema-render/assets/js/44.838b923b.js"><link rel="prefetch" href="/schema-render/assets/js/45.ec01a89d.js"><link rel="prefetch" href="/schema-render/assets/js/46.dca8f75c.js"><link rel="prefetch" href="/schema-render/assets/js/47.8ee992d2.js"><link rel="prefetch" href="/schema-render/assets/js/48.303b90e7.js"><link rel="prefetch" href="/schema-render/assets/js/49.35d402bd.js"><link rel="prefetch" href="/schema-render/assets/js/5.c549f0cd.js"><link rel="prefetch" href="/schema-render/assets/js/50.74f12899.js"><link rel="prefetch" href="/schema-render/assets/js/51.bb9855d5.js"><link rel="prefetch" href="/schema-render/assets/js/52.831ea6e5.js"><link rel="prefetch" href="/schema-render/assets/js/53.217511f4.js"><link rel="prefetch" href="/schema-render/assets/js/54.29ca5a59.js"><link rel="prefetch" href="/schema-render/assets/js/55.ece5d9a8.js"><link rel="prefetch" href="/schema-render/assets/js/56.2ff658b9.js"><link rel="prefetch" href="/schema-render/assets/js/57.21f2da59.js"><link rel="prefetch" href="/schema-render/assets/js/58.a36ce93a.js"><link rel="prefetch" href="/schema-render/assets/js/6.7fcb3a83.js"><link rel="prefetch" href="/schema-render/assets/js/60.399740d3.js"><link rel="prefetch" href="/schema-render/assets/js/61.97736442.js"><link rel="prefetch" href="/schema-render/assets/js/7.3d8ca03e.js"><link rel="prefetch" href="/schema-render/assets/js/8.e3756ef8.js"><link rel="prefetch" href="/schema-render/assets/js/9.93d665ed.js">
+    <link rel="stylesheet" href="/schema-render/assets/css/0.styles.06186596.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/schema-render/zh" class="home-link router-link-active"><img src="/schema-render/logo.png" alt="SchemaRender" class="logo"> <span class="site-name can-hide">SchemaRender</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/schema-render/zh/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="案例" class="dropdown-title"><span class="title">案例</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/schema-render/zh/case/" class="nav-link">
+  简单
+</a></li><li class="dropdown-item"><h4>
+          UI Lib Kitchen
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/schema-render/zh/case/taro/" class="nav-link">
+  Taro
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/case/taro-ui/" class="nav-link">
+  Taro-UI
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/case/leap-ui/" class="nav-link">
+  Leap-UI
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="API" class="dropdown-title"><span class="title">API</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/schema-render/zh/api/components.html" class="nav-link">
+  组件
+</a></li><li class="dropdown-item"><!----> <a href="/schema-render/zh/api/stores.html" class="nav-link">
+  Store
+</a></li><li class="dropdown-item"><!----> <a href="/schema-render/zh/api/taro.html" class="nav-link">
+  Taro
+</a></li><li class="dropdown-item"><!----> <a href="/schema-render/zh/api/taro-ui.html" class="nav-link">
+  Taro-UI
+</a></li><li class="dropdown-item"><!----> <a href="/schema-render/zh/api/leap-ui.html" class="nav-link">
+  Leap-UI
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="了解更多" class="dropdown-title"><span class="title">了解更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          扩展开发指南
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/schema-render/zh/misc/design-concepts.html" class="nav-link">
+  设计理念
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/misc/recursive-render.html" class="nav-link router-link-exact-active router-link-active">
+  递归渲染
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/misc/custom-component.html" class="nav-link">
+  自定义组件
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/misc/custom-ui-lib.html" class="nav-link">
+  自定义组件库
+</a></li></ul></li><li class="dropdown-item"><h4>
+          其他
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/schema-render/zh/misc/glossary.html" class="nav-link">
+  术语
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/misc/faq.html" class="nav-link">
+  FAQ
+</a></li><li class="dropdown-subitem"><a href="https://github.com/schemajs/schema-render/blob/master/CHANGELOG.md" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Changelog
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="选择语言" class="dropdown-title"><span class="title">选择语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/schema-render/en/misc/recursive-render.html" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="/schema-render/zh/misc/recursive-render.html" class="nav-link router-link-exact-active router-link-active">
+  简体中文
+</a></li></ul></div></div> <a href="https://github.com/schemajs/schema-render" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/schema-render/zh/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="案例" class="dropdown-title"><span class="title">案例</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/schema-render/zh/case/" class="nav-link">
+  简单
+</a></li><li class="dropdown-item"><h4>
+          UI Lib Kitchen
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/schema-render/zh/case/taro/" class="nav-link">
+  Taro
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/case/taro-ui/" class="nav-link">
+  Taro-UI
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/case/leap-ui/" class="nav-link">
+  Leap-UI
+</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="API" class="dropdown-title"><span class="title">API</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/schema-render/zh/api/components.html" class="nav-link">
+  组件
+</a></li><li class="dropdown-item"><!----> <a href="/schema-render/zh/api/stores.html" class="nav-link">
+  Store
+</a></li><li class="dropdown-item"><!----> <a href="/schema-render/zh/api/taro.html" class="nav-link">
+  Taro
+</a></li><li class="dropdown-item"><!----> <a href="/schema-render/zh/api/taro-ui.html" class="nav-link">
+  Taro-UI
+</a></li><li class="dropdown-item"><!----> <a href="/schema-render/zh/api/leap-ui.html" class="nav-link">
+  Leap-UI
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="了解更多" class="dropdown-title"><span class="title">了解更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          扩展开发指南
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/schema-render/zh/misc/design-concepts.html" class="nav-link">
+  设计理念
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/misc/recursive-render.html" class="nav-link router-link-exact-active router-link-active">
+  递归渲染
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/misc/custom-component.html" class="nav-link">
+  自定义组件
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/misc/custom-ui-lib.html" class="nav-link">
+  自定义组件库
+</a></li></ul></li><li class="dropdown-item"><h4>
+          其他
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/schema-render/zh/misc/glossary.html" class="nav-link">
+  术语
+</a></li><li class="dropdown-subitem"><a href="/schema-render/zh/misc/faq.html" class="nav-link">
+  FAQ
+</a></li><li class="dropdown-subitem"><a href="https://github.com/schemajs/schema-render/blob/master/CHANGELOG.md" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Changelog
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="选择语言" class="dropdown-title"><span class="title">选择语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/schema-render/en/misc/recursive-render.html" class="nav-link">
+  English
+</a></li><li class="dropdown-item"><!----> <a href="/schema-render/zh/misc/recursive-render.html" class="nav-link router-link-exact-active router-link-active">
+  简体中文
+</a></li></ul></div></div> <a href="https://github.com/schemajs/schema-render" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>扩展开发</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/schema-render/zh/misc/design-concepts.html" class="sidebar-link">设计理念</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/schema-render/zh/misc/design-concepts.html#插件化" class="sidebar-link">插件化</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/schema-render/zh/misc/design-concepts.html#解耦" class="sidebar-link">解耦</a></li><li class="sidebar-sub-header"><a href="/schema-render/zh/misc/design-concepts.html#schema-的管理" class="sidebar-link">Schema 的管理</a></li></ul></li><li class="sidebar-sub-header"><a href="/schema-render/zh/misc/design-concepts.html#其他" class="sidebar-link">其他</a></li></ul></li><li><a href="/schema-render/zh/misc/recursive-render.html" class="active sidebar-link">实现递归渲染组件</a></li><li><a href="/schema-render/zh/misc/custom-component.html" class="sidebar-link">自定义组件</a></li><li><a href="/schema-render/zh/misc/custom-ui-lib.html" class="sidebar-link">自定义组件库</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>其他</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/schema-render/zh/misc/glossary.html" class="sidebar-link">术语</a></li><li><a href="/schema-render/zh/misc/faq.html" class="sidebar-link">FAQ</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="实现递归渲染组件"><a href="#实现递归渲染组件" class="header-anchor">#</a> 实现递归渲染组件</h1> <p>待补充</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/schemajs/schema-render/edit/master/docs/zh/misc/recursive-render.md" target="_blank" rel="noopener noreferrer">在 GitHub 上编辑此页</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2020-4-29 3:08:17 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/schema-render/zh/misc/design-concepts.html" class="prev">
+        设计理念
+      </a></span> <span class="next"><a href="/schema-render/zh/misc/custom-component.html">
+        自定义组件
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/schema-render/assets/js/app.8ca4021e.js" defer></script><script src="/schema-render/assets/js/2.ef3a985a.js" defer></script><script src="/schema-render/assets/js/59.0c009eac.js" defer></script><script src="/schema-render/assets/js/3.62143bb1.js" defer></script>
+  </body>
+</html>
