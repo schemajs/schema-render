@@ -12,7 +12,7 @@ const schema = {
     demo_text: {
       "x-component": "Text",
       "x-component-props": {
-        text: "Hello, World",
+        text: "Hello, World!",
       },
     },
   },
