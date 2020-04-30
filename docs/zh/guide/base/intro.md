@@ -12,7 +12,7 @@ Schema 驱动的 UI 渲染器, 支持可视化页面构建.
 
 - 基于 Schema 渲染 UI
 - 将每个组件的状态挂载到 mobx store, 可供前端开发时读取/修改
-- 基于 event bus 暴露组件的时间, 前端开发可监听处理 
+- 基于 event bus 暴露组件的事件(例如 OnChange), 前端开发可监听处理 
 
 ## Features
 
